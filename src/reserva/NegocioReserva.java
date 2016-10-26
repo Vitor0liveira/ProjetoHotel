@@ -10,6 +10,7 @@ public class NegocioReserva implements InterfacerReserva {
         if (r.getCd_reserva() == 0) {
             throw new Exception ("Informar um número de reserva válido.");
         }
+        
     }
 
     @Override

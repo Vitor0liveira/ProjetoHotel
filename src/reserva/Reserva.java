@@ -5,6 +5,9 @@ public class Reserva {
     private String data;
     private int periodo;
     private int situacao;
+    private String cpf_cliente;
+    private int nr_quarto;
+    private int cd_ocupacao;
 
     public int getCd_reserva() {
         return cd_reserva;
@@ -36,6 +39,30 @@ public class Reserva {
 
     public void setSituacao(int situacao) {
         this.situacao = situacao;
+    }
+
+    public String getCpf_cliente() {
+        return cpf_cliente;
+    }
+
+    public void setCpf_cliente(String cpf_cliente) {
+        this.cpf_cliente = cpf_cliente;
+    }
+
+    public int getNr_quarto() {
+        return nr_quarto;
+    }
+
+    public void setNr_quarto(int nr_quarto) {
+        this.nr_quarto = nr_quarto;
+    }
+
+    public int getCd_ocupacao() {
+        return cd_ocupacao;
+    }
+
+    public void setCd_ocupacao(int cd_ocupacao) {
+        this.cd_ocupacao = cd_ocupacao;
     }
     
 }
