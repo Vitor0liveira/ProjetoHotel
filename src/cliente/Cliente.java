@@ -2,6 +2,11 @@ package cliente;
 
 public class Cliente {
     
+    
+    
+    
+    
+    
     private String cpf_cliente;
     private String nm_cliente;
     private String telefone;
