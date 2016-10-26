@@ -9,4 +9,14 @@ public class DadosReserva extends Dados implements InterfacerReserva {
 
     }
 
+    @Override
+    public void cancelarReserva(Reserva r) throws Exception {
+
+    }
+
+    @Override
+    public void listarReserva(Reserva r) throws Exception {
+
+    }
+
 }
