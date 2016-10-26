@@ -17,7 +17,11 @@ public class ProjetoHotel {
             JOptionPane.showMessageDialog(null, e.getMessage());*/
 
             Reserva r = new Reserva();
-            r.setCd_ocupacao(0); 
+            r.setCd_reserva(0); 
+            
+            NegocioReserva nr = new NegocioReserva();
+            nr.fazerReserva(r);
+            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
