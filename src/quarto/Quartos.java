@@ -1,4 +1,4 @@
-package quartos;
+package quarto;
 
 public class Quartos {
     private int nr_quarto;

@@ -1,4 +1,4 @@
-package quartos;
+package quarto;
 
 public class DadosQuartos {
     
