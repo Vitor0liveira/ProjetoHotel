@@ -9,8 +9,14 @@ public class NegocioReserva implements InterfacerReserva {
             throw new Exception ("Informar um número de reserva válido.");
         }
     }
-    
-    
-    
-    
+
+    @Override
+    public void cancelarReserva(Reserva r) throws Exception {
+    }
+
+    @Override
+    public void listarReserva(Reserva r) throws Exception {
+
+    }
+       
 }
