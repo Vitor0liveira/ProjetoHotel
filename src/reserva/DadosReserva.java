@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DadosReserva extends Dados implements InterfacerReserva {
+public class DadosReserva extends Dados implements InterfaceReserva {
 
     @Override
     public void fazerReserva(Reserva r) throws Exception {

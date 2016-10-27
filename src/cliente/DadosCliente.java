@@ -3,18 +3,19 @@ package cliente;
 import conexao.Dados;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DadosCliente extends Dados implements InterfaceCliente {
 
     @Override
     public void cadastrarCliente(Cliente c) throws Exception {
-        
+
         conectar();
-        
+
         String sql = "INSERT INTO Cliente (CPF_cliente, nm_cliente, telefone, sexo)";
         sql += "VALUES (?, ?, ?, ?)";
-        
+
         try {
 
             PreparedStatement cmd = conn.prepareStatement(sql);
@@ -35,17 +36,16 @@ public class DadosCliente extends Dados implements InterfaceCliente {
     @Override
     public void atualizarCliente(Cliente c) throws Exception {
 
-       conectar();
-
+        Statement conex = conectar();
         String sql = "UPDATE Cliente SET nm_cliente, telefone = ? WHERE CPF_cliente = ? ;";
-        
+
         try {
 
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setString(1, c.getNm_cliente());
             cmd.setString(2, c.getTelefone());
             cmd.execute();
-            
+
         } catch (SQLException e) {
 
             throw new Exception("Problemas ao executar a atualização: " + e.getMessage());
@@ -78,6 +78,5 @@ public class DadosCliente extends Dados implements InterfaceCliente {
     public ArrayList<Cliente> pesquisarCliente(Cliente filtro) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-        
-    }
 
+}

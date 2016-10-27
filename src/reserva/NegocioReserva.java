@@ -6,31 +6,34 @@ public class NegocioReserva implements InterfaceReserva {
 
     @Override
     public void fazerReserva(Reserva r) throws Exception {
-        //Fazer as validações
-        if (r.getCd_reserva() == 0) {
-            throw new Exception("Informar um Número de Reserva Válido.");
+        //Validações de uma reserva
+        if (r.getCd_reserva() <= 0) {
+            throw new Exception("Informar um número de RESERVA maior que zero.");
         }
 
-        if (r.getPeriodo() == 0) {
-            throw new Exception("Informe um Número Válido para o Periodo.");
+        if (r.getPeriodo() <= 0) {
+            throw new Exception("Informe um número de PERÍODO maior que zero.");
         }
 
         if (r.getCpf_cliente().equals("   .   .   -  ")) {
-            throw new Exception("Informe o CPF Totalmente.");
+            throw new Exception("Informe o CPF totalmente.");
         }
         
          if (r.getData().equals("  /  /  ")) {
-            throw new Exception("Informe a Data por Completo.");
+            throw new Exception("Informe a DATA.");
         }
 
         if (r.getNr_quarto() == 0) {
-            throw new Exception("Informe o Número do Quarto.");
+            throw new Exception("Informe o número do QUARTO válido.");
         }
 
         if (r.getCd_ocupacao() == 0) {
-            throw new Exception("Informe o Código de Ocupação.");
+            throw new Exception("Informe o código de OCUPAÇÃO.");
         }
+        DadosReserva dr = new DadosReserva();
+        dr.fazerReserva(r);
     }
+
 
     @Override
     public void atualizarReserva(Reserva r) throws Exception {
