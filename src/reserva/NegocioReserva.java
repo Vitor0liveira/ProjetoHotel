@@ -2,7 +2,7 @@ package reserva;
 
 import java.util.ArrayList;
 
-public class NegocioReserva implements InterfacerReserva {
+public class NegocioReserva implements InterfaceReserva {
 
     @Override
     public void fazerReserva(Reserva r) throws Exception {
