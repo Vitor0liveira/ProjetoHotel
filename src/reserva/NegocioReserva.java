@@ -23,11 +23,11 @@ public class NegocioReserva implements InterfaceReserva {
             throw new Exception("Informe a DATA.");
         }
 
-        if (r.getNr_quarto() == 0) {
+        if (r.getNr_quarto() <= 0) {
             throw new Exception("Informe o número do QUARTO válido.");
         }
 
-        if (r.getCd_ocupacao() == 0) {
+        if (r.getCd_ocupacao() <= 0) {
             throw new Exception("Informe o código de OCUPAÇÃO.");
         }
         DadosReserva dr = new DadosReserva();

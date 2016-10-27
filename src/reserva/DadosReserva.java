@@ -19,7 +19,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
             //Executando a instrução SQL
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setInt   (1, r.getCd_reserva());
-            cmd.setString(2, r.getData());
+            cmd.setDate  (2, r.getData());
             cmd.setInt   (3, r.getPeriodo());
             cmd.setInt   (4, r.getSituacao());
             cmd.setString(5, r.getCpf_cliente());

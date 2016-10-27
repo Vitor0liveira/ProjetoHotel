@@ -17,9 +17,13 @@ public class ProjetoHotel {
             JOptionPane.showMessageDialog(null, e.getMessage());*/
 
             Reserva r = new Reserva();
-            r.setCd_ocupacao(1);
-            r.setCpf_cliente("109.010.101-9");
+            r.setCd_reserva(0);
             r.setData("19/92/2010");
+            r.setPeriodo(0);
+            r.setSituacao(0);
+            r.setCpf_cliente("109.010.101-9");
+            r.setNr_quarto(0);
+            r.setCd_ocupacao(1);
             
             
             

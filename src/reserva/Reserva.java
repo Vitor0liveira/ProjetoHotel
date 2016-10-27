@@ -1,9 +1,11 @@
 package reserva;
 
+import java.sql.Date;
+
 public class Reserva {
 
     private int cd_reserva;
-    private String data;
+    private Date data;
     private int periodo;
     private int situacao;
     private String cpf_cliente;
@@ -18,12 +20,12 @@ public class Reserva {
         cd_reserva = cd_res;
     }
 
-    public String getData() {
+    public Date getData() {
         return this.data;
     }
 
-    public void setData(String dt) {
-        data = dt;
+    public void setData(String data) {
+        this.data = new Date (new java.util.Date(data).getTime());
     }
 
     public int getPeriodo() {
