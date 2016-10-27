@@ -18,22 +18,23 @@ public class NegocioReserva implements InterfaceReserva {
         if (r.getCpf_cliente().equals("   .   .   -  ")) {
             throw new Exception("Informe o CPF totalmente.");
         }
-        
-         if (r.getData().equals("  /  /  ")) {
-            throw new Exception("Informe a DATA.");
+        if (r.getData() == null) {
+            throw new Exception("Informe DATA.");
         }
 
         if (r.getNr_quarto() <= 0) {
+
             throw new Exception("Informe o número do QUARTO válido.");
         }
 
-        if (r.getCd_ocupacao() <= 0) {
+        if (r.getCd_ocupacao()
+                <= 0) {
             throw new Exception("Informe o código de OCUPAÇÃO.");
         }
         DadosReserva dr = new DadosReserva();
+
         dr.fazerReserva(r);
     }
-
 
     @Override
     public void atualizarReserva(Reserva r) throws Exception {
