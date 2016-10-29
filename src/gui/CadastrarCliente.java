@@ -36,6 +36,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jFTTelefone = new javax.swing.JFormattedTextField();
         jFTCPF = new javax.swing.JFormattedTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +54,9 @@ public class CadastrarCliente extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino" }));
+
+        jButton1.setText("Cadastrar");
 
         javax.swing.GroupLayout jPainelLayout = new javax.swing.GroupLayout(jPainel);
         jPainel.setLayout(jPainelLayout);
@@ -62,16 +65,19 @@ public class CadastrarCliente extends javax.swing.JFrame {
             .addGroup(jPainelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelNome)
-                    .addComponent(jLabelTelefone)
-                    .addComponent(jLabelCPF)
-                    .addComponent(jLabelSexo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFNome)
-                    .addComponent(jFTTelefone)
-                    .addComponent(jFTCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
+                    .addGroup(jPainelLayout.createSequentialGroup()
+                        .addGroup(jPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelNome)
+                            .addComponent(jLabelTelefone)
+                            .addComponent(jLabelCPF)
+                            .addComponent(jLabelSexo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTFNome)
+                            .addComponent(jFTTelefone)
+                            .addComponent(jFTCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
+                    .addComponent(jButton1))
                 .addContainerGap(217, Short.MAX_VALUE))
         );
         jPainelLayout.setVerticalGroup(
@@ -93,7 +99,9 @@ public class CadastrarCliente extends javax.swing.JFrame {
                 .addGroup(jPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelSexo)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(jButton1)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,6 +158,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFTCPF;
     private javax.swing.JFormattedTextField jFTTelefone;

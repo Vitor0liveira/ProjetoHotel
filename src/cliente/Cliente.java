@@ -6,7 +6,6 @@ public class Cliente {
     private String nm_cliente;
     private String telefone;
     private String sexo;
-    private Integer situacao;
 
     public String getCpf_cliente() {
         return cpf_cliente;
@@ -40,11 +39,4 @@ public class Cliente {
         this.sexo = sexo;
     }
 
-    public Integer getSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(Integer situacao) {
-        this.situacao = situacao;
-    }
 }

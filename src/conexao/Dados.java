@@ -1,13 +1,13 @@
 package conexao;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Dados {
 
-    private java.sql.Statement stmt;
+    private Statement stmt;
     public Connection conn;
 
     public java.sql.Statement conectar() throws ClassNotFoundException, SQLException {
@@ -20,7 +20,7 @@ public class Dados {
 
     private java.sql.Statement conectarSqlServer() throws ClassNotFoundException, SQLException {
         String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        String url = "jdbc:sqlserver://localhost;DatabaseName=Hotel";
+        String url = "jdbc:sqlserver://localhost;DatabaseName=Hotel2";
         String usuario = "projeto";
         String senha = "123";
         Class.forName(driver);

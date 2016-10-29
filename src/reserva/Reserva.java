@@ -1,16 +1,25 @@
 package reserva;
 
+import cliente.Cliente;
 import java.sql.Date;
 
 public class Reserva {
 
     private int cd_reserva;
-    private Date data;
+    private String data;
     private int periodo;
     private int situacao;
-    private String cpf_cliente;
+    private Cliente cliente;
     private int nr_quarto;
     private int cd_ocupacao;
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     public int getCd_reserva() {
         return this.cd_reserva;
@@ -20,12 +29,12 @@ public class Reserva {
         cd_reserva = cd_res;
     }
 
-    public Date getData() {
+    public String getData() {
         return this.data;
     }
 
     public void setData(String data) {
-        this.data = new Date (new java.util.Date(data).getTime());
+       this.data = data;
     }
 
     public int getPeriodo() {
@@ -42,14 +51,6 @@ public class Reserva {
 
     public void setSituacao(int stcao) {
         situacao = stcao;
-    }
-
-    public String getCpf_cliente() {
-        return this.cpf_cliente;
-    }
-
-    public void setCpf_cliente(String cpf_cli) {
-        cpf_cliente = cpf_cli;
     }
 
     public int getNr_quarto() {
