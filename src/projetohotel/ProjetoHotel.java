@@ -19,7 +19,7 @@ public class ProjetoHotel {
             JOptionPane.showMessageDialog(null, e.getMessage());*/
 
             Cliente c = new Cliente();
-            c.setCpf_cliente("109.010.011-29");
+            c.setCpf_cliente("109.010.011-20");
             c.setNm_cliente("MOTHER FUCK");
             c.setSexo("M");
             c.setTelefone("9999-9999");
@@ -32,7 +32,7 @@ public class ProjetoHotel {
             que será o codigo identificador.
              */
             Reserva r = new Reserva();
-            r.setCd_reserva(17);
+            r.setCd_reserva(4);
             r.setData("19.92.2010");
             r.setPeriodo(2);
             r.setSituacao(1);

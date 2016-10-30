@@ -9,12 +9,9 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
     @Override
     public void fazerReserva(Reserva r) throws Exception {
-        //Abrindo conexão
         conectar();
-        //Instrução SQL correspondente a inserção de Reserva
         String sql = "INSERT INTO Reserva (cd_reserva, data, periodo, situacao, CPF_cliente, Nr_quarto, Cd_ocupacao)";
-        //Recebendo os valores correspondentes 
-        sql += "VALUES (?,?,?,?,?,?,?);";
+        sql += "VALUES (?,?,?,?,?,?,?)";
         try {
             //Executando a instrução SQL
             PreparedStatement cmd = conn.prepareStatement(sql);
@@ -27,10 +24,8 @@ public class DadosReserva extends Dados implements InterfaceReserva {
             cmd.setInt(7, r.getCd_ocupacao());
             cmd.execute();
         } catch (SQLException e) {
-            //Caso haja algum erro neste método será levantada esta execeção
             throw new Exception("Erro ao executar inserção: " + e.getMessage());
         }
-        //Fechando conexão com o banco de dados
         desconectar();
 
     }
