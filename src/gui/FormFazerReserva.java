@@ -6,6 +6,8 @@
 package gui;
 
 import fachada.Fachada;
+import java.awt.Dimension;
+import javax.swing.Action;
 import javax.swing.JOptionPane;
 import reserva.Reserva;
 
@@ -47,6 +49,7 @@ public class FormFazerReserva extends javax.swing.JFrame {
         jComboBoxNrQuarto = new javax.swing.JComboBox<>();
         jTextFieldCdOcupacao = new javax.swing.JTextField();
         jComboBoxPeriodo = new javax.swing.JComboBox<>();
+        jButtonAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,7 +69,7 @@ public class FormFazerReserva extends javax.swing.JFrame {
         jLabel5.setText("Data:");
 
         try {
-            jFormattedTextFieldData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.##.####")));
+            jFormattedTextFieldData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -97,6 +100,13 @@ public class FormFazerReserva extends javax.swing.JFrame {
 
         jComboBoxPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
 
+        jButtonAtualizar.setText("Atualizar");
+        jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -107,7 +117,10 @@ public class FormFazerReserva extends javax.swing.JFrame {
                     .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonReservar)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonReservar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonAtualizar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -169,7 +182,9 @@ public class FormFazerReserva extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jButtonReservar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonReservar)
+                    .addComponent(jButtonAtualizar))
                 .addContainerGap())
         );
 
@@ -195,25 +210,30 @@ public class FormFazerReserva extends javax.swing.JFrame {
             Reserva r = new Reserva();
             //Alimentando o objeto
             r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
-            System.out.println("ok");
+            //Este system foi usado caso haja algum problema ao executar a aplicação.
             r.setData(jFormattedTextFieldData.getText());
-            System.out.println("ok1");
             r.setPeriodo(jComboBoxPeriodo.getSelectedIndex() + 1);
-            System.out.println("ok2");
-            r.setSituacao(jComboBoxSituacao.getSelectedIndex());
+            r.setSituacao(jComboBoxSituacao.getSelectedIndex() + 1);
             r.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
             r.setNr_quarto(jComboBoxNrQuarto.getSelectedIndex() + 1);
             r.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
+            
+            //Setando os campos
+            jTextFieldCdOcupacao.setText("");
+            jTextFieldCdReserva.setText("");
+            jFormattedTextFieldData.setText("");
+            jFormattedTextFieldCliCpf.setText("");
+            jComboBoxNrQuarto.setSelectedItem("1");
+            jComboBoxPeriodo.setSelectedItem("1");
+            jTextFieldCdReserva.requestFocus();
+            
 
             //Enviando o objeto
             Fachada f = new Fachada();
             f.fazerReserva(r);
 
             JOptionPane.showMessageDialog(this, "Reserva efetuada com sucesso.");
-            jTextFieldCdOcupacao.setText("");
-            jTextFieldCdReserva.setText("");
-            jFormattedTextFieldData.setText("");
-            jTextFieldCdOcupacao.requestFocus();
+            
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage() + " " + erro.getLocalizedMessage());
@@ -224,15 +244,36 @@ public class FormFazerReserva extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCdOcupacaoActionPerformed
 
+    private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
+        // TODO add your handling code here:
+       
+         try {
+            Reserva r = new Reserva();
+            r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
+            r.setPeriodo(jComboBoxPeriodo.getSelectedIndex() + 1);
+            r.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
+
+            Fachada f = new Fachada();
+            f.atualizarReserva(r);
+
+            JOptionPane.showMessageDialog(this, "Reserva atualizada com sucesso.");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+        
+    }//GEN-LAST:event_jButtonAtualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -250,7 +291,12 @@ public class FormFazerReserva extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FormFazerReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        /*
+        javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
 
+        */
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -260,6 +306,7 @@ public class FormFazerReserva extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAtualizar;
     private javax.swing.JButton jButtonReservar;
     private javax.swing.JComboBox<String> jComboBoxNrQuarto;
     private javax.swing.JComboBox<String> jComboBoxPeriodo;
