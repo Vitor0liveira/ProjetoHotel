@@ -12,9 +12,28 @@ public class Reserva {
     private Cliente cliente;
     private int nr_quarto;
     private int cd_ocupacao;
+    
+    public Reserva() {
+        this.cliente = new Cliente();
+    }
 
     public Cliente getCliente() {
         return cliente;
+    }
+    
+    @Override
+    public String toString() {
+        String retorno = "";
+        retorno += "Dados de Reserva" + "\n";
+        retorno += "Código reserva: " + this.cd_reserva + "\n";
+        retorno += "Data: " + this.data + "\n";
+        retorno += "Período: " + this.periodo + "\n";
+        retorno += "Situação: " + this.situacao + "\n";
+        retorno += "Cliente CPF: " + this.cliente + "\n";
+        retorno += "Número do quarto: " + this.nr_quarto + "\n";
+        retorno += "Código ocupação: " + this.cd_ocupacao;
+
+        return retorno;
     }
 
     public void setCliente(Cliente cliente) {

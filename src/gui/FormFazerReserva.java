@@ -195,8 +195,11 @@ public class FormFazerReserva extends javax.swing.JFrame {
             Reserva r = new Reserva();
             //Alimentando o objeto
             r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
+            System.out.println("ok");
             r.setData(jFormattedTextFieldData.getText());
+            System.out.println("ok1");
             r.setPeriodo(jComboBoxPeriodo.getSelectedIndex() + 1);
+            System.out.println("ok2");
             r.setSituacao(jComboBoxSituacao.getSelectedIndex());
             r.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
             r.setNr_quarto(jComboBoxNrQuarto.getSelectedIndex() + 1);
@@ -207,13 +210,13 @@ public class FormFazerReserva extends javax.swing.JFrame {
             f.fazerReserva(r);
 
             JOptionPane.showMessageDialog(this, "Reserva efetuada com sucesso.");
-            /*jTextFieldCdOcupacao.setText("");
+            jTextFieldCdOcupacao.setText("");
             jTextFieldCdReserva.setText("");
             jFormattedTextFieldData.setText("");
-            jTextFieldCdOcupacao.requestFocus();*/
+            jTextFieldCdOcupacao.requestFocus();
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage() + " " + erro.getLocalizedMessage());
         }
     }//GEN-LAST:event_jButtonReservarActionPerformed
 
