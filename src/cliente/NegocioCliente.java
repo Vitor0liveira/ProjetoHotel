@@ -18,7 +18,6 @@ public class NegocioCliente implements InterfaceCliente {
         if (c.getTelefone().trim().equals("")) {
             throw new Exception("Por favor, preencha o campo telefone.");
         }
-       
         
         DadosCliente dC = new DadosCliente();
         dC.cadastrarCliente(c);
