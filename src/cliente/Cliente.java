@@ -6,6 +6,11 @@ public class Cliente {
     private String nm_cliente;
     private String telefone;
     private String sexo;
+    
+    @Override
+    public String toString() {
+        return String.format("CPF: %s\nNome: %s\nTelefone: %s\nSexo: %s", cpf_cliente, nm_cliente, telefone, sexo);
+    }
 
     public String getCpf_cliente() {
         return cpf_cliente;

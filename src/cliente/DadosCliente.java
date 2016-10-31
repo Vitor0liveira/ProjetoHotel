@@ -13,11 +13,10 @@ public class DadosCliente extends Dados implements InterfaceCliente {
 
         conectar();
 
-        String sql = "INSERT INTO Cliente (CPF_cliente, nm_cliente, telefone, sexo)";
-        sql += "VALUES (?,? ?,?)";
-
+        String sql = "INSERT INTO Cliente (CPF_cliente, nm_cliente, telefone, sexo) ";
+        sql += "VALUES (?,?,?,?);";
+        
         try {
-
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setString(1, c.getCpf_cliente());
             cmd.setString(2, c.getNm_cliente());
@@ -26,7 +25,6 @@ public class DadosCliente extends Dados implements InterfaceCliente {
             cmd.execute();
 
         } catch (SQLException e) {
-
             throw new Exception("Problemas ao executar a inserção: " + e.getMessage());
         }
 

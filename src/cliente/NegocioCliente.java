@@ -6,26 +6,22 @@ public class NegocioCliente implements InterfaceCliente {
 
     @Override
     public void cadastrarCliente(Cliente c) throws Exception {
-        if (c.getCpf_cliente().trim().length() < 14) { 
-            throw new Exception("Informe um CPF válido.");
+        if (c.getCpf_cliente().trim().length() < 14) {
+            throw new Exception("Por favor, preencha o campo CPF.");
         }
-        if(c.getCpf_cliente().equals("")){
-            throw new Exception("Campo CPF vazio.");
+        if (c.getNm_cliente().trim().equals("")) {
+            throw new Exception ("Por favor, preencha o campo nome.");
         }
-         if (c.getTelefone().trim().length() < 15) { 
-            throw new Exception("Informe um TELEFONE válido.");
+        if (c.getSexo().trim().equals("")) {
+            throw new Exception("Por favor, preencha o campo sexo. ");
         }
-        if(c.getTelefone().equals("")){
-            throw new Exception("Campo TELEFONE vazio.");
+        if (c.getTelefone().trim().equals("")) {
+            throw new Exception("Por favor, preencha o campo telefone.");
         }
-        if(c.getNm_cliente().equals("")){
-            throw new Exception("Campo NOME vazio.");
-        }
-        if(c.getSexo().equals("")){
-            throw new Exception("Campo SEXO vazio.");
-        }
-        DadosCliente d = new DadosCliente();
-        d.cadastrarCliente(c);
+       
+        
+        DadosCliente dC = new DadosCliente();
+        dC.cadastrarCliente(c);
     }
 
     @Override
