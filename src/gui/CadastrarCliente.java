@@ -5,6 +5,10 @@
  */
 package gui;
 
+import cliente.Cliente;
+import fachada.Fachada;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ALEXANDRE LAURIA
@@ -33,10 +37,10 @@ public class CadastrarCliente extends javax.swing.JFrame {
         jLabelCPF = new javax.swing.JLabel();
         jLabelSexo = new javax.swing.JLabel();
         jTFNome = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jFTTelefone = new javax.swing.JFormattedTextField();
         jFTCPF = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
+        jTFSexo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,9 +58,12 @@ public class CadastrarCliente extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino" }));
-
         jButton1.setText("Cadastrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPainelLayout = new javax.swing.GroupLayout(jPainel);
         jPainel.setLayout(jPainelLayout);
@@ -73,12 +80,14 @@ public class CadastrarCliente extends javax.swing.JFrame {
                             .addComponent(jLabelSexo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTFNome)
                             .addComponent(jFTTelefone)
-                            .addComponent(jFTCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)))
+                            .addComponent(jFTCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addGroup(jPainelLayout.createSequentialGroup()
+                                .addComponent(jTFSexo)
+                                .addGap(92, 92, 92))))
                     .addComponent(jButton1))
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
         jPainelLayout.setVerticalGroup(
             jPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,10 +107,10 @@ public class CadastrarCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelSexo)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTFSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jButton1)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,11 +125,34 @@ public class CadastrarCliente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFNomeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Cliente c = new Cliente();
+            c.setCpf_cliente(jFTCPF.getText());
+            c.setNm_cliente(jTFNome.getText());
+            c.setSexo(jTFSexo.getText());
+            c.setTelefone(jFTTelefone.getText());
+
+            jFTCPF.setText("");
+            jTFNome.setText("");
+            jTFSexo.setText("");
+            jFTTelefone.setText("");
+            
+            Fachada f = new Fachada();
+            f.cadastrarCliente(c);
+            
+            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,7 +191,6 @@ public class CadastrarCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFormattedTextField jFTCPF;
     private javax.swing.JFormattedTextField jFTTelefone;
     private javax.swing.JLabel jLabelCPF;
@@ -168,5 +199,6 @@ public class CadastrarCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTelefone;
     private javax.swing.JPanel jPainel;
     private javax.swing.JTextField jTFNome;
+    private javax.swing.JTextField jTFSexo;
     // End of variables declaration//GEN-END:variables
 }

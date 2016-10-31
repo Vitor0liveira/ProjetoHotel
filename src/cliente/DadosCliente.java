@@ -14,7 +14,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
         conectar();
 
         String sql = "INSERT INTO Cliente (CPF_cliente, nm_cliente, telefone, sexo)";
-        sql += "VALUES (?, ?, ?, ?)";
+        sql += "VALUES (?,? ?,?)";
 
         try {
 
