@@ -4,6 +4,7 @@ import conexao.Dados;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class DadosReserva extends Dados implements InterfaceReserva {
 
@@ -32,12 +33,25 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
     @Override
     public void atualizarReserva(Reserva r) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        conectar();
+
+        String sql = "UPDATE Reserva SET periodo = ? WHERE CPF_cliente = ? AND cd_reserva = ?;";
+
+        try {
+            PreparedStatement cmd = conn.prepareStatement(sql);
+            cmd.setInt(1, r.getPeriodo());
+            cmd.setString(2, r.getCliente().getCpf_cliente());
+            cmd.setInt(3, r.getCd_reserva());
+            cmd.execute();
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + erro.getMessage());
+        }
+        desconectar();
     }
 
     @Override
     public void apagarReserva(Reserva r) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
