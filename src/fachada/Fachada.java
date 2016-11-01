@@ -16,23 +16,23 @@ public class Fachada implements InterfaceCliente, InterfaceReserva {
         nC.cadastrarCliente(c);
     }
 
-    @Override
+   /* @Override
     public void atualizarCliente(Cliente c) throws Exception {
         NegocioCliente nC = new NegocioCliente();
         nC.atualizarCliente(c);
-    }
+    }*/
 
-    @Override
+   /* @Override
     public void apagarCliente(Cliente c) throws Exception {
         NegocioCliente nC = new NegocioCliente();
         nC.apagarCliente(c);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public ArrayList<Cliente> pesquisarCliente(Cliente filtro) throws Exception {
         NegocioCliente nC = new NegocioCliente();
         return nC.pesquisarCliente(filtro);
-    }
+    }*/
 
     @Override
     public void fazerReserva(Reserva r) throws Exception {
@@ -56,6 +56,21 @@ public class Fachada implements InterfaceCliente, InterfaceReserva {
     public ArrayList<Reserva> pesquisarReserva(Reserva filtro) throws Exception {
         NegocioReserva nR = new NegocioReserva();
         return nR.pesquisarReserva(filtro);
+    }
+
+    @Override
+    public void atualizarCliente(Cliente c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void apagarCliente(Cliente c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Cliente> pesquisarCliente(Cliente filtro) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

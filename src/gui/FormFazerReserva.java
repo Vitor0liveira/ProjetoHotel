@@ -43,18 +43,18 @@ public class FormFazerReserva extends javax.swing.JFrame {
         jFormattedTextFieldCliCpf = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBoxSituacao = new javax.swing.JComboBox<>();
+        jComboBoxSituacao = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBoxNrQuarto = new javax.swing.JComboBox<>();
+        jComboBoxNrQuarto = new javax.swing.JComboBox<String>();
         jTextFieldCdOcupacao = new javax.swing.JTextField();
-        jComboBoxPeriodo = new javax.swing.JComboBox<>();
+        jComboBoxPeriodo = new javax.swing.JComboBox<String>();
         jButtonAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Reserva");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 0, 204))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", 2, 0, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 0, 204))); // NOI18N
 
         jButtonReservar.setText("Reservar");
         jButtonReservar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,13 +85,13 @@ public class FormFazerReserva extends javax.swing.JFrame {
 
         jLabel3.setText("Situação:");
 
-        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 - Em aberto", "1 - Confirmada", "2 - Cancelada" }));
+        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 - Em aberto", "1 - Confirmada", "2 - Cancelada" }));
 
         jLabel4.setText("Nº do Quarto:");
 
         jLabel8.setText("Código de Ocupação:");
 
-        jComboBoxNrQuarto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        jComboBoxNrQuarto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
 
         jTextFieldCdOcupacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +99,7 @@ public class FormFazerReserva extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        jComboBoxPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
 
         jButtonAtualizar.setText("Atualizar");
         jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -252,7 +252,21 @@ public class FormFazerReserva extends javax.swing.JFrame {
             r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
             r.setPeriodo(jComboBoxPeriodo.getSelectedIndex() + 1);
             r.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
+            r.setSituacao(jComboBoxSituacao.getSelectedIndex());
+            
+             //Setando os campos
+            jTextFieldCdReserva.setText("");
+            jFormattedTextFieldCliCpf.setText("");
+            jComboBoxPeriodo.setSelectedItem("1");
+            jTextFieldCdReserva.requestFocus();
 
+            //Enable nos campos "desnecessarios"
+            jTextFieldCdOcupacao.setEnabled(false);
+            jComboBoxNrQuarto.setEnabled(false);
+            jFormattedTextFieldData.setEnabled(false);
+            jButtonReservar.setEnabled(false);
+            
+            
             Fachada f = new Fachada();
             f.atualizarReserva(r);
 
