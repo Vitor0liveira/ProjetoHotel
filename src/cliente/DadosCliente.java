@@ -2,9 +2,9 @@ package cliente;
 
 import conexao.Dados;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 public class DadosCliente extends Dados implements InterfaceCliente {
 
@@ -15,7 +15,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
 
         String sql = "INSERT INTO Cliente (CPF_cliente, nm_cliente, telefone, sexo) ";
         sql += "VALUES (?,?,?,?);";
-        
+
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setString(1, c.getCpf_cliente());
@@ -24,8 +24,8 @@ public class DadosCliente extends Dados implements InterfaceCliente {
             cmd.setString(4, c.getSexo());
             cmd.execute();
 
-        } catch (SQLException e) {
-            throw new Exception("Problemas ao executar a inserção: " + e.getMessage());
+        } catch (SQLException erro) {
+            throw new Exception("Problemas ao executar a inserção: " + erro.getMessage());
         }
 
         desconectar();
@@ -73,8 +73,25 @@ public class DadosCliente extends Dados implements InterfaceCliente {
     }
 
     @Override
-    public ArrayList<Cliente> pesquisarCliente(Cliente filtro) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public boolean verificarExistencia(Cliente c) throws Exception{
+        boolean retorno = false;
+        conectar();
+        String sql = "SELECT CPF_cliente";
+        sql += "FROM Cliente WHERE CPF_cliente = ?";
 
+        try {
+            PreparedStatement cmd = conn.prepareStatement(sql);
+            cmd.setString(1, c.getCpf_cliente());
+            ResultSet leitor = cmd.executeQuery();
+            while (leitor.next()) {
+                retorno = true;
+                break;
+            }
+        } catch (SQLException erro) {
+            throw new Exception ("Erro: " + erro.getMessage());
+        }
+
+        desconectar();
+        return retorno;
+    }
 }

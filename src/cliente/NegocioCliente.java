@@ -1,6 +1,5 @@
 package cliente;
 
-import java.util.ArrayList;
 
 public class NegocioCliente implements InterfaceCliente {
 
@@ -38,9 +37,10 @@ public class NegocioCliente implements InterfaceCliente {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public ArrayList<Cliente> pesquisarCliente(Cliente filtro) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public boolean verificarExistencia(Cliente c) throws Exception {
+        DadosCliente dC = new DadosCliente();
+        return dC.verificarExistencia(c);
     }
 
 }

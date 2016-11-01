@@ -6,13 +6,16 @@
 package gui;
 
 import cliente.Cliente;
+import fachada.Fachada;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author aluno
  */
 public class JFramePesquisar extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form JFramePesquisar
      */
@@ -160,17 +163,23 @@ public class JFramePesquisar extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextFieldPesquisarCPFActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        // TODO add your handling code here:
-        
+        try {
+            // TODO add your handling code here:
+            Cliente c = new Cliente();
+            c.setCpf_cliente(jFormattedTextFieldPesquisarCPF.getText());
+            
+            Fachada f = new Fachada();
+           f.verificarExistencia(c);
+        } catch (Exception ex) {
+            Logger.getLogger(JFramePesquisar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    
         
         
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
-        // TODO add your handling code here:
-        Cliente c = new Cliente();
-        c.setCpf_cliente(jFormattedTextFieldPesquisarCPF.getText());
-        
+   
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     /**

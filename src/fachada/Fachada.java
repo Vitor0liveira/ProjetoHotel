@@ -16,40 +16,39 @@ public class Fachada implements InterfaceCliente, InterfaceReserva {
         nC.cadastrarCliente(c);
     }
 
-   /* @Override
-    public void atualizarCliente(Cliente c) throws Exception {
-        NegocioCliente nC = new NegocioCliente();
-        nC.atualizarCliente(c);
-    }*/
+    /* @Override
+     public void atualizarCliente(Cliente c) throws Exception {
+     NegocioCliente nC = new NegocioCliente();
+     nC.atualizarCliente(c);
+     }*/
 
-   /* @Override
-    public void apagarCliente(Cliente c) throws Exception {
-        NegocioCliente nC = new NegocioCliente();
-        nC.apagarCliente(c);
-    }*/
+    /* @Override
+     public void apagarCliente(Cliente c) throws Exception {
+     NegocioCliente nC = new NegocioCliente();
+     nC.apagarCliente(c);
+     }*/
 
     /*@Override
-    public ArrayList<Cliente> pesquisarCliente(Cliente filtro) throws Exception {
-        NegocioCliente nC = new NegocioCliente();
-        return nC.pesquisarCliente(filtro);
-    }*/
-
+     public ArrayList<Cliente> pesquisarCliente(Cliente filtro) throws Exception {
+     NegocioCliente nC = new NegocioCliente();
+     return nC.pesquisarCliente(filtro);
+     }*/
     @Override
     public void fazerReserva(Reserva r) throws Exception {
-       NegocioReserva nR = new NegocioReserva();
-       nR.fazerReserva(r);
+        NegocioReserva nR = new NegocioReserva();
+        nR.fazerReserva(r);
     }
 
     @Override
     public void atualizarReserva(Reserva r) throws Exception {
-      NegocioReserva nR = new NegocioReserva();
-      nR.atualizarReserva(r);
+        NegocioReserva nR = new NegocioReserva();
+        nR.atualizarReserva(r);
     }
 
     @Override
     public void apagarReserva(Reserva r) throws Exception {
-      NegocioReserva nR = new NegocioReserva();
-      nR.apagarReserva(r);
+        NegocioReserva nR = new NegocioReserva();
+        nR.apagarReserva(r);
     }
 
     @Override
@@ -69,8 +68,10 @@ public class Fachada implements InterfaceCliente, InterfaceReserva {
     }
 
     @Override
-    public ArrayList<Cliente> pesquisarCliente(Cliente filtro) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean verificarExistencia(Cliente c) throws Exception {
+        NegocioCliente nC = new NegocioCliente();
+        return nC.verificarExistencia(c);
     }
+
 
 }
