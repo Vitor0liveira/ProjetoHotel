@@ -15,7 +15,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
 
         String sql = "INSERT INTO Cliente (CPF_cliente, nm_cliente, telefone, sexo) ";
         sql += "VALUES (?,?,?,?);";
-        
+
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setString(1, c.getCpf_cliente());
@@ -57,18 +57,16 @@ public class DadosCliente extends Dados implements InterfaceCliente {
 
         conectar();
 
-        String sql = "DELETE FROM Cliente WHERE CPF_cliente = ? ;";
+        String Sql = "DELETE FROM Cliente WHERE CPF_cliente = ?; ";
+        
         try {
+            PreparedStatement Cmd = conn.prepareStatement(Sql);
+            Cmd.setString(1, c.getCpf_cliente());
+            Cmd.execute();
 
-            PreparedStatement cmd = conn.prepareStatement(sql);
-            cmd.setString(1, c.getCpf_cliente());
-
-            cmd.execute();
         } catch (SQLException e) {
-
-            throw new Exception("Problemas ao remover o cliente: " + e.getMessage());
+            throw new Exception("Erro ao Apagar o Cliente: " + e.getMessage());
         }
-
         desconectar();
     }
 
