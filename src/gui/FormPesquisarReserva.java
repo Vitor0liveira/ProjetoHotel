@@ -5,6 +5,7 @@
  */
 package gui;
 
+import cliente.Cliente;
 import fachada.Fachada;
 import javax.swing.JOptionPane;
 import reserva.Reserva;
@@ -83,6 +84,11 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         jFormattedTextFieldCpf.setEnabled(false);
+        jFormattedTextFieldCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldCpfActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("CPF:");
 
@@ -247,12 +253,13 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
                 jFormattedTextFieldCpf.requestFocus();
                 return;
             }
-
+            
             jTextFieldPeriodo.setText(Integer.toString(r.getPeriodo()));
             jFormattedTextFieldData.setText(r.getData());
             jTextFieldSituacao.setText(Integer.toString(r.getSituacao()));
             jTextFieldQuarto.setText(Integer.toString(r.getNr_quarto()));
             jTextFieldOcupacao.setText(Integer.toString(r.getCd_ocupacao()));
+            jFormattedTextFieldCpf.setText(r.getCliente().getCpf_cliente());
             jButtonPesquisar.setEnabled(false);
             jButtonAtualizar.setEnabled(false);
             jButtonEditar.setEnabled(false);
@@ -290,6 +297,10 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
     private void jFormattedTextFieldDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFieldDataActionPerformed
+
+    private void jFormattedTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldCpfActionPerformed
 
     /**
      * @param args the command line arguments
