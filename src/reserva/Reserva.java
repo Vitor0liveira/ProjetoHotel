@@ -1,7 +1,6 @@
 package reserva;
 
 import cliente.Cliente;
-import java.sql.Date;
 
 public class Reserva {
 
@@ -12,7 +11,7 @@ public class Reserva {
     private Cliente cliente;
     private int nr_quarto;
     private int cd_ocupacao;
-    
+
     public Reserva() {
         this.cliente = new Cliente();
     }
@@ -20,7 +19,7 @@ public class Reserva {
     public Cliente getCliente() {
         return cliente;
     }
-    
+
     @Override
     public String toString() {
         String retorno = "";
@@ -53,7 +52,7 @@ public class Reserva {
     }
 
     public void setData(String data) {
-       this.data = data;
+        this.data = data;
     }
 
     public int getPeriodo() {

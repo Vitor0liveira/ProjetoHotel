@@ -1,12 +1,13 @@
 package fo;
 
 public class Fo {
- private int cd_ocupacao;
- private String data_entrada;   
- private String hora_entrada;   
- private String data_saida;
- private String hora_saida;
- private float valorDiaria;
+
+    private int cd_ocupacao;
+    private String data_entrada;
+    private String hora_entrada;
+    private String data_saida;
+    private String hora_saida;
+    private float valorDiaria;
 
     public int getCd_ocupacao() {
         return cd_ocupacao;

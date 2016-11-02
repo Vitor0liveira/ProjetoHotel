@@ -1,9 +1,10 @@
 package quarto;
 
-public class Quartos {
+public class Quarto {
+
     private int nr_quarto;
     private String ds_quarto;
-    private String andar;
+    private int andar;
     private String tipo;
     private float preco;
 
@@ -23,11 +24,11 @@ public class Quartos {
         this.ds_quarto = ds_quarto;
     }
 
-    public String getAndar() {
+    public int getAndar() {
         return andar;
     }
 
-    public void setAndar(String andar) {
+    public void setAndar(int andar) {
         this.andar = andar;
     }
 
@@ -46,5 +47,5 @@ public class Quartos {
     public void setPreco(float preco) {
         this.preco = preco;
     }
-    
+
 }

@@ -11,10 +11,12 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
     @Override
     public void fazerReserva(Reserva r) throws Exception {
-        conectar();
-        String sql = "INSERT INTO Reserva (cd_reserva, data, periodo, situacao, CPF_cliente, Nr_quarto, Cd_ocupacao)";
-        sql += "VALUES (?,?,?,?,?,?,?)";
         try {
+            conectar();
+
+            String sql = "INSERT INTO Reserva (cd_reserva, data, periodo, situacao, CPF_cliente, Nr_quarto, Cd_ocupacao)";
+            sql += "VALUES (?,?,?,?,?,?,?)";
+
             //Executando a instrução SQL
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setInt(1, r.getCd_reserva());
@@ -73,13 +75,13 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
     @Override
     public Reserva pesquisarReserva(int cd_reserva) throws Exception {
-          conectar();
+        conectar();
 
         Reserva r = new Reserva();
 
         String sql;
         sql = "SELECT data, periodo, situacao, Nr_quarto, Cd_Ocupacao ";
-        sql+= "FROM Reserva WHERE cd_reserva = ?";
+        sql += "FROM Reserva WHERE cd_reserva = ?";
 
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
