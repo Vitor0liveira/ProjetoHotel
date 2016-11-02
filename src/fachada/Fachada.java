@@ -65,9 +65,14 @@ public class Fachada implements InterfaceCliente, InterfaceReserva {
     }
 
     @Override
-    public ArrayList<Reserva> pesquisarReserva(Reserva filtro) throws Exception {
+    public ArrayList<Reserva> listar(Reserva filtro) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Reserva pesquisarReserva(int cd_reserva) throws Exception {
         NegocioReserva nR = new NegocioReserva();
-        return nR.pesquisarReserva(filtro);
+        return nR.pesquisarReserva(cd_reserva);
     }
 
 }

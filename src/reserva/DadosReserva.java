@@ -2,6 +2,7 @@ package reserva;
 
 import conexao.Dados;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -66,8 +67,38 @@ public class DadosReserva extends Dados implements InterfaceReserva {
     }
 
     @Override
-    public ArrayList<Reserva> pesquisarReserva(Reserva filtro) throws Exception {
+    public ArrayList<Reserva> listar(Reserva filtro) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Reserva pesquisarReserva(int cd_reserva) throws Exception {
+          conectar();
+
+        Reserva r = new Reserva();
+
+        String sql;
+        sql = "SELECT data, periodo, situacao, Nr_quarto, Cd_Ocupacao ";
+        sql+= "FROM Reserva WHERE cd_reserva = ?";
+
+        try {
+            PreparedStatement cmd = conn.prepareStatement(sql);
+            cmd.setInt(1, cd_reserva);
+            ResultSet leitor = cmd.executeQuery();
+            if (leitor.next()) {
+                r.setCd_reserva(cd_reserva);
+                r.setData(leitor.getString("data"));
+                r.setPeriodo(leitor.getInt("periodo"));
+                r.setSituacao(leitor.getInt("situacao"));
+                r.setNr_quarto(leitor.getInt("Nr_quarto"));
+                r.setCd_ocupacao(leitor.getInt("Cd_Ocupacao"));
+            }
+        } catch (Exception erro) {
+            throw new Exception("Problemas ao pesquisar a reserva: " + erro.getMessage());
+        }
+        desconectar();
+
+        return r;
     }
 
 }

@@ -6,16 +6,13 @@ public interface InterfaceReserva {
 
 // método 'fazerReserva' cria uma reserva.
     public void fazerReserva(Reserva r) throws Exception;
-
     // método 'atualizarReserva' atualiza uma reserva já existente.
     public void atualizarReserva(Reserva r) throws Exception;
-
     // método apagarReserva apaga uma reserva já existente.
     public void removerReserva(Reserva r) throws Exception;
-
-    // ArrayList 'pesquisarReserva retorna as reservas pesquisadas.
-    // Verifica se uma determinada reserva, está contida na tabela 'Reserva'.
-    ArrayList<Reserva> pesquisarReserva(Reserva filtro) throws Exception;
-
+    // ArrayList lista as reservas existentes.
+    ArrayList<Reserva> listar(Reserva filtro) throws Exception;
+   // pesquisarReserva verifica se uma determinada reserva, está contida na tabela 'Reserva'.
+    Reserva pesquisarReserva (int cd_reserva) throws Exception;
   
 }

@@ -1,7 +1,6 @@
 package reserva;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 public class NegocioReserva implements InterfaceReserva {
 
@@ -52,8 +51,15 @@ public class NegocioReserva implements InterfaceReserva {
     }
 
     @Override
-    public ArrayList<Reserva> pesquisarReserva(Reserva filtro) throws Exception {
+    public ArrayList<Reserva> listar(Reserva filtro) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Reserva pesquisarReserva(int cd_reserva) throws Exception {
+        DadosReserva dR = new DadosReserva();
+        Reserva r = dR.pesquisarReserva(cd_reserva);
+        return r;
     }
 
 }
