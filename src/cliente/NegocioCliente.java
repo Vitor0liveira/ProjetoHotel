@@ -11,9 +11,9 @@ public class NegocioCliente implements InterfaceCliente {
         if (c.getNm_cliente().trim().equals("")) {
             throw new Exception("Por favor, preencha o campo nome.");
         }
-        if (c.getTelefone().trim().length() < 16) {
+       /* if (c.getTelefone().trim().length() < 16) {
             throw new Exception("Por favor, preencha o campo telefone.");
-        }
+        }*/
     }
 
     @Override

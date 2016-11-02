@@ -4,7 +4,6 @@ import conexao.Dados;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DadosCliente extends Dados implements InterfaceCliente {

@@ -44,7 +44,7 @@ public class FormCadastrarCliente extends javax.swing.JFrame {
         jFormattedTextFieldCpf = new javax.swing.JFormattedTextField();
         jFormattedTextFieldTelefone = new javax.swing.JFormattedTextField();
         jButtonCadastrar = new javax.swing.JButton();
-        jComboBoxSexo = new javax.swing.JComboBox<String>();
+        jComboBoxSexo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastrar Cliente");
@@ -76,7 +76,7 @@ public class FormCadastrarCliente extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Feminino", "Masculino", "Outros" }));
+        jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino", "Outros" }));
         jComboBoxSexo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSexoActionPerformed(evt);
@@ -101,11 +101,14 @@ public class FormCadastrarCliente extends javax.swing.JFrame {
                                 .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
                                 .addComponent(jFormattedTextFieldTelefone))
-                            .addComponent(jLabel1)
-                            .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCadastrar)
-                            .addComponent(jLabel4)
-                            .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonCadastrar)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -127,7 +130,7 @@ public class FormCadastrarCliente extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jButtonCadastrar)
                 .addGap(25, 25, 25))
         );
@@ -144,6 +147,7 @@ public class FormCadastrarCliente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
@@ -166,6 +170,13 @@ public class FormCadastrarCliente extends javax.swing.JFrame {
            f.cadastrarCliente(c);
            
            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso.");
+           
+            //Setando os campos de cadastrar
+            jTextFieldNome.setText("");
+            jFormattedTextFieldCpf.setText("");
+            jFormattedTextFieldTelefone.setText("");
+            jTextFieldNome.requestFocus();
+            
             
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
