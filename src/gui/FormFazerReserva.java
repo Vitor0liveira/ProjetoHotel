@@ -6,8 +6,6 @@
 package gui;
 
 import fachada.Fachada;
-import java.awt.Dimension;
-import javax.swing.Action;
 import javax.swing.JOptionPane;
 import reserva.Reserva;
 
@@ -33,6 +31,7 @@ public class FormFazerReserva extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButtonReservar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -43,18 +42,22 @@ public class FormFazerReserva extends javax.swing.JFrame {
         jFormattedTextFieldCliCpf = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBoxSituacao = new javax.swing.JComboBox<String>();
+        jComboBoxSituacao = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBoxNrQuarto = new javax.swing.JComboBox<String>();
+        jComboBoxNrQuarto = new javax.swing.JComboBox<>();
         jTextFieldCdOcupacao = new javax.swing.JTextField();
-        jComboBoxPeriodo = new javax.swing.JComboBox<String>();
+        jComboBoxPeriodo = new javax.swing.JComboBox<>();
         jButtonAtualizar = new javax.swing.JButton();
+        jButtonRemover = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Reserva");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", 2, 0, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 0, 204))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 0, 204))); // NOI18N
 
         jButtonReservar.setText("Reservar");
         jButtonReservar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,13 +88,13 @@ public class FormFazerReserva extends javax.swing.JFrame {
 
         jLabel3.setText("Situação:");
 
-        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0 - Em aberto", "1 - Confirmada", "2 - Cancelada" }));
+        jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0 - Em aberto", "1 - Confirmada", "2 - Cancelada" }));
 
         jLabel4.setText("Nº do Quarto:");
 
         jLabel8.setText("Código de Ocupação:");
 
-        jComboBoxNrQuarto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+        jComboBoxNrQuarto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
 
         jTextFieldCdOcupacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,12 +102,26 @@ public class FormFazerReserva extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+        jComboBoxPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
 
         jButtonAtualizar.setText("Atualizar");
         jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAtualizarActionPerformed(evt);
+            }
+        });
+
+        jButtonRemover.setText("Remover");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
             }
         });
 
@@ -115,13 +132,17 @@ public class FormFazerReserva extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonReservar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonAtualizar))
+                        .addComponent(jButtonReservar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAtualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonRemover)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addComponent(jButtonCancelar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -148,8 +169,7 @@ public class FormFazerReserva extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jComboBoxPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(158, 158, 158)
                 .addComponent(jLabel3)
@@ -185,7 +205,9 @@ public class FormFazerReserva extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonReservar)
-                    .addComponent(jButtonAtualizar))
+                    .addComponent(jButtonAtualizar)
+                    .addComponent(jButtonRemover)
+                    .addComponent(jButtonCancelar))
                 .addContainerGap())
         );
 
@@ -217,27 +239,31 @@ public class FormFazerReserva extends javax.swing.JFrame {
             r.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
             r.setNr_quarto(jComboBoxNrQuarto.getSelectedIndex() + 1);
             r.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
-            
-            //Setando os campos
-            jTextFieldCdOcupacao.setText("");
-            jTextFieldCdReserva.setText("");
-            jFormattedTextFieldData.setText("");
-            jFormattedTextFieldCliCpf.setText("");
-            jComboBoxNrQuarto.setSelectedItem("1");
-            jComboBoxPeriodo.setSelectedItem("1");
-            jTextFieldCdReserva.requestFocus();
-            
 
             //Enviando o objeto
             Fachada f = new Fachada();
             f.fazerReserva(r);
 
             JOptionPane.showMessageDialog(this, "Reserva efetuada com sucesso.");
-            
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage() + " " + erro.getLocalizedMessage());
         }
+
+        //Setando os campos
+        jTextFieldCdOcupacao.setText("");
+        jTextFieldCdReserva.setText("");
+        jFormattedTextFieldData.setText("");
+        jFormattedTextFieldCliCpf.setText("");
+        jComboBoxNrQuarto.setSelectedItem("1");
+        jComboBoxPeriodo.setSelectedItem("1");
+        jTextFieldCdReserva.requestFocus();
+
+         jButtonReservar.setEnabled(true);
+        jButtonAtualizar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+        
+        
     }//GEN-LAST:event_jButtonReservarActionPerformed
 
     private void jTextFieldCdOcupacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCdOcupacaoActionPerformed
@@ -246,27 +272,19 @@ public class FormFazerReserva extends javax.swing.JFrame {
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         // TODO add your handling code here:
-       
-         try {
+
+        try {
             Reserva r = new Reserva();
             r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
             r.setPeriodo(jComboBoxPeriodo.getSelectedIndex() + 1);
             r.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
             r.setSituacao(jComboBoxSituacao.getSelectedIndex());
-            
-             //Setando os campos
-            jTextFieldCdReserva.setText("");
-            jFormattedTextFieldCliCpf.setText("");
-            jComboBoxPeriodo.setSelectedItem("1");
-            jTextFieldCdReserva.requestFocus();
 
-            //Enable nos campos "desnecessarios"
-            jTextFieldCdOcupacao.setEnabled(false);
-            jComboBoxNrQuarto.setEnabled(false);
-            jFormattedTextFieldData.setEnabled(false);
-            jButtonReservar.setEnabled(false);
-            
-            
+            if (jTextFieldCdReserva == null) {
+                JOptionPane.showMessageDialog(this, "Informe o código de reserva.");
+                jTextFieldCdReserva.requestFocus();
+            }
+           
             Fachada f = new Fachada();
             f.atualizarReserva(r);
 
@@ -274,20 +292,77 @@ public class FormFazerReserva extends javax.swing.JFrame {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-        
+
+        //Setando os campos
+        jTextFieldCdReserva.setText("");
+        jFormattedTextFieldCliCpf.setText("");
+        jComboBoxPeriodo.setSelectedItem("1");
+        jTextFieldCdReserva.requestFocus();
+
+        //Enable nos campos "desnecessarios"
+        jTextFieldCdOcupacao.setEnabled(false);
+        jComboBoxNrQuarto.setEnabled(false);
+        jFormattedTextFieldData.setEnabled(false);
+        jButtonReservar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        try {
+            // TODO add your handling code here:
+
+            Reserva rR = new Reserva();
+
+            rR.setCd_ocupacao(Integer.parseInt(jTextFieldCdReserva.getText()));
+
+            Fachada f = new Fachada();
+            f.removerReserva(rR);
+
+            JOptionPane.showMessageDialog(this, "Reserva removida com sucesso.");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, "Erro:" + erro.getMessage());
+        }
+
+        //Setando o campo
+        jTextFieldCdReserva.setText("");
+        jTextFieldCdReserva.requestFocus();
+
+        //Enable nos campos "desnecessarios"
+        jTextFieldCdReserva.setEnabled(true);
+        jTextFieldCdOcupacao.setEnabled(false);
+        jComboBoxNrQuarto.setEnabled(false);
+        jFormattedTextFieldData.setEnabled(false);
+        jFormattedTextFieldCliCpf.setEnabled(false);
+        jComboBoxSituacao.setEnabled(false);
+        jComboBoxPeriodo.setEnabled(false);
+        jButtonReservar.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        jTextFieldCdOcupacao.setEnabled(true);
+        jComboBoxNrQuarto.setEnabled(true);
+        jFormattedTextFieldData.setEnabled(true);
+        jFormattedTextFieldCliCpf.setEnabled(true);
+        jComboBoxSituacao.setEnabled(true);
+        jComboBoxPeriodo.setEnabled(true);
+        jButtonReservar.setEnabled(true);
+        jButtonRemover.setEnabled(true);
+        jButtonAtualizar.setEnabled(true);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        
+
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -305,13 +380,12 @@ public class FormFazerReserva extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FormFazerReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /*
         javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
 
-        */
-        
-        /* Create and display the form */
+         */
+ /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FormFazerReserva().setVisible(true);
@@ -320,7 +394,10 @@ public class FormFazerReserva extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAtualizar;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonRemover;
     private javax.swing.JButton jButtonReservar;
     private javax.swing.JComboBox<String> jComboBoxNrQuarto;
     private javax.swing.JComboBox<String> jComboBoxPeriodo;

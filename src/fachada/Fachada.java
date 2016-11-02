@@ -59,9 +59,9 @@ public class Fachada implements InterfaceCliente, InterfaceReserva {
     }
 
     @Override
-    public void apagarReserva(Reserva r) throws Exception {
+    public void removerReserva(Reserva r) throws Exception {
         NegocioReserva nR = new NegocioReserva();
-        nR.apagarReserva(r);
+        nR.removerReserva(r);
     }
 
     @Override

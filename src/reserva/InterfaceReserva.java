@@ -11,7 +11,7 @@ public interface InterfaceReserva {
     public void atualizarReserva(Reserva r) throws Exception;
 
     // método apagarReserva apaga uma reserva já existente.
-    public void apagarReserva(Reserva r) throws Exception;
+    public void removerReserva(Reserva r) throws Exception;
 
     // ArrayList 'pesquisarReserva retorna as reservas pesquisadas.
     // Verifica se uma determinada reserva, está contida na tabela 'Reserva'.

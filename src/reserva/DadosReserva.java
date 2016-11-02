@@ -51,8 +51,18 @@ public class DadosReserva extends Dados implements InterfaceReserva {
     }
 
     @Override
-    public void apagarReserva(Reserva r) throws Exception {
+    public void removerReserva(Reserva r) throws Exception {
+        conectar();
+        String sql = "DELETE FROM Reserva WHERE cd_reserva = ?";
 
+        try {
+            PreparedStatement cmd = conn.prepareStatement(sql);
+            cmd.setInt(1, r.getCd_ocupacao());
+            cmd.execute();
+        } catch (SQLException erro) {
+            throw new Exception("Erro ao tentar remover. " + erro.getMessage());
+        }
+        desconectar();
     }
 
     @Override

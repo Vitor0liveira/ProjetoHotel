@@ -1,6 +1,7 @@
 package reserva;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class NegocioReserva implements InterfaceReserva {
 
@@ -44,7 +45,10 @@ public class NegocioReserva implements InterfaceReserva {
     }
 
     @Override
-    public void apagarReserva(Reserva r) throws Exception {
+    public void removerReserva(Reserva r) throws Exception {
+        
+        DadosReserva dR = new DadosReserva();
+        dR.removerReserva(r);
     }
 
     @Override
