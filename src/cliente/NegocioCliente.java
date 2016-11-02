@@ -1,5 +1,6 @@
 package cliente;
 
+import java.util.ArrayList;
 
 public class NegocioCliente implements InterfaceCliente {
 
@@ -10,7 +11,7 @@ public class NegocioCliente implements InterfaceCliente {
         if (c.getNm_cliente().trim().equals("")) {
             throw new Exception("Por favor, preencha o campo nome.");
         }
-        if (c.getTelefone().equals("(  )      -    ")) {
+        if (c.getTelefone().trim().length() < 16) {
             throw new Exception("Por favor, preencha o campo telefone.");
         }
     }
@@ -27,20 +28,40 @@ public class NegocioCliente implements InterfaceCliente {
     public void atualizarCliente(Cliente c) throws Exception {
 
         validarCamposBasicos(c);
-        
+
         DadosCliente dC = new DadosCliente();
         dC.atualizarCliente(c);
     }
 
     @Override
     public void apagarCliente(Cliente c) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DadosCliente dC = new DadosCliente();
+        dC.apagarCliente(c);
     }
 
-
+    @Override
     public boolean verificarExistencia(Cliente c) throws Exception {
         DadosCliente dC = new DadosCliente();
         return dC.verificarExistencia(c);
     }
 
-}
+    @Override
+    public ArrayList<Cliente> listar(Cliente filtro) throws Exception {
+        DadosCliente dC = new DadosCliente();
+        return dC.listar(filtro);
+    }
+
+    @Override
+    public Cliente pesquisarCliente(String cpf) throws Exception {
+        
+        //validação não funcionando ainda,
+        //POR HORA a validação está no botão pesquisar.
+        DadosCliente dC = new DadosCliente();
+        Cliente c = dC.pesquisarCliente(cpf);
+
+        if (c.getCpf_cliente().equals("")) {
+            throw new Exception("Cliente não encontrado.");
+        }
+        return c;
+    }
+}    
