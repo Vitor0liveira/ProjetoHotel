@@ -9,7 +9,6 @@ import cliente.Cliente;
 import fachada.Fachada;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -251,6 +250,7 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
             jButtonEditar.setEnabled(true);
             jButtonRemover.setEnabled(false);
             
+          
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage());
         }
@@ -295,6 +295,7 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
             Fachada f = new Fachada();
             f.atualizarCliente(cli);
             
+            
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
         }
@@ -307,6 +308,8 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
             
             Fachada f = new Fachada();
             f.apagarCliente(cli);
+            
+         
             
             JOptionPane.showMessageDialog(this, "Cliente removido com sucesso.");
         } catch (Exception erro) {
