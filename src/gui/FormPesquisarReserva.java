@@ -247,6 +247,7 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
             }
             Fachada f = new Fachada();
             Reserva r = f.pesquisarReserva(Integer.parseInt(jTextFieldCdReserva.getText()));
+            
             if (r.getCd_reserva() == 0) {
                 JOptionPane.showMessageDialog(this, "Reserva não encontrada.");
                 jFormattedTextFieldCpf.setText("");

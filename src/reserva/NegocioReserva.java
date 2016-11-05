@@ -3,6 +3,7 @@ package reserva;
 import java.util.ArrayList;
 
 public class NegocioReserva implements InterfaceReserva {
+
     //Criado o método "validarCamposBasicos" para usalo nos outros métodos como o validador.
     public void validarCamposBasicos(Reserva r) throws Exception {
 
@@ -54,7 +55,6 @@ public class NegocioReserva implements InterfaceReserva {
 
     @Override
     public Reserva pesquisarReserva(int cd_reserva) throws Exception {
-
         DadosReserva dR = new DadosReserva();
         Reserva r = dR.pesquisarReserva(cd_reserva);
         return r;

@@ -76,11 +76,10 @@ public class DadosReserva extends Dados implements InterfaceReserva {
     @Override
     public Reserva pesquisarReserva(int cd_reserva) throws Exception {
         conectar();
-
         Reserva r = new Reserva();
 
         String sql;
-        sql = "SELECT data, periodo, situacao, Nr_quarto, Cd_Ocupacao ";
+        sql = "SELECT data, periodo, situacao, Nr_quarto, cpf_cliente, Cd_Ocupacao ";
         sql += "FROM Reserva WHERE cd_reserva = ?";
 
         try {
@@ -94,6 +93,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
                 r.setSituacao(leitor.getInt("situacao"));
                 r.setNr_quarto(leitor.getInt("Nr_quarto"));
                 r.setCd_ocupacao(leitor.getInt("Cd_Ocupacao"));
+                r.getCliente().setCpf_cliente(leitor.getString("cpf_cliente"));
             }
         } catch (Exception erro) {
             throw new Exception("Problemas ao pesquisar a reserva: " + erro.getMessage());

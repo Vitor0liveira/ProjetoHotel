@@ -20,7 +20,6 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
      * Creates new form JFramePesquisar
      */
     ArrayList<Cliente> listaClientesCadastrados;
-    
 
     public FormPesquisarCliente() {
         initComponents();
@@ -237,13 +236,14 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
             }
             Fachada f = new Fachada();
             Cliente cli = f.pesquisarCliente(jFormattedTextFieldCpf.getText());
+
             if (cli.getCpf_cliente() == null) {
                 JOptionPane.showMessageDialog(this, "Cliente não encontrado.");
                 jFormattedTextFieldCpf.setText("");
                 jFormattedTextFieldCpf.requestFocus();
                 return;
             }
-            
+
             jTextFieldNomePesq.setText(cli.getNm_cliente());
             jFormattedTextFieldFonePesq.setText(cli.getTelefone());
             jTextFieldSexoPesq.setText(cli.getSexo());
@@ -251,8 +251,7 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
             jButtonAtualizar.setEnabled(false);
             jButtonEditar.setEnabled(true);
             jButtonRemover.setEnabled(false);
-            
-          
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage());
         }
@@ -265,7 +264,7 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
         jTextFieldSexoPesq.setEditable(false);
         jFormattedTextFieldFonePesq.setEnabled(true);
         jFormattedTextFieldCpf.setEnabled(false);
-        jTextFieldNomePesq.setEnabled(true); 
+        jTextFieldNomePesq.setEnabled(true);
         jTextFieldSexoPesq.setEnabled(false);
         jButtonPesquisar.setEnabled(false);
         jButtonAtualizar.setEnabled(true);
@@ -294,13 +293,12 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
             cli.setCpf_cliente(jFormattedTextFieldCpf.getText());
             cli.setNm_cliente(jTextFieldNomePesq.getText());
             cli.setTelefone(jFormattedTextFieldFonePesq.getText());
-            
+
             JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!");
-            
+
             Fachada f = new Fachada();
             f.atualizarCliente(cli);
-            
-            
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
         }
@@ -320,12 +318,10 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
         try {
             Cliente cli = new Cliente();
             cli.setCpf_cliente(jFormattedTextFieldCpf.getText());
-            
+
             Fachada f = new Fachada();
             f.apagarCliente(cli);
-            
-         
-            
+
             JOptionPane.showMessageDialog(this, "Cliente removido com sucesso.");
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());

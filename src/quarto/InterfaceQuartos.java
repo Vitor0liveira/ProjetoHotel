@@ -2,10 +2,7 @@ package quarto;
 
 public interface InterfaceQuartos {
 
-    public void cadastrarQuartos(Quarto q) throws Exception;
-
-    //public void atualizarQuartos(Quarto q) throws Exception;
-
-    //public void removerQuartos(Quarto q) throws Exception;
+    // Método de Pesquisar os Quartos.
+    public void pesquisarQuartos(Quarto q) throws Exception;
 
 }

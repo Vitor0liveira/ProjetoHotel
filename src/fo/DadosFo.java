@@ -12,8 +12,8 @@ public class DadosFo extends Dados implements InterfaceFo {
         try {
             conectar();
             // Para pesquisar a "FO" é necessário informar o cd_ocupacao, CPF_cliente e nr_quarto.
-            String Sql = "SELECT FROM FO WHERE cd_ocupacao = ? ";
-            Sql += "AND CPF_cliente = ? AND nr_quarto = ?";
+            String Sql = " SELECT cd_ocupacao, CPF_cliente, nr_quarto FROM FO ";
+            Sql += " WHERE cd_ocupacao = ? AND CPF_cliente = ? AND nr_quarto = ? ";
 
             PreparedStatement Cmd = conn.prepareStatement(Sql);
             Cmd.setInt(1, f.getCd_ocupacao());

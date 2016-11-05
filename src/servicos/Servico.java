@@ -1,6 +1,7 @@
 package servicos;
 
-public class Servicos {
+public class Servico {
+    
     private int cd_servico;
     private String descricao;
     private float valor;

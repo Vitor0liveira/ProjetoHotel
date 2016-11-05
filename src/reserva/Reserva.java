@@ -16,10 +16,6 @@ public class Reserva {
         this.cliente = new Cliente();
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
     @Override
     public String toString() {
         String retorno = "";
@@ -33,6 +29,10 @@ public class Reserva {
         retorno += "Código ocupação: " + this.cd_ocupacao;
 
         return retorno;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
     }
 
     public void setCliente(Cliente cliente) {
