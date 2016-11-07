@@ -8,19 +8,19 @@ public class NegocioReserva implements InterfaceReserva {
     public void validarCamposBasicos(Reserva r) throws Exception {
 
         if (r.getCliente().getCpf_cliente().trim().length() < 14) {
-            throw new Exception("Por Favor, Informe um CPF válido.");
+            throw new Exception("Por Favor, informe um CPF válido.");
         }
 
-        if (r.getPeriodo() < 0) {
-            throw new Exception("Por Favor, Informe um período válido.");
+        if (r.getPeriodo() <= 0) {
+            throw new Exception("Por Favor, informe um período válido.");
         }
 
         if (r.getData().equals("")) {
-            throw new Exception("Por Favor, Informe a data.");
+            throw new Exception("Por Favor, informe a data.");
         }
 
-        if (r.getCd_reserva() < 0) {
-            throw new Exception("Por Favor, Informe um código de reserva válido.");
+        if (r.getCd_reserva() <= 0) {
+            throw new Exception("Por Favor, informe um código de reserva válido.");
         }
     }
 
@@ -34,8 +34,8 @@ public class NegocioReserva implements InterfaceReserva {
 
     @Override
     public void atualizarReserva(Reserva r) throws Exception {
-           System.out.println("b");
-
+        validarCamposBasicos(r);
+        
         DadosReserva dR = new DadosReserva();
         dR.atualizarReserva(r);
     }

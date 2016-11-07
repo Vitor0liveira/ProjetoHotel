@@ -3,8 +3,8 @@ package servicos;
 public class NegocioServicos implements InterfaceServicos {
 
     public void validarCamposBasicos(Servico s) throws Exception {
-        if (s.getCd_servico() < 0) {
-            throw new Exception("Por Favor, Informar um CÓDIGO DE SERVIÇO válido.");
+        if (s.getCd_servico() <= 0) {
+            throw new Exception("Por Favor, informar um CÓDIGO DE SERVIÇO válido.");
         }
 
         if (s.getDescricao().length() > 20) {
@@ -19,8 +19,8 @@ public class NegocioServicos implements InterfaceServicos {
             throw new Exception("Por Favor, DESCREVA um Serviço.");
         }
 
-        if (s.getValor() < 10) {
-            throw new Exception("Por Favor, Informe um valor Acima de DEZ(R$10) Reais para o Serviço.");
+        if (s.getValor() < 0) {
+            throw new Exception("Por Favor, informe um valor válido para o Serviço.");
         }
 
     }

@@ -11,9 +11,9 @@ public class NegocioCliente implements InterfaceCliente {
         if (c.getNm_cliente().trim().equals("")) {
             throw new Exception("Por favor, preencha o campo nome.");
         }
-//        if (c.getTelefone().trim().length() < 16) {
-        //          throw new Exception("Por favor, preencha o campo telefone.");
-
+        if (c.getTelefone().trim().length() < 16) {
+            throw new Exception("Por favor, preencha o campo telefone.");
+        }
     }
 
     @Override
@@ -26,9 +26,8 @@ public class NegocioCliente implements InterfaceCliente {
 
     @Override
     public void atualizarCliente(Cliente c) throws Exception {
-
         validarCamposBasicos(c);
-
+        
         DadosCliente dC = new DadosCliente();
         dC.atualizarCliente(c);
     }
@@ -53,13 +52,10 @@ public class NegocioCliente implements InterfaceCliente {
 
     @Override
     public Cliente pesquisarCliente(String cpf) throws Exception {
-
-        //validação não funcionando ainda,
-        //POR HORA a validação está no botão pesquisar.
         DadosCliente dC = new DadosCliente();
         Cliente c = dC.pesquisarCliente(cpf);
 
-        if (c.getCpf_cliente().equals("")) {
+        if (c.getCpf_cliente() == null) {
             throw new Exception("Cliente não encontrado.");
         }
         return c;

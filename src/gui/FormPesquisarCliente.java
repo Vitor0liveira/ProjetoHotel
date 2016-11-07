@@ -238,7 +238,6 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
             Cliente cli = f.pesquisarCliente(jFormattedTextFieldCpf.getText());
 
             if (cli.getCpf_cliente() == null) {
-                JOptionPane.showMessageDialog(this, "Cliente não encontrado.");
                 jFormattedTextFieldCpf.setText("");
                 jFormattedTextFieldCpf.requestFocus();
                 return;
@@ -253,7 +252,7 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
             jButtonRemover.setEnabled(false);
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
