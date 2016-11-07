@@ -54,6 +54,7 @@ public class Fachada implements InterfaceCliente, InterfaceReserva {
 
     @Override
     public void atualizarReserva(Reserva r) throws Exception {
+        System.out.println("a");
         NegocioReserva nR = new NegocioReserva();
         nR.atualizarReserva(r);
     }

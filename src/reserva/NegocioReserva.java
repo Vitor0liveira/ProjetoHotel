@@ -34,7 +34,7 @@ public class NegocioReserva implements InterfaceReserva {
 
     @Override
     public void atualizarReserva(Reserva r) throws Exception {
-        validarCamposBasicos(r);
+           System.out.println("b");
 
         DadosReserva dR = new DadosReserva();
         dR.atualizarReserva(r);
@@ -42,8 +42,6 @@ public class NegocioReserva implements InterfaceReserva {
 
     @Override
     public void removerReserva(Reserva r) throws Exception {
-        validarCamposBasicos(r);
-
         DadosReserva dR = new DadosReserva();
         dR.removerReserva(r);
     }

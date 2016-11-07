@@ -16,8 +16,8 @@ public class NegocioFo implements InterfaceFo {
 
     @Override
     public void pesquisarFo(Fo f) throws Exception {
-
         validarcamposBasicos(f);
+
         
         DadosFo dF = new DadosFo();
         dF.pesquisarFo(f);

@@ -247,14 +247,14 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
             }
             Fachada f = new Fachada();
             Reserva r = f.pesquisarReserva(Integer.parseInt(jTextFieldCdReserva.getText()));
-            
+
             if (r.getCd_reserva() == 0) {
                 JOptionPane.showMessageDialog(this, "Reserva não encontrada.");
                 jFormattedTextFieldCpf.setText("");
                 jFormattedTextFieldCpf.requestFocus();
                 return;
             }
-            
+
             jTextFieldPeriodo.setText(Integer.toString(r.getPeriodo()));
             jFormattedTextFieldData.setText(r.getData());
             jTextFieldSituacao.setText(Integer.toString(r.getSituacao()));
@@ -263,7 +263,7 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
             jFormattedTextFieldCpf.setText(r.getCliente().getCpf_cliente());
             jButtonPesquisar.setEnabled(false);
             jButtonAtualizar.setEnabled(false);
-            jButtonEditar.setEnabled(false);
+            jButtonEditar.setEnabled(true);
             jButtonRemover.setEnabled(false);
 
         } catch (Exception erro) {
@@ -272,11 +272,42 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-
+        jButtonRemover.setEnabled(true);
+        jButtonAtualizar.setEnabled(true);
+        jButtonEditar.setEnabled(false);
+        jTextFieldQuarto.setEnabled(true);
+        jTextFieldSituacao.setEnabled(true);
+        jTextFieldPeriodo.setEnabled(true);
+        jFormattedTextFieldData.setEnabled(true);
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-      
+        try {
+            Reserva r = new Reserva();
+            r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
+
+            Fachada f = new Fachada();
+            f.removerReserva(r);
+
+            JOptionPane.showMessageDialog(this, "Reserva removida com sucesso!");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
+        }
+        jTextFieldCdReserva.setText("");
+        jTextFieldOcupacao.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jFormattedTextFieldData.setText("");
+        jTextFieldPeriodo.setText("");
+        jTextFieldSituacao.setText("");
+        jTextFieldQuarto.setText("");
+        jTextFieldOcupacao.setText("");
+        jTextFieldCdReserva.setEnabled(false);
+        jFormattedTextFieldData.setEnabled(false);
+        jTextFieldPeriodo.setEnabled(false);
+        jTextFieldSituacao.setEnabled(false);
+        jTextFieldQuarto.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jButtonNovaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaPesquisaActionPerformed
@@ -288,11 +319,43 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
         jFormattedTextFieldData.setText("");
         jFormattedTextFieldCpf.setText("");
         jButtonPesquisar.setEnabled(true);
+        jTextFieldCdReserva.setEnabled(true);
         jTextFieldCdReserva.requestFocus();
     }//GEN-LAST:event_jButtonNovaPesquisaActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
-    
+        try {
+            Reserva r = new Reserva();
+            r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
+            r.setPeriodo(Integer.parseInt(jTextFieldPeriodo.getText()));
+            r.setSituacao(Integer.parseInt(jTextFieldSituacao.getText()));
+            r.setNr_quarto(Integer.parseInt(jTextFieldQuarto.getText()));
+            r.setData(jFormattedTextFieldData.getText());
+
+            Fachada f = new Fachada();
+            f.atualizarReserva(r);
+
+            JOptionPane.showMessageDialog(this, "Reserva atualizada com sucesso!");
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
+        }
+        jTextFieldQuarto.setText("");
+        jTextFieldCdReserva.setText("");
+        jTextFieldOcupacao.setText("");
+        jTextFieldPeriodo.setText("");
+        jTextFieldSituacao.setText("");
+        jFormattedTextFieldData.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jButtonPesquisar.setEnabled(false);
+        jTextFieldPeriodo.setEnabled(false);
+        jTextFieldSituacao.setEnabled(false);
+        jTextFieldQuarto.setEnabled(false);
+        jTextFieldCdReserva.setEnabled(false);
+        jFormattedTextFieldData.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+        jButtonPesquisar.setEnabled(false);
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     private void jFormattedTextFieldDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataActionPerformed

@@ -36,16 +36,18 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
     @Override
     public void atualizarReserva(Reserva r) throws Exception {
+        System.out.println("c");
         conectar();
 
-        String sql = "UPDATE Reserva SET periodo = ?, situacao = ?  where CPF_cliente = ?  AND cd_reserva = ? ";
+        String sql = "UPDATE Reserva SET data = ?, periodo = ?, situacao = ?, nr_quarto = ?  where cd_reserva = ? ";
 
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
-            cmd.setInt(1, r.getPeriodo());
-            cmd.setInt(2, r.getSituacao());
-            cmd.setString(3, r.getCliente().getCpf_cliente());
-            cmd.setInt(4, r.getCd_reserva());
+            cmd.setString(1, r.getData());
+            cmd.setInt(2, r.getPeriodo());
+            cmd.setInt(3, r.getSituacao());
+            cmd.setInt(4, r.getNr_quarto());
+            cmd.setInt(5, r.getCd_reserva());
             cmd.execute();
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + erro.getMessage());
@@ -60,7 +62,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
-            cmd.setInt(1, r.getCd_ocupacao());
+            cmd.setInt(1, r.getCd_reserva());
             cmd.execute();
         } catch (SQLException erro) {
             throw new Exception("Erro ao tentar remover. " + erro.getMessage());
