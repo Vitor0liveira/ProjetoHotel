@@ -27,7 +27,7 @@ public class NegocioCliente implements InterfaceCliente {
     @Override
     public void atualizarCliente(Cliente c) throws Exception {
         validarCamposBasicos(c);
-        
+
         DadosCliente dC = new DadosCliente();
         dC.atualizarCliente(c);
     }
@@ -36,12 +36,6 @@ public class NegocioCliente implements InterfaceCliente {
     public void apagarCliente(Cliente c) throws Exception {
         DadosCliente dC = new DadosCliente();
         dC.apagarCliente(c);
-    }
-
-    @Override
-    public boolean verificarExistencia(Cliente c) throws Exception {
-        DadosCliente dC = new DadosCliente();
-        return dC.verificarExistencia(c);
     }
 
     @Override

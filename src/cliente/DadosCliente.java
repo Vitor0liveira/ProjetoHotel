@@ -33,8 +33,8 @@ public class DadosCliente extends Dados implements InterfaceCliente {
 
     @Override
     public void atualizarCliente(Cliente c) throws Exception {
-   
-      conectar();
+
+        conectar();
         String sql = "UPDATE Cliente SET nm_cliente = ?, telefone = ? WHERE CPF_cliente = ?";
 
         try {
@@ -63,29 +63,6 @@ public class DadosCliente extends Dados implements InterfaceCliente {
             throw new Exception("Problemas ao apagar o Cliente: " + e.getMessage());
         }
         desconectar();
-    }
-
-    @Override
-    public boolean verificarExistencia(Cliente c) throws Exception {
-        boolean retorno = false;
-        conectar();
-        String sql = "SELECT CPF_cliente";
-        sql += "FROM Cliente WHERE CPF_cliente = ?";
-
-        try {
-            PreparedStatement cmd = conn.prepareStatement(sql);
-            cmd.setString(1, c.getCpf_cliente());
-            ResultSet leitor = cmd.executeQuery();
-            while (leitor.next()) {
-                retorno = true;
-                break;
-            }
-        } catch (SQLException erro) {
-            throw new Exception("Erro: " + erro.getMessage());
-        }
-
-        desconectar();
-        return retorno;
     }
 
     @Override

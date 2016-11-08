@@ -35,12 +35,6 @@ public class Fachada implements InterfaceCliente, InterfaceReserva {
     }
 
     @Override
-    public boolean verificarExistencia(Cliente c) throws Exception {
-        NegocioCliente nC = new NegocioCliente();
-        return nC.verificarExistencia(c);
-    }
-
-    @Override
     public ArrayList<Cliente> listar(Cliente c) throws Exception {
         NegocioCliente nC = new NegocioCliente();
         return nC.listar(c);
