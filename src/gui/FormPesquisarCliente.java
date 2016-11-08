@@ -9,6 +9,7 @@ import cliente.Cliente;
 import fachada.Fachada;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -53,6 +54,9 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButtonNovaPesquisa = new javax.swing.JButton();
         jButtonAtualizar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableCliente = new javax.swing.JTable();
+        jButtonListar = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -149,6 +153,26 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
             }
         });
 
+        jTableCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTableCliente);
+
+        jButtonListar.setText("Listar");
+        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonListarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -164,7 +188,7 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldNomePesq)
                             .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButtonPesquisar)
@@ -179,11 +203,16 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jFormattedTextFieldFonePesq, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonAtualizar)
-                        .addGap(8, 8, 8)
-                        .addComponent(jButtonEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonRemover)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonAtualizar)
+                                .addGap(8, 8, 8)
+                                .addComponent(jButtonEditar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonRemover)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonListar))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -208,8 +237,11 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEditar)
                     .addComponent(jButtonRemover)
-                    .addComponent(jButtonAtualizar))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(jButtonAtualizar)
+                    .addComponent(jButtonListar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -337,6 +369,25 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
         jFormattedTextFieldFonePesq.setText("");
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
+    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
+        try {
+            Fachada f = new Fachada();
+            ArrayList<Cliente> resp = f.listar();
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(new String[]{"CPF", "Nome", "Sexo", "Telefone"});
+            if (resp.size() > 0) {
+                for (Cliente cli : resp) {
+                    modelo.addRow(new String[]{cli.getCpf_cliente() + "", cli.getNm_cliente() + "", cli.getSexo() + "", cli.getTelefone()});
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Não existe resultados!");
+            }
+            jTableCliente.setModel(modelo);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+    }//GEN-LAST:event_jButtonListarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -384,6 +435,7 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtualizar;
     private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonListar;
     private javax.swing.JButton jButtonNovaPesquisa;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonRemover;
@@ -397,7 +449,9 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableCliente;
     private javax.swing.JTextField jTextFieldNomePesq;
     private javax.swing.JTextField jTextFieldSexoPesq;
     private javax.swing.JTextPane jTextPane1;

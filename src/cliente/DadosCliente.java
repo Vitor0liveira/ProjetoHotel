@@ -66,15 +66,14 @@ public class DadosCliente extends Dados implements InterfaceCliente {
     }
 
     @Override
-    public ArrayList<Cliente> listar(Cliente filtro) throws Exception {
+    public ArrayList<Cliente> listar() throws Exception {
         ArrayList<Cliente> retorno = new ArrayList<>();
         //abrindo a conexÃ£o
         conectar();
 
-        String sql = " SELECT CPF_cliente, nm_cliente ";
+        String sql = " SELECT CPF_cliente, nm_cliente, ";
         sql += " telefone, sexo ";
         sql += "  from Cliente";
-        sql += "  where CPF_cliente = ?";
 
         try {
             //executando a instrução sql
