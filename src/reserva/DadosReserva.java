@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 public class DadosReserva extends Dados implements InterfaceReserva {
 
@@ -36,11 +35,9 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
     @Override
     public void atualizarReserva(Reserva r) throws Exception {
-        System.out.println("c");
         conectar();
 
         String sql = "UPDATE Reserva SET data = ?, periodo = ?, situacao = ?, nr_quarto = ?  where cd_reserva = ? ";
-
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setString(1, r.getData());
@@ -50,7 +47,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
             cmd.setInt(5, r.getCd_reserva());
             cmd.execute();
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + erro.getMessage());
+            throw new Exception("Erro: " + erro.getMessage());
         }
         desconectar();
     }
@@ -74,17 +71,16 @@ public class DadosReserva extends Dados implements InterfaceReserva {
     public ArrayList<Reserva> listarReserva() throws Exception {
         ArrayList<Reserva> retorno = new ArrayList<>();
         conectar();
-        
-        String sql = "SELECT cd_reserva, data, periodo,";
-        sql += "situacao, CPF_cliente, nr_quarto, cd_ocupacao";
+
+        String sql = "SELECT cd_reserva, data, periodo, ";
+        sql += "situacao, CPF_cliente, nr_quarto, cd_ocupacao ";
         sql += "FROM Reserva";
-        
-        try{
-        PreparedStatement cmd = conn.prepareStatement(sql);
-       
-        ResultSet leitor = cmd.executeQuery();
-        
-            while (leitor.next()) {                
+        try {
+            PreparedStatement cmd = conn.prepareStatement(sql);
+
+            ResultSet leitor = cmd.executeQuery();
+
+            while (leitor.next()) {
                 Reserva r = new Reserva();
                 r.setCd_reserva(leitor.getInt("cd_reserva"));
                 r.setData(leitor.getString("data"));
@@ -93,17 +89,17 @@ public class DadosReserva extends Dados implements InterfaceReserva {
                 r.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
                 r.setNr_quarto(leitor.getInt("nr_quarto"));
                 r.setCd_ocupacao(leitor.getInt("cd_ocupacao"));
-                
+
                 retorno.add(r);
             }
-        
-        }catch(SQLException erro){
-            throw new Exception ("Erro: " + erro.getMessage());
+
+        } catch (SQLException erro) {
+            throw new Exception("Erro: " + erro.getMessage());
         }
-        
+
         desconectar();
         return retorno;
-        
+
     }
 
     @Override
@@ -119,7 +115,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setInt(1, cd_reserva);
             ResultSet leitor = cmd.executeQuery();
-            if (leitor.next()) {
+            while (leitor.next()) {
                 r.setCd_reserva(cd_reserva);
                 r.setData(leitor.getString("data"));
                 r.setPeriodo(leitor.getInt("periodo"));

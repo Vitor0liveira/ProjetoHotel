@@ -11,7 +11,7 @@ public class NegocioCliente implements InterfaceCliente {
         if (c.getNm_cliente().trim().equals("")) {
             throw new Exception("Por favor, preencha o campo nome.");
         }
-        if (c.getTelefone().trim().length() < 16) {
+        if (c.getTelefone().trim().length() < 15) {
             throw new Exception("Por favor, preencha o campo telefone.");
         }
     }
@@ -19,7 +19,7 @@ public class NegocioCliente implements InterfaceCliente {
     @Override
     public void cadastrarCliente(Cliente c) throws Exception {
         validarCamposBasicos(c);
-
+        
         DadosCliente dC = new DadosCliente();
         dC.cadastrarCliente(c);
     }

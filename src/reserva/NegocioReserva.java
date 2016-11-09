@@ -27,15 +27,14 @@ public class NegocioReserva implements InterfaceReserva {
     @Override
     public void fazerReserva(Reserva r) throws Exception {
         validarCamposBasicos(r);
-
         DadosReserva dR = new DadosReserva();
         dR.fazerReserva(r);
     }
 
     @Override
     public void atualizarReserva(Reserva r) throws Exception {
-        validarCamposBasicos(r);
-        
+        //validarCamposBasicos(r);
+        //Precisa-se de outra validação de campo, pois o atualizar não precisa de CPF. 
         DadosReserva dR = new DadosReserva();
         dR.atualizarReserva(r);
     }

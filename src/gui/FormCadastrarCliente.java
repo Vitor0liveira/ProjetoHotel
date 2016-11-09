@@ -6,11 +6,7 @@
 package gui;
 
 import cliente.Cliente;
-import cliente.DadosCliente;
-import cliente.NegocioCliente;
 import fachada.Fachada;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -152,35 +148,34 @@ public class FormCadastrarCliente extends javax.swing.JFrame {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         try {
-            // TODO add your handling code here:
+
             Cliente c = new Cliente();
+
             c.setNm_cliente(jTextFieldNome.getText());
             c.setCpf_cliente(jFormattedTextFieldCpf.getText());
             c.setTelefone(jFormattedTextFieldTelefone.getText());
-            if (jComboBoxSexo.getSelectedItem().equals("Masculino"))
+            if (jComboBoxSexo.getSelectedItem().equals("Masculino")) {
                 c.setSexo("M");
-            else if (jComboBoxSexo.getSelectedItem().equals("Feminino"))
+            } else if (jComboBoxSexo.getSelectedItem().equals("Feminino")) {
                 c.setSexo("F");
-            else
-                c.setSexo("O");            
-            
-            System.out.println(c.toString());
-            
-           Fachada f = new Fachada();
-           f.cadastrarCliente(c);
-           
-           JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso.");
-           
-            //Setando os campos de cadastrar
-            jTextFieldNome.setText("");
-            jFormattedTextFieldCpf.setText("");
-            jFormattedTextFieldTelefone.setText("");
-            jTextFieldNome.requestFocus();
-            
-            
+            } else {
+                c.setSexo("O");
+            }
+
+            Fachada f = new Fachada();
+            f.cadastrarCliente(c);
+
+            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso.");
+
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
+        //Setando os campos após o cadastro
+        jTextFieldNome.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jFormattedTextFieldTelefone.setText("");
+        jComboBoxSexo.setSelectedItem("1");
+        jTextFieldNome.requestFocus();
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jComboBoxSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSexoActionPerformed

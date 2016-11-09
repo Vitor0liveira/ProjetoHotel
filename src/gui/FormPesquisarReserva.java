@@ -20,8 +20,13 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
     /**
      * Creates new form FormPesquisarReserva
      */
+    DefaultTableModel modelo = new DefaultTableModel();
+
     public FormPesquisarReserva() {
         initComponents();
+        //Iniciado o jtableModel
+        modelo.setColumnIdentifiers(new String[]{"Código", "Data", "Situacao", "CPF", "Periodo", "Nº quarto", "Ocupacao"});
+        jTableListaReserva.setModel(modelo);
     }
 
     /**
@@ -182,8 +187,8 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextFieldCpf)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,6 +302,7 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
             jButtonAtualizar.setEnabled(false);
             jButtonEditar.setEnabled(true);
             jButtonRemover.setEnabled(false);
+            jButtonListar.setEnabled(true);
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage());
@@ -357,20 +363,21 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         try {
-            Reserva r = new Reserva();
-            r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
-            r.setPeriodo(Integer.parseInt(jTextFieldPeriodo.getText()));
-            r.setSituacao(Integer.parseInt(jTextFieldSituacao.getText()));
-            r.setNr_quarto(Integer.parseInt(jTextFieldQuarto.getText()));
-            r.setData(jFormattedTextFieldData.getText());
+            Reserva rR = new Reserva();
+            
+            rR.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
+            rR.setPeriodo(Integer.parseInt(jTextFieldPeriodo.getText()));
+            rR.setSituacao(Integer.parseInt(jTextFieldSituacao.getText()));
+            rR.setNr_quarto(Integer.parseInt(jTextFieldQuarto.getText()));
+            rR.setData(jFormattedTextFieldData.getText());
 
             Fachada f = new Fachada();
-            f.atualizarReserva(r);
+            f.atualizarReserva(rR);
 
             JOptionPane.showMessageDialog(this, "Reserva atualizada com sucesso!");
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
         jTextFieldQuarto.setText("");
         jTextFieldCdReserva.setText("");
@@ -404,8 +411,6 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
             Fachada f = new Fachada();
 
             ArrayList<Reserva> resp = f.listarReserva();
-            DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"Código", "Data", "Situacao", "CPF", "Periodo", "Nº quarto", "Ocupacao"});
 
             if (resp.size() > 0) {
                 for (Reserva r : resp) {
@@ -414,10 +419,16 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Não existem resultado.");
             }
-            jTableListaReserva.setModel(modelo);
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
+        //Habilitando os botões seguintes, após o click de listar
+        jButtonPesquisar.setEnabled(true);
+        jButtonAtualizar.setEnabled(false);
+        jButtonEditar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+        jButtonNovaPesquisa.setEnabled(true);
+        
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     /**
