@@ -66,7 +66,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
     }
 
     @Override
-    public ArrayList<Cliente> listar() throws Exception {
+    public ArrayList<Cliente> listarCliente() throws Exception {
         ArrayList<Cliente> retorno = new ArrayList<>();
         //abrindo a conexÃ£o
         conectar();

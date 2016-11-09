@@ -71,8 +71,39 @@ public class DadosReserva extends Dados implements InterfaceReserva {
     }
 
     @Override
-    public ArrayList<Reserva> listar(Reserva filtro) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Reserva> listarReserva() throws Exception {
+        ArrayList<Reserva> retorno = new ArrayList<>();
+        conectar();
+        
+        String sql = "SELECT cd_reserva, data, periodo,";
+        sql += "situacao, CPF_cliente, nr_quarto, cd_ocupacao";
+        sql += "FROM Reserva";
+        
+        try{
+        PreparedStatement cmd = conn.prepareStatement(sql);
+       
+        ResultSet leitor = cmd.executeQuery();
+        
+            while (leitor.next()) {                
+                Reserva r = new Reserva();
+                r.setCd_reserva(leitor.getInt("cd_reserva"));
+                r.setData(leitor.getString("data"));
+                r.setPeriodo(leitor.getInt("periodo"));
+                r.setSituacao(leitor.getInt("situacao"));
+                r.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
+                r.setNr_quarto(leitor.getInt("nr_quarto"));
+                r.setCd_ocupacao(leitor.getInt("cd_ocupacao"));
+                
+                retorno.add(r);
+            }
+        
+        }catch(SQLException erro){
+            throw new Exception ("Erro: " + erro.getMessage());
+        }
+        
+        desconectar();
+        return retorno;
+        
     }
 
     @Override

@@ -35,9 +35,9 @@ public class Fachada implements InterfaceCliente, InterfaceReserva {
     }
 
     @Override
-    public ArrayList<Cliente> listar() throws Exception {
+    public ArrayList<Cliente> listarCliente() throws Exception {
         NegocioCliente nC = new NegocioCliente();
-        return nC.listar();
+        return nC.listarCliente();
     }
 
     @Override
@@ -60,8 +60,9 @@ public class Fachada implements InterfaceCliente, InterfaceReserva {
     }
 
     @Override
-    public ArrayList<Reserva> listar(Reserva filtro) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Reserva> listarReserva() throws Exception {
+        NegocioReserva nR = new NegocioReserva();
+        return nR.listarReserva();
     }
 
     @Override

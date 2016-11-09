@@ -11,7 +11,7 @@ public interface InterfaceCliente {
     // método 'apagarCliente' apaga um cliente previamente cadastrado.
     void apagarCliente(Cliente c) throws Exception;
     // ArrayList 'pesquisarCliente retorna os clientes cadastrados.
-    ArrayList<Cliente> listar() throws Exception;
+    ArrayList<Cliente> listarCliente() throws Exception;
     //pesquisar um cliente cadastrado.
     Cliente pesquisarCliente(String cpf) throws Exception;
 

@@ -39,9 +39,9 @@ public class NegocioCliente implements InterfaceCliente {
     }
 
     @Override
-    public ArrayList<Cliente> listar() throws Exception {
+    public ArrayList<Cliente> listarCliente() throws Exception {
         DadosCliente dC = new DadosCliente();
-        return dC.listar();
+        return dC.listarCliente();
     }
 
     @Override

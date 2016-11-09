@@ -7,7 +7,9 @@ package gui;
 
 import cliente.Cliente;
 import fachada.Fachada;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import reserva.Reserva;
 
 /**
@@ -52,6 +54,9 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
         jTextFieldOcupacao = new javax.swing.JTextField();
         jTextFieldQuarto = new javax.swing.JTextField();
         jFormattedTextFieldData = new javax.swing.JFormattedTextField();
+        jButtonListar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableListaReserva = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,6 +144,26 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
             }
         });
 
+        jButtonListar.setText("Listar");
+        jButtonListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonListarActionPerformed(evt);
+            }
+        });
+
+        jTableListaReserva.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 2", "Title 3", "Title 4", "Título 4", "Título 5", "Título 6", "Título 7"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableListaReserva);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -158,7 +183,7 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                        .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -187,7 +212,10 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonEditar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonRemover)))
+                                .addComponent(jButtonRemover)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonListar))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -219,7 +247,10 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAtualizar)
                     .addComponent(jButtonEditar)
-                    .addComponent(jButtonRemover))
+                    .addComponent(jButtonRemover)
+                    .addComponent(jButtonListar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -366,6 +397,28 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFieldCpfActionPerformed
 
+    private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
+        // TODO add your handling code here:
+        try {
+            Fachada f = new Fachada();
+
+            ArrayList<Reserva> resp = f.listarReserva();
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.setColumnIdentifiers(new String[]{"Código", "Data", "Situacao", "CPF", "Periodo", "Nº quarto", "Ocupacao"});
+
+            if (resp.size() > 0) {
+                for (Reserva r : resp) {
+                    modelo.addRow(new String[]{r.getCd_reserva() + "", r.getData() + "", r.getSituacao() + "", r.getCliente().getCpf_cliente() + "", r.getPeriodo() + "", r.getNr_quarto() + "", r.getCd_ocupacao() + ""});
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Não existem resultado.");
+            }
+            jTableListaReserva.setModel(modelo);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, erro.getMessage());
+        }
+    }//GEN-LAST:event_jButtonListarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -404,6 +457,7 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtualizar;
     private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonListar;
     private javax.swing.JButton jButtonNovaPesquisa;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonRemover;
@@ -417,6 +471,8 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableListaReserva;
     private javax.swing.JTextField jTextFieldCdReserva;
     private javax.swing.JTextField jTextFieldOcupacao;
     private javax.swing.JTextField jTextFieldPeriodo;

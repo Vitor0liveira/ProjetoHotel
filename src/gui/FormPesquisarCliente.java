@@ -372,7 +372,7 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         try {
             Fachada f = new Fachada();
-            ArrayList<Cliente> resp = f.listar();
+            ArrayList<Cliente> resp = f.listarCliente();
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.setColumnIdentifiers(new String[]{"CPF", "Nome", "Sexo", "Telefone"});
             if (resp.size() > 0) {

@@ -47,8 +47,9 @@ public class NegocioReserva implements InterfaceReserva {
     }
 
     @Override
-    public ArrayList<Reserva> listar(Reserva filtro) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Reserva> listarReserva() throws Exception {
+        DadosReserva dR = new DadosReserva();
+        return dR.listarReserva();
     }
 
     @Override
