@@ -13,20 +13,21 @@ import reserva.Reserva;
 
 /**
  *
- * @author ALEXANDRE LAURIA
+ * @author vitor_000
  */
-public class FormPesquisarReserva extends javax.swing.JFrame {
+public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form FormPesquisarReserva
+     * Creates new form JInternalFramePesqReserva
      */
-    DefaultTableModel modelo = new DefaultTableModel();
-
-    public FormPesquisarReserva() {
+     DefaultTableModel modelo = new DefaultTableModel();
+     
+    public JInternalFramePesqReserva() {
         initComponents();
         //Iniciado o jtableModel
         modelo.setColumnIdentifiers(new String[]{"Código", "Data", "Situacao", "CPF", "Periodo", "Nº quarto", "Ocupacao"});
         jTableListaReserva.setModel(modelo);
+        
     }
 
     /**
@@ -62,8 +63,14 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableListaReserva = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setForeground(java.awt.Color.green);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Pesquisar Cliente");
 
+        jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/zoom.png"))); // NOI18N
         jButtonPesquisar.setText("Pesquisar");
         jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +108,7 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
 
         jLabel5.setText("CPF:");
 
+        jButtonNovaPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/zoom_in.png"))); // NOI18N
         jButtonNovaPesquisa.setText("Nova Pesquisa");
         jButtonNovaPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,7 +280,6 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
@@ -348,6 +355,10 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
         jButtonRemover.setEnabled(false);
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
+    private void jFormattedTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldCpfActionPerformed
+
     private void jButtonNovaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaPesquisaActionPerformed
         jTextFieldQuarto.setText("");
         jTextFieldCdReserva.setText("");
@@ -364,7 +375,7 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         try {
             Reserva rR = new Reserva();
-            
+
             rR.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
             rR.setPeriodo(Integer.parseInt(jTextFieldPeriodo.getText()));
             rR.setSituacao(Integer.parseInt(jTextFieldSituacao.getText()));
@@ -401,10 +412,6 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFieldDataActionPerformed
 
-    private void jFormattedTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldCpfActionPerformed
-
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         try {
@@ -428,43 +435,9 @@ public class FormPesquisarReserva extends javax.swing.JFrame {
         jButtonEditar.setEnabled(false);
         jButtonRemover.setEnabled(false);
         jButtonNovaPesquisa.setEnabled(true);
-        
+
     }//GEN-LAST:event_jButtonListarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisarReserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormPesquisarReserva().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtualizar;

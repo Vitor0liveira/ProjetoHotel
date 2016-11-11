@@ -13,16 +13,14 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author aluno
+ * @author vitor_000
  */
-public class FormPesquisarCliente extends javax.swing.JFrame {
+public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form JFramePesquisar
+     * Creates new form JInternalFramePesqCliente
      */
-    ArrayList<Cliente> listaClientesCadastrados;
-
-    public FormPesquisarCliente() {
+    public JInternalFramePesqCliente() {
         initComponents();
     }
 
@@ -35,11 +33,6 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jButtonPesquisar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -58,35 +51,13 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
         jTableCliente = new javax.swing.JTable();
         jButtonListar = new javax.swing.JButton();
 
-        jScrollPane1.setViewportView(jTextPane1);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Pesquisar Cliente");
 
+        jButtonPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/zoom.png"))); // NOI18N
         jButtonPesquisar.setText("Pesquisar");
         jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +109,7 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
 
         jLabel5.setText("CPF:");
 
+        jButtonNovaPesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/zoom_in.png"))); // NOI18N
         jButtonNovaPesquisa.setText("Nova Pesquisa");
         jButtonNovaPesquisa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,7 +213,7 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
                     .addComponent(jButtonListar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,7 +228,6 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
@@ -303,6 +274,30 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
         jButtonEditar.setEnabled(false);
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        try {
+            Cliente cli = new Cliente();
+            cli.setCpf_cliente(jFormattedTextFieldCpf.getText());
+
+            Fachada f = new Fachada();
+            f.apagarCliente(cli);
+
+            JOptionPane.showMessageDialog(this, "Cliente removido com sucesso.");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
+        }
+        jButtonEditar.setEnabled(false);
+        jButtonPesquisar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        jTextFieldNomePesq.setEnabled(false);
+        jFormattedTextFieldFonePesq.setEnabled(false);
+        jTextFieldNomePesq.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jTextFieldSexoPesq.setText("");
+        jFormattedTextFieldFonePesq.setText("");
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
     private void jButtonNovaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaPesquisaActionPerformed
         jButtonPesquisar.setEnabled(true);
         jFormattedTextFieldCpf.setEnabled(true);
@@ -345,30 +340,6 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
         jFormattedTextFieldFonePesq.setText("");
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
-    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
-        try {
-            Cliente cli = new Cliente();
-            cli.setCpf_cliente(jFormattedTextFieldCpf.getText());
-
-            Fachada f = new Fachada();
-            f.apagarCliente(cli);
-
-            JOptionPane.showMessageDialog(this, "Cliente removido com sucesso.");
-        } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
-        }
-        jButtonEditar.setEnabled(false);
-        jButtonPesquisar.setEnabled(false);
-        jButtonRemover.setEnabled(false);
-        jButtonAtualizar.setEnabled(false);
-        jTextFieldNomePesq.setEnabled(false);
-        jFormattedTextFieldFonePesq.setEnabled(false);
-        jTextFieldNomePesq.setText("");
-        jFormattedTextFieldCpf.setText("");
-        jTextFieldSexoPesq.setText("");
-        jFormattedTextFieldFonePesq.setText("");
-    }//GEN-LAST:event_jButtonRemoverActionPerformed
-
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         try {
             Fachada f = new Fachada();
@@ -388,49 +359,6 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonListarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisarCliente.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisarCliente.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisarCliente.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormPesquisarCliente.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormPesquisarCliente().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtualizar;
@@ -439,7 +367,6 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
     private javax.swing.JButton jButtonNovaPesquisa;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonRemover;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
     private javax.swing.JFormattedTextField jFormattedTextFieldFonePesq;
     private javax.swing.JLabel jLabel2;
@@ -447,13 +374,9 @@ public class FormPesquisarCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableCliente;
     private javax.swing.JTextField jTextFieldNomePesq;
     private javax.swing.JTextField jTextFieldSexoPesq;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }
