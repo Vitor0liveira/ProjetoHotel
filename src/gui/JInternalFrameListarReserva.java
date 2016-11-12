@@ -10,6 +10,7 @@ import fachada.Fachada;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import reserva.Reserva;
 
 /**
  *
@@ -137,12 +138,15 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         try {
             Fachada f = new Fachada();
-            ArrayList<Cliente> resp = f.listarCliente();
+            ArrayList<Reserva> resp = f.listarReserva();
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"CPF", "Nome", "Sexo", "Telefone"});
+            modelo.setColumnIdentifiers(new String[]{"Cód. Reserva", "Cód. Ocupação", "CPF Cliente", "Quarto", 
+            "Período", "Situação", "Data"});
             if (resp.size() > 0) {
-                for (Cliente cli : resp) {
-                    modelo.addRow(new String[]{cli.getCpf_cliente() + "", cli.getNm_cliente() + "", cli.getSexo() + "", cli.getTelefone()});
+                for (Reserva r : resp) {
+                    modelo.addRow(new String[]{r.getCd_reserva() + "", r.getCd_ocupacao() + "", r.getCliente().getCpf_cliente() + "", r.getNr_quarto() + 
+                            "", r.getPeriodo() + "", r.getSituacao() + "", r.getData()});
+                    
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Não existe resultados!");
