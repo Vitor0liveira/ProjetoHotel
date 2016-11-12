@@ -5,8 +5,8 @@
  */
 package gui;
 
-import cliente.Cliente;
 import fachada.Fachada;
+import fo.Fo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -137,12 +137,14 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         try {
             Fachada f = new Fachada();
-            ArrayList<Cliente> resp = f.listarCliente();
+            ArrayList<Fo> resp = f.listarFo();
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"CPF", "Nome", "Sexo", "Telefone"});
+            modelo.setColumnIdentifiers(new String[]{"Cód. Ocupação", "Data Entrada", "Hora Entrada", "Data Saida", 
+            "Hora Saida", "Valor Diaria", "Quarto", "CPF Cliente"});
             if (resp.size() > 0) {
-                for (Cliente cli : resp) {
-                    modelo.addRow(new String[]{cli.getCpf_cliente() + "", cli.getNm_cliente() + "", cli.getSexo() + "", cli.getTelefone()});
+                for (Fo fO : resp) {
+                    modelo.addRow(new String[]{fO.getCd_ocupacao() + "", fO.getData_entrada() + "", fO.getHora_entrada() + "", fO.getData_saida() + "",
+                    fO.getHora_saida() + "", fO.getValorDiaria() + "", fO.getQuarto().getNr_quarto() + "", fO.getCliente().getCpf_cliente()});
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Não existe resultados!");

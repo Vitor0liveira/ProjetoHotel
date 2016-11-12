@@ -1,5 +1,7 @@
 package fo;
 
+import java.util.ArrayList;
+
 public class NegocioFo implements InterfaceFo {
 
     public void validarcamposBasicos(Fo f) throws Exception {
@@ -38,6 +40,12 @@ public class NegocioFo implements InterfaceFo {
     public void atualizarFo(Fo f) throws Exception {
         DadosFo dF = new DadosFo();
         dF.atualizarFo(f);
+    }
+
+    @Override
+    public ArrayList<Fo> listarFo() throws Exception {
+        DadosFo dF = new DadosFo();
+        return dF.listarFo();
     }
 
 }

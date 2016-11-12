@@ -2,33 +2,38 @@ package fo;
 
 import conexao.Dados;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DadosFo extends Dados implements InterfaceFo {
 
     @Override
     public Fo pesquisarFo(int cd_ocupacao) throws Exception {
-
         conectar();
-
         Fo f = new Fo();
+        
+            String sql = " SELECT data_entrada, hora_entrada, data_saida, hora_saida varlorDiaria, quarto, CPF_cliente FROM Fo ";
+            sql += " WHERE cd_ocupacao = ?";
 
-        try {
-            // Para pesquisar a "FO" é necessário informar o cd_ocupacao, CPF_cliente e nr_quarto.
-            String Sql = " SELECT cd_ocupacao, CPF_cliente, nr_quarto FROM FO ";
-            Sql += " WHERE cd_ocupacao = ? AND CPF_cliente = ? AND nr_quarto = ? ";
-
-            PreparedStatement Cmd = conn.prepareStatement(Sql);
-            Cmd.setInt(1, f.getCd_ocupacao());
-            Cmd.setString(2, f.getCliente().getCpf_cliente());
-            Cmd.setInt(3, f.getQuarto().getNr_quarto());
-            Cmd.execute();
-
-        } catch (SQLException erro) {
-            throw new Exception("Erro: " + erro.getMessage());
-        }
-        return f;
-
+            try {
+                PreparedStatement cmd = conn.prepareStatement(sql);
+                cmd.setInt(1, cd_ocupacao);
+                ResultSet leitor = cmd.executeQuery();
+                while (leitor.next()) {
+                  f.setCd_ocupacao(cd_ocupacao);
+                  f.setData_entrada(leitor.getString("data_entrada"));
+                  f.setHora_entrada(leitor.getString("hora_entrada"));
+                  f.setData_saida(leitor.getString("data_saida"));
+                  f.setHora_saida(leitor.getString("hora_saida"));
+                  f.setValorDiaria(leitor.getFloat("valorDiaria"));
+                  f.getQuarto().setNr_quarto(leitor.getInt("quarto"));
+                  f.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
+                }
+            } catch (Exception erro) {
+                  throw new Exception ("Problemas ao pesquisar a ocupação: " + erro.getMessage());
+            }
+        return f;    
     }
 
     @Override
@@ -91,6 +96,37 @@ public class DadosFo extends Dados implements InterfaceFo {
         }catch(SQLException erro){
             throw new Exception ("Erro ao atualizar a FO: " + erro.getMessage());
         }
+    }
+
+    @Override
+    public ArrayList<Fo> listarFo() throws Exception {
+        ArrayList<Fo> retorno = new ArrayList<>();
+        conectar();
+        
+        String sql = "SELECT cd_ocupacao, data_entrada, hora_entrada, ";
+        sql += "data_saida, hora_saida, valorDiaria, quarto, CPF_cliente ";
+        sql += "FROM Fo";
+        
+        try {
+            PreparedStatement cmd = conn.prepareStatement(sql);
+            ResultSet leitor = cmd.executeQuery();
+            
+            while(leitor.next()) {
+                Fo fO = new Fo();
+                fO.setCd_ocupacao(leitor.getInt("cd_ocupacao"));
+                fO.setData_entrada(leitor.getString("data_entrada"));
+                fO.setHora_entrada(leitor.getString("hora_entrada"));
+                fO.setData_saida(leitor.getString("data_saida"));
+                fO.setHora_saida(leitor.getString("hora_saida"));
+                fO.setValorDiaria(leitor.getFloat("valorDiaria"));
+                fO.getQuarto().setNr_quarto(leitor.getInt("quarto"));
+                fO.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
+            }
+        } catch (Exception erro) {
+                throw new Exception ("Erro: " + erro.getMessage());
+        }
+        
+        return retorno;
     }
 
 }

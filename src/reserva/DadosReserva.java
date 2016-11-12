@@ -77,7 +77,6 @@ public class DadosReserva extends Dados implements InterfaceReserva {
         sql += "FROM Reserva";
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
-
             ResultSet leitor = cmd.executeQuery();
 
             while (leitor.next()) {
