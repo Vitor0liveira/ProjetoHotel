@@ -75,7 +75,7 @@ public class DadosFo extends Dados implements InterfaceFo {
         conectar();
 
         String sql = "UPDATE Fo SET data_entrada = ?, hora_entrada = ?, data_saida = ?, hora_saida = ?, ";
-               sql = "quarto = ? WHERE cd_ocupacao = ?";
+               sql += "quarto = ? WHERE cd_ocupacao = ?";
         
         try{
             PreparedStatement cmd = conn.prepareStatement(sql);

@@ -37,12 +37,15 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem4 = new javax.swing.JRadioButtonMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jRadioButtonMenuItem5 = new javax.swing.JRadioButtonMenuItem();
 
@@ -82,6 +85,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema Hotel - Principal");
 
         jDesktopPaneAreaTrabalho.setBackground(new java.awt.Color(102, 102, 102));
         jDesktopPaneAreaTrabalho.setToolTipText("");
@@ -90,11 +94,11 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         jDesktopPaneAreaTrabalho.setLayout(jDesktopPaneAreaTrabalhoLayout);
         jDesktopPaneAreaTrabalhoLayout.setHorizontalGroup(
             jDesktopPaneAreaTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 627, Short.MAX_VALUE)
+            .addGap(0, 1198, Short.MAX_VALUE)
         );
         jDesktopPaneAreaTrabalhoLayout.setVerticalGroup(
             jDesktopPaneAreaTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
+            .addGap(0, 881, Short.MAX_VALUE)
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/group.png"))); // NOI18N
@@ -118,6 +122,14 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         });
         jMenu1.add(jRadioButtonMenuItem4);
 
+        jMenuItem4.setText("Listar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Reservas");
@@ -140,6 +152,14 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         });
         jMenu2.add(jRadioButtonMenuItem2);
 
+        jMenuItem3.setText("Listar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Ocupações");
@@ -159,6 +179,14 @@ public class JFrameTelaMain extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem1);
+
+        jMenuItem5.setText("Listar");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
 
         jMenuBar1.add(jMenu4);
 
@@ -251,6 +279,27 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         pesOcu.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        JInternalFrameListarCliente lisCli = new JInternalFrameListarCliente();
+        jDesktopPaneAreaTrabalho.add(lisCli);
+        lisCli.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        JInternalFrameListarReserva lisRes = new JInternalFrameListarReserva();
+        jDesktopPaneAreaTrabalho.add(lisRes);
+        lisRes.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        JInternalFrameListarOcupacao lisOcu = new JInternalFrameListarOcupacao();
+        jDesktopPaneAreaTrabalho.add(lisOcu);
+        lisOcu.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -298,6 +347,9 @@ public class JFrameTelaMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
