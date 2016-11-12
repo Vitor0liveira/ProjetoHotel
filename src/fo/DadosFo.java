@@ -7,10 +7,13 @@ import java.sql.SQLException;
 public class DadosFo extends Dados implements InterfaceFo {
 
     @Override
-    public void pesquisarFo(Fo f) throws Exception {
+    public Fo pesquisarFo(int cd_ocupacao) throws Exception {
 
+        conectar();
+        
+        Fo f = new Fo();
+        
         try {
-            conectar();
             // Para pesquisar a "FO" é necessário informar o cd_ocupacao, CPF_cliente e nr_quarto.
             String Sql = " SELECT cd_ocupacao, CPF_cliente, nr_quarto FROM FO ";
             Sql += " WHERE cd_ocupacao = ? AND CPF_cliente = ? AND nr_quarto = ? ";
@@ -21,10 +24,12 @@ public class DadosFo extends Dados implements InterfaceFo {
             Cmd.setInt(3, f.getQuarto().getNr_quarto());
             Cmd.execute();
 
-        } catch (SQLException E) {
-            throw new Exception("Erro: " + E.getMessage());
+        } catch (SQLException erro) {
+            throw new Exception("Erro: " + erro.getMessage());
         }
+        return f;
 
     }
 
+    
 }

@@ -15,11 +15,11 @@ public class NegocioFo implements InterfaceFo {
     }
 
     @Override
-    public void pesquisarFo(Fo f) throws Exception {
-        validarcamposBasicos(f);
-
+    public Fo pesquisarFo(int cd_ocupacao) throws Exception {
         DadosFo dF = new DadosFo();
-        dF.pesquisarFo(f);
+        Fo f = dF.pesquisarFo(cd_ocupacao);
+        validarcamposBasicos(f);
+        return f;
     }
 
 }

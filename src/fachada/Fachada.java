@@ -3,12 +3,15 @@ package fachada;
 import cliente.Cliente;
 import cliente.InterfaceCliente;
 import cliente.NegocioCliente;
+import fo.Fo;
+import fo.InterfaceFo;
+import fo.NegocioFo;
 import java.util.ArrayList;
 import reserva.InterfaceReserva;
 import reserva.NegocioReserva;
 import reserva.Reserva;
 
-public class Fachada implements InterfaceCliente, InterfaceReserva {
+public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo {
 
     @Override
     public void cadastrarCliente(Cliente c) throws Exception {
@@ -68,6 +71,12 @@ public class Fachada implements InterfaceCliente, InterfaceReserva {
     public Reserva pesquisarReserva(int cd_reserva) throws Exception {
         NegocioReserva nR = new NegocioReserva();
         return nR.pesquisarReserva(cd_reserva);
+    }
+
+    @Override
+    public Fo pesquisarFo(int cd_ocupacao) throws Exception {
+        NegocioFo nF = new NegocioFo();
+        return nF.pesquisarFo(cd_ocupacao);
     }
 
 }

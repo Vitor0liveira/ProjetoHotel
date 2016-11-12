@@ -46,7 +46,7 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
         jComboBoxNrQuarto = new javax.swing.JComboBox<>();
         jComboBoxPeriodo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldCdReserva1 = new javax.swing.JTextField();
+        jTextFieldCdOcupacao = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -110,7 +110,7 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCdReserva1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldCdOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -148,7 +148,7 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldCdReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextFieldCdReserva1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCdOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFieldCliCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
@@ -188,6 +188,7 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
             Reserva r = new Reserva();
             //Alimentando o objeto
             r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
+            r.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
             r.setData(jFormattedTextFieldData.getText());
             r.setPeriodo(jComboBoxPeriodo.getSelectedIndex() + 1);
             r.setSituacao(jComboBoxSituacao.getSelectedIndex() + 1);
@@ -204,6 +205,7 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
 
         //Setando os campos
         jTextFieldCdReserva.setText("");
+        jTextFieldCdOcupacao.setText("");
         jFormattedTextFieldData.setText("");
         jFormattedTextFieldCliCpf.setText("");
         jComboBoxNrQuarto.setSelectedItem("1");
@@ -227,7 +229,7 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextFieldCdOcupacao;
     private javax.swing.JTextField jTextFieldCdReserva;
-    private javax.swing.JTextField jTextFieldCdReserva1;
     // End of variables declaration//GEN-END:variables
 }
