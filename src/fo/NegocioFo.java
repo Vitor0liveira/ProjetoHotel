@@ -22,4 +22,22 @@ public class NegocioFo implements InterfaceFo {
         return f;
     }
 
+    @Override
+    public void cadastrarFo(Fo f) throws Exception {
+        DadosFo dF = new DadosFo();
+        dF.cadastrarFo(f);
+    }
+
+    @Override
+    public void removerFo(Fo f) throws Exception {
+        DadosFo dF = new DadosFo();
+        dF.removerFo(f);
+    }
+
+    @Override
+    public void atualizarFo(Fo f) throws Exception {
+        DadosFo dF = new DadosFo();
+        dF.atualizarFo(f);
+    }
+
 }

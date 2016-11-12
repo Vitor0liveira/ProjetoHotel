@@ -78,7 +78,6 @@ public class DadosCliente extends Dados implements InterfaceCliente {
         try {
             //executando a instrução sql
             PreparedStatement cmd = conn.prepareStatement(sql);
-
             //
             ResultSet leitor = cmd.executeQuery();
             while (leitor.next()) {
@@ -117,7 +116,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
                 cli.setTelefone(leitor.getString("telefone"));
                 cli.setSexo(leitor.getString("sexo"));
             }
-        } catch (Exception erro) {
+        } catch (SQLException erro) {
             throw new Exception("Problemas ao pesquisar cliente: " + erro.getMessage());
         }
         desconectar();

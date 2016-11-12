@@ -6,6 +6,7 @@
 package gui;
 
 import fachada.Fachada;
+import fo.Fo;
 import javax.swing.JOptionPane;
 import reserva.Reserva;
 
@@ -213,18 +214,21 @@ public class JInternalFrameCadastrarOcupacao extends javax.swing.JInternalFrame 
     private void jButtonOcuparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOcuparActionPerformed
         // TODO add your handling code here:
         try {
-            Reserva r = new Reserva();
-            //Alimentando o objeto
-            r.setCd_reserva(Integer.parseInt(jTextFieldCdOcupacao.getText()));
-            r.setData(jFormattedTextFieldDataEntrada.getText());
-            //r.setPeriodo(jComboBoxPeriodo.getSelectedIndex() + 1);
-            //r.setSituacao(jComboBoxSituacao.getSelectedIndex() + 1);
-            r.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
-            r.setNr_quarto(jComboBoxNrQuarto.getSelectedIndex() + 1);
-            //Enviando o objeto
+            Fo fO = new Fo();
+            
+           fO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
+           fO.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
+           fO.setData_entrada(jFormattedTextFieldDataEntrada.getText());
+           fO.setHora_entrada(jFormattedTextFieldHoraEntrada.getText());
+           fO.setData_saida(jFormattedTextFieldDataSaida.getText());
+           fO.setHora_saida(jFormattedTextFieldHoraSaida.getText());
+           fO.getQuarto().setNr_quarto(jComboBoxNrQuarto.getSelectedIndex() + 1);
+           fO.setValorDiaria(Float.parseFloat(jFormattedTextFieldHoraSaida1.getText()));
+           
+            
             Fachada f = new Fachada();
-            f.fazerReserva(r);
-            JOptionPane.showMessageDialog(this, "Reserva efetuada com sucesso.");
+            f.cadastrarFo(fO);
+            JOptionPane.showMessageDialog(this, "Ficha de ocupação efetuada com sucesso.");
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());

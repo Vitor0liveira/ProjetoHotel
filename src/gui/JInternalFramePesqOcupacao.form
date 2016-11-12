@@ -66,7 +66,7 @@
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextFieldCdReserva" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldCdOcupacao" min="-2" pref="40" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jButtonPesquisar" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -81,7 +81,7 @@
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jTextFieldOcupacao" min="-2" pref="40" max="-2" attributes="0"/>
+                                                  <Component id="jTextFieldHrSaida" min="-2" pref="40" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -110,7 +110,7 @@
                                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextFieldSituacao" min="-2" pref="40" max="-2" attributes="0"/>
+                                          <Component id="jTextFieldNr_Quarto" min="-2" pref="40" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
@@ -118,7 +118,7 @@
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextFieldQuarto" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldHrEntrada" min="-2" pref="40" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -138,7 +138,7 @@
                       <Component id="jButtonPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonNovaPesquisa" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldCdReserva" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldCdOcupacao" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -154,11 +154,11 @@
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldPeriodo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldSituacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldNr_Quarto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldQuarto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldHrEntrada" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextFieldOcupacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldHrSaida" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -276,24 +276,24 @@
             <Property name="text" type="java.lang.String" value="Hora Entrada:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCdReserva">
+        <Component class="javax.swing.JTextField" name="jTextFieldCdOcupacao">
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldPeriodo">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldSituacao">
+        <Component class="javax.swing.JTextField" name="jTextFieldNr_Quarto">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldOcupacao">
+        <Component class="javax.swing.JTextField" name="jTextFieldHrSaida">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldQuarto">
+        <Component class="javax.swing.JTextField" name="jTextFieldHrEntrada">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>

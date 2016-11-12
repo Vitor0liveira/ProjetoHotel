@@ -6,6 +6,7 @@
 package gui;
 
 import fachada.Fachada;
+import fo.Fo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -53,11 +54,11 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextFieldCdReserva = new javax.swing.JTextField();
+        jTextFieldCdOcupacao = new javax.swing.JTextField();
         jTextFieldPeriodo = new javax.swing.JTextField();
-        jTextFieldSituacao = new javax.swing.JTextField();
-        jTextFieldOcupacao = new javax.swing.JTextField();
-        jTextFieldQuarto = new javax.swing.JTextField();
+        jTextFieldNr_Quarto = new javax.swing.JTextField();
+        jTextFieldHrSaida = new javax.swing.JTextField();
+        jTextFieldHrEntrada = new javax.swing.JTextField();
         jFormattedTextFieldData = new javax.swing.JFormattedTextField();
         jButtonListar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -144,11 +145,11 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
 
         jTextFieldPeriodo.setEnabled(false);
 
-        jTextFieldSituacao.setEnabled(false);
+        jTextFieldNr_Quarto.setEnabled(false);
 
-        jTextFieldOcupacao.setEnabled(false);
+        jTextFieldHrSaida.setEnabled(false);
 
-        jTextFieldQuarto.setEnabled(false);
+        jTextFieldHrEntrada.setEnabled(false);
 
         try {
             jFormattedTextFieldData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -235,7 +236,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldCdReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldCdOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jButtonPesquisar)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -248,7 +249,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel9)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextFieldOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jTextFieldHrSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -270,12 +271,12 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
                                         .addGap(27, 27, 27)
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextFieldNr_Quarto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(256, 256, 256)
                                         .addComponent(jLabel11)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldHrEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -289,7 +290,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
                     .addComponent(jButtonPesquisar)
                     .addComponent(jButtonNovaPesquisa)
                     .addComponent(jLabel6)
-                    .addComponent(jTextFieldCdReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCdOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -303,11 +304,11 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addComponent(jTextFieldPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextFieldSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNr_Quarto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextFieldQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldHrEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextFieldOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldHrSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAtualizar)
@@ -343,13 +344,13 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         try {
-            if (jTextFieldCdReserva.getText().equals("")) {
+            if (jTextFieldCdOcupacao.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Informe campo CÓDIGO.");
-                jTextFieldCdReserva.requestFocus();
+                jTextFieldCdOcupacao.requestFocus();
                 return;
             }
             Fachada f = new Fachada();
-            Reserva r = f.pesquisarReserva(Integer.parseInt(jTextFieldCdReserva.getText()));
+            Reserva r = f.pesquisarReserva(Integer.parseInt(jTextFieldCdOcupacao.getText()));
 
             if (r.getCd_reserva() == 0) {
                 JOptionPane.showMessageDialog(this, "Reserva não encontrada.");
@@ -360,9 +361,9 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
 
             jTextFieldPeriodo.setText(Integer.toString(r.getPeriodo()));
             jFormattedTextFieldData.setText(r.getData());
-            jTextFieldSituacao.setText(Integer.toString(r.getSituacao()));
-            jTextFieldQuarto.setText(Integer.toString(r.getNr_quarto()));
-            jTextFieldOcupacao.setText(Integer.toString(r.getCd_ocupacao()));
+            jTextFieldNr_Quarto.setText(Integer.toString(r.getSituacao()));
+            jTextFieldHrEntrada.setText(Integer.toString(r.getNr_quarto()));
+            jTextFieldHrSaida.setText(Integer.toString(r.getCd_ocupacao()));
             jFormattedTextFieldCpf.setText(r.getCliente().getCpf_cliente());
             jButtonPesquisar.setEnabled(false);
             jButtonAtualizar.setEnabled(false);
@@ -379,37 +380,38 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jButtonRemover.setEnabled(true);
         jButtonAtualizar.setEnabled(true);
         jButtonEditar.setEnabled(false);
-        jTextFieldQuarto.setEnabled(true);
-        jTextFieldSituacao.setEnabled(true);
+        jTextFieldHrEntrada.setEnabled(true);
+        jTextFieldNr_Quarto.setEnabled(true);
         jTextFieldPeriodo.setEnabled(true);
         jFormattedTextFieldData.setEnabled(true);
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         try {
-            Reserva r = new Reserva();
-            r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
+            Fo fO = new Fo();
+            
+            fO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
 
             Fachada f = new Fachada();
-            f.removerReserva(r);
+            f.removerFo(fO);
 
-            JOptionPane.showMessageDialog(this, "Reserva removida com sucesso!");
+            JOptionPane.showMessageDialog(this, "Ficha de ocupação removida com sucesso!");
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-        jTextFieldCdReserva.setText("");
-        jTextFieldOcupacao.setText("");
+        jTextFieldCdOcupacao.setText("");
+        jTextFieldHrSaida.setText("");
         jFormattedTextFieldCpf.setText("");
         jFormattedTextFieldData.setText("");
         jTextFieldPeriodo.setText("");
-        jTextFieldSituacao.setText("");
-        jTextFieldQuarto.setText("");
-        jTextFieldOcupacao.setText("");
-        jTextFieldCdReserva.setEnabled(false);
+        jTextFieldNr_Quarto.setText("");
+        jTextFieldHrEntrada.setText("");
+        jTextFieldHrSaida.setText("");
+        jTextFieldCdOcupacao.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
         jTextFieldPeriodo.setEnabled(false);
-        jTextFieldSituacao.setEnabled(false);
-        jTextFieldQuarto.setEnabled(false);
+        jTextFieldNr_Quarto.setEnabled(false);
+        jTextFieldHrEntrada.setEnabled(false);
         jButtonAtualizar.setEnabled(false);
         jButtonRemover.setEnabled(false);
     }//GEN-LAST:event_jButtonRemoverActionPerformed
@@ -419,48 +421,50 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jFormattedTextFieldCpfActionPerformed
 
     private void jButtonNovaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaPesquisaActionPerformed
-        jTextFieldQuarto.setText("");
-        jTextFieldCdReserva.setText("");
-        jTextFieldOcupacao.setText("");
+        jTextFieldHrEntrada.setText("");
+        jTextFieldCdOcupacao.setText("");
+        jTextFieldHrSaida.setText("");
         jTextFieldPeriodo.setText("");
-        jTextFieldSituacao.setText("");
+        jTextFieldNr_Quarto.setText("");
         jFormattedTextFieldData.setText("");
         jFormattedTextFieldCpf.setText("");
         jButtonPesquisar.setEnabled(true);
-        jTextFieldCdReserva.setEnabled(true);
-        jTextFieldCdReserva.requestFocus();
+        jTextFieldCdOcupacao.setEnabled(true);
+        jTextFieldCdOcupacao.requestFocus();
     }//GEN-LAST:event_jButtonNovaPesquisaActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         try {
-            Reserva rR = new Reserva();
+            Fo fO = new Fo();
 
-            rR.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
-            rR.setPeriodo(Integer.parseInt(jTextFieldPeriodo.getText()));
-            rR.setSituacao(Integer.parseInt(jTextFieldSituacao.getText()));
-            rR.setNr_quarto(Integer.parseInt(jTextFieldQuarto.getText()));
-            rR.setData(jFormattedTextFieldData.getText());
-
+           fO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
+           fO.setData_entrada(jFormattedTextFieldData.getText());
+           fO.setHora_entrada(jTextFieldHrEntrada.getText());
+           fO.setData_saida(jFormattedTextFieldDataSaida.getText());
+           fO.setHora_saida(jTextFieldHrSaida.getText());
+           fO.getQuarto().setNr_quarto(Integer.parseInt(jTextFieldNr_Quarto.getText()));
+                   
+                   
             Fachada f = new Fachada();
-            f.atualizarReserva(rR);
+            f.atualizarFo(fO);
 
-            JOptionPane.showMessageDialog(this, "Reserva atualizada com sucesso!");
+            JOptionPane.showMessageDialog(this, "Ficha de ocupação atualizada com sucesso!");
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-        jTextFieldQuarto.setText("");
-        jTextFieldCdReserva.setText("");
-        jTextFieldOcupacao.setText("");
+        jTextFieldHrEntrada.setText("");
+        jTextFieldCdOcupacao.setText("");
+        jTextFieldHrSaida.setText("");
         jTextFieldPeriodo.setText("");
-        jTextFieldSituacao.setText("");
+        jTextFieldNr_Quarto.setText("");
         jFormattedTextFieldData.setText("");
         jFormattedTextFieldCpf.setText("");
         jButtonPesquisar.setEnabled(false);
         jTextFieldPeriodo.setEnabled(false);
-        jTextFieldSituacao.setEnabled(false);
-        jTextFieldQuarto.setEnabled(false);
-        jTextFieldCdReserva.setEnabled(false);
+        jTextFieldNr_Quarto.setEnabled(false);
+        jTextFieldHrEntrada.setEnabled(false);
+        jTextFieldCdOcupacao.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
         jButtonAtualizar.setEnabled(false);
         jButtonRemover.setEnabled(false);
@@ -527,10 +531,10 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableListaDetalhesOcupacao;
     private javax.swing.JTable jTableListaOcupacao;
-    private javax.swing.JTextField jTextFieldCdReserva;
-    private javax.swing.JTextField jTextFieldOcupacao;
+    private javax.swing.JTextField jTextFieldCdOcupacao;
+    private javax.swing.JTextField jTextFieldHrEntrada;
+    private javax.swing.JTextField jTextFieldHrSaida;
+    private javax.swing.JTextField jTextFieldNr_Quarto;
     private javax.swing.JTextField jTextFieldPeriodo;
-    private javax.swing.JTextField jTextFieldQuarto;
-    private javax.swing.JTextField jTextFieldSituacao;
     // End of variables declaration//GEN-END:variables
 }

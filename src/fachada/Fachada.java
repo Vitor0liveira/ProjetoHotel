@@ -79,4 +79,22 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo 
         return nF.pesquisarFo(cd_ocupacao);
     }
 
+    @Override
+    public void cadastrarFo(Fo f) throws Exception {
+        NegocioFo nF = new NegocioFo();
+        nF.cadastrarFo(f);
+    }
+
+    @Override
+    public void removerFo(Fo f) throws Exception {
+        NegocioFo nF = new NegocioFo();
+        nF.removerFo(f);
+    }
+
+    @Override
+    public void atualizarFo(Fo f) throws Exception {
+        NegocioFo  nF = new NegocioFo();
+        nF.atualizarFo(f);
+    }
+
 }
