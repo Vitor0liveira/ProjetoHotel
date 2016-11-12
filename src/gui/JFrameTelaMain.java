@@ -40,6 +40,9 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jRadioButtonMenuItem5 = new javax.swing.JRadioButtonMenuItem();
 
@@ -87,11 +90,11 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         jDesktopPaneAreaTrabalho.setLayout(jDesktopPaneAreaTrabalhoLayout);
         jDesktopPaneAreaTrabalhoLayout.setHorizontalGroup(
             jDesktopPaneAreaTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 627, Short.MAX_VALUE)
         );
         jDesktopPaneAreaTrabalhoLayout.setVerticalGroup(
             jDesktopPaneAreaTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 356, Short.MAX_VALUE)
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/group.png"))); // NOI18N
@@ -139,6 +142,26 @@ public class JFrameTelaMain extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setText("Ocupações");
+
+        jMenuItem2.setText("Cadastrar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem2);
+
+        jMenuItem1.setText("Pesquisar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu4);
+
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/help.png"))); // NOI18N
         jMenu3.setText("Sobre");
         jMenu3.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +195,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
@@ -180,7 +204,9 @@ public class JFrameTelaMain extends javax.swing.JFrame {
 
     private void jRadioButtonMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem5ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Sistema hotel v1.0");
+        JOptionPane.showMessageDialog(this, "Sistema Hotel v1.0" + "\n"
+                + "Desenvolvedores: " + "\n" + "José Vitor Oliveira" + 
+                "\n" + "Rodrigo Carvalho" + "\n" + "Victor Lauria");
     }//GEN-LAST:event_jRadioButtonMenuItem5ActionPerformed
 
     private void jRadioButtonMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem3ActionPerformed
@@ -210,6 +236,20 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         jDesktopPaneAreaTrabalho.add(pesRes);
         pesRes.setVisible(true);
     }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        JInternalFrameCadastrarOcupacao cadOcu = new JInternalFrameCadastrarOcupacao();
+        jDesktopPaneAreaTrabalho.add(cadOcu);
+        cadOcu.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        JInternalFramePesqOcupacao pesOcu = new JInternalFramePesqOcupacao();
+        jDesktopPaneAreaTrabalho.add(pesOcu);
+        pesOcu.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,7 +294,10 @@ public class JFrameTelaMain extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
