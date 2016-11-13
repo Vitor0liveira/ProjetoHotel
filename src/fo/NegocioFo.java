@@ -17,11 +17,10 @@ public class NegocioFo implements InterfaceFo {
     }
 
     @Override
-    public Fo pesquisarFo(int cd_ocupacao) throws Exception {
+    public Fo pesquisarFo(Fo f) throws Exception {
         DadosFo dF = new DadosFo();
-        Fo f = dF.pesquisarFo(cd_ocupacao);
-        validarcamposBasicos(f);
-        return f;
+       return dF.pesquisarFo(f);
+       
     }
 
     @Override

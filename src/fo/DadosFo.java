@@ -9,39 +9,40 @@ import java.util.ArrayList;
 public class DadosFo extends Dados implements InterfaceFo {
 
     @Override
-    public Fo pesquisarFo(int cd_ocupacao) throws Exception {
+    public Fo pesquisarFo(Fo f) throws Exception {
         conectar();
-        Fo f = new Fo();
-        
-            String sql = " SELECT data_entrada, hora_entrada, data_saida, hora_saida varlorDiaria, quarto, CPF_cliente FROM Fo ";
-            sql += " WHERE cd_ocupacao = ?";
+        String sql = "SELECT cd_ocupacao, data_entrada, hora_entrada, data_saida, ";
+        sql += "hora_saida varlorDiaria, quarto, CPF_cliente FROM Fo ";
+        sql += "WHERE cd_ocupacao = ? ";
 
-            try {
-                PreparedStatement cmd = conn.prepareStatement(sql);
-                cmd.setInt(1, cd_ocupacao);
-                ResultSet leitor = cmd.executeQuery();
-                while (leitor.next()) {
-                  f.setCd_ocupacao(cd_ocupacao);
-                  f.setData_entrada(leitor.getString("data_entrada"));
-                  f.setHora_entrada(leitor.getString("hora_entrada"));
-                  f.setData_saida(leitor.getString("data_saida"));
-                  f.setHora_saida(leitor.getString("hora_saida"));
-                  f.setValorDiaria(leitor.getFloat("valorDiaria"));
-                  f.getQuarto().setNr_quarto(leitor.getInt("quarto"));
-                  f.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
-                }
-            } catch (Exception erro) {
-                  throw new Exception ("Problemas ao pesquisar a ocupação: " + erro.getMessage());
+        try {
+            PreparedStatement cmd = conn.prepareStatement(sql);
+            cmd.setInt(1, f.getCd_ocupacao());
+            ResultSet leitor = cmd.executeQuery();
+            while (leitor.next()) {
+                f.setCd_ocupacao(leitor.getInt("cd_ocupacao"));
+                f.setData_entrada(leitor.getString("data_entrada"));
+                f.setHora_entrada(leitor.getString("hora_entrada"));
+                f.setData_saida(leitor.getString("data_saida"));
+                f.setHora_saida(leitor.getString("hora_saida"));
+                f.setValorDiaria(leitor.getFloat("valorDiaria"));
+                f.getQuarto().setNr_quarto(leitor.getInt("quarto"));
+                f.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
             }
-        return f;    
+        } catch (Exception erro) {
+            throw new Exception("Problemas ao pesquisar a ocupação: " + erro.getMessage());
+        }
+        desconectar();
+        return f;
     }
 
     @Override
     public void cadastrarFo(Fo f) throws Exception {
         conectar();
 
-        String sql = "INSERT INTO Fo (cd_ocupacao, data_entrada, hora_entrada, data_saida, hora_saida, valorDiaria, quarto, CPF_cliente); ";
-        sql += " VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Fo (cd_ocupacao, data_entrada, hora_entrada, data_saida, hora_saida, ";
+        sql += "valorDiaria, quarto, CPF_cliente) ";
+        sql += "VALUES (?,?,?,?,?,?,?,?) ";
 
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
@@ -80,9 +81,9 @@ public class DadosFo extends Dados implements InterfaceFo {
         conectar();
 
         String sql = "UPDATE Fo SET data_entrada = ?, hora_entrada = ?, data_saida = ?, hora_saida = ?, ";
-               sql += "quarto = ? WHERE cd_ocupacao = ?";
-        
-        try{
+        sql += "quarto = ? WHERE cd_ocupacao = ?";
+
+        try {
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setString(1, f.getData_entrada());
             cmd.setString(2, f.getHora_entrada());
@@ -90,11 +91,11 @@ public class DadosFo extends Dados implements InterfaceFo {
             cmd.setString(4, f.getHora_saida());
             cmd.setInt(5, f.getQuarto().getNr_quarto());
             cmd.setInt(6, f.getCd_ocupacao());
-            
+
             cmd.execute();
-            
-        }catch(SQLException erro){
-            throw new Exception ("Erro ao atualizar a FO: " + erro.getMessage());
+
+        } catch (SQLException erro) {
+            throw new Exception("Erro ao atualizar a FO: " + erro.getMessage());
         }
     }
 
@@ -102,16 +103,16 @@ public class DadosFo extends Dados implements InterfaceFo {
     public ArrayList<Fo> listarFo() throws Exception {
         ArrayList<Fo> retorno = new ArrayList<>();
         conectar();
-        
+
         String sql = "SELECT cd_ocupacao, data_entrada, hora_entrada, ";
         sql += "data_saida, hora_saida, valorDiaria, quarto, CPF_cliente ";
-        sql += "FROM Fo";
-        
+        sql += "FROM Fo ";
+
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
             ResultSet leitor = cmd.executeQuery();
-            
-            while(leitor.next()) {
+
+            while (leitor.next()) {
                 Fo fO = new Fo();
                 fO.setCd_ocupacao(leitor.getInt("cd_ocupacao"));
                 fO.setData_entrada(leitor.getString("data_entrada"));
@@ -123,9 +124,9 @@ public class DadosFo extends Dados implements InterfaceFo {
                 fO.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
             }
         } catch (Exception erro) {
-                throw new Exception ("Erro: " + erro.getMessage());
+            throw new Exception("Erro: " + erro.getMessage());
         }
-        
+
         return retorno;
     }
 

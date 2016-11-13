@@ -74,9 +74,9 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo 
     }
 
     @Override
-    public Fo pesquisarFo(int cd_ocupacao) throws Exception {
+    public Fo pesquisarFo(Fo f) throws Exception {
         NegocioFo nF = new NegocioFo();
-        return nF.pesquisarFo(cd_ocupacao);
+        return nF.pesquisarFo(f);
     }
 
     @Override

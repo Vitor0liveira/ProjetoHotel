@@ -8,7 +8,6 @@ package gui;
 import fachada.Fachada;
 import fo.Fo;
 import javax.swing.JOptionPane;
-import reserva.Reserva;
 
 /**
  *
@@ -211,21 +210,32 @@ public class JInternalFrameCadastrarOcupacao extends javax.swing.JInternalFrame 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setandoCampoCadastrarFo() {
+        //Setando os campos
+        jTextFieldCdOcupacao.setText("");
+        jFormattedTextFieldCliCpf.setText("");
+        jFormattedTextFieldDataEntrada.setText("");
+        jFormattedTextFieldHoraEntrada.setText("");
+        jFormattedTextFieldDataSaida.setText("");
+        jFormattedTextFieldHoraSaida.setText("");
+        jComboBoxNrQuarto.setSelectedItem("1");
+        jFormattedTextFieldHoraSaida1.setText("");
+        jTextFieldCdOcupacao.requestFocus();
+    }
     private void jButtonOcuparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOcuparActionPerformed
         // TODO add your handling code here:
         try {
             Fo fO = new Fo();
-            
-           fO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
-           fO.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
-           fO.setData_entrada(jFormattedTextFieldDataEntrada.getText());
-           fO.setHora_entrada(jFormattedTextFieldHoraEntrada.getText());
-           fO.setData_saida(jFormattedTextFieldDataSaida.getText());
-           fO.setHora_saida(jFormattedTextFieldHoraSaida.getText());
-           fO.getQuarto().setNr_quarto(jComboBoxNrQuarto.getSelectedIndex() + 1);
-           fO.setValorDiaria(Float.parseFloat(jFormattedTextFieldHoraSaida1.getText()));
-           
-            
+
+            fO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
+            fO.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
+            fO.setData_entrada(jFormattedTextFieldDataEntrada.getText());
+            fO.setHora_entrada(jFormattedTextFieldHoraEntrada.getText());
+            fO.setData_saida(jFormattedTextFieldDataSaida.getText());
+            fO.setHora_saida(jFormattedTextFieldHoraSaida.getText());
+            fO.getQuarto().setNr_quarto(jComboBoxNrQuarto.getSelectedIndex() + 1);
+            fO.setValorDiaria(Float.parseFloat(jFormattedTextFieldHoraSaida1.getText().replace(".", "").replace(",", ".")));
+
             Fachada f = new Fachada();
             f.cadastrarFo(fO);
             JOptionPane.showMessageDialog(this, "Ficha de ocupação efetuada com sucesso.");
@@ -233,14 +243,7 @@ public class JInternalFrameCadastrarOcupacao extends javax.swing.JInternalFrame 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-
-        //Setando os campos
-        jTextFieldCdOcupacao.setText("");
-        jFormattedTextFieldDataEntrada.setText("");
-        jFormattedTextFieldCliCpf.setText("");
-        jComboBoxNrQuarto.setSelectedItem("1");
-        //jComboBoxPeriodo.setSelectedItem("1");
-        jTextFieldCdOcupacao.requestFocus();
+        setandoCampoCadastrarFo();
     }//GEN-LAST:event_jButtonOcuparActionPerformed
 
 

@@ -198,7 +198,61 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void setEnabledEditar() {
+        jTextFieldNomePesq.setEditable(true);
+        jFormattedTextFieldCpf.setEditable(false);
+        jFormattedTextFieldFonePesq.setEditable(true);
+        jTextFieldSexoPesq.setEditable(false);
+        jFormattedTextFieldFonePesq.setEnabled(true);
+        jFormattedTextFieldCpf.setEnabled(false);
+        jTextFieldNomePesq.setEnabled(true);
+        jTextFieldSexoPesq.setEnabled(false);
+        jButtonPesquisar.setEnabled(false);
+        jButtonAtualizar.setEnabled(true);
+        jButtonRemover.setEnabled(true);
+        jButtonEditar.setEnabled(false);
+    }
 
+    public void setRemoverCli() {
+        jButtonEditar.setEnabled(false);
+        jButtonPesquisar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        jTextFieldNomePesq.setEnabled(false);
+        jFormattedTextFieldFonePesq.setEnabled(false);
+        jTextFieldNomePesq.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jTextFieldSexoPesq.setText("");
+        jFormattedTextFieldFonePesq.setText("");
+    }
+
+    public void setNovaPesqCli() {
+        jButtonPesquisar.setEnabled(true);
+        jFormattedTextFieldCpf.setEnabled(true);
+        jButtonEditar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        jTextFieldNomePesq.setEnabled(false);
+        jFormattedTextFieldFonePesq.setEnabled(false);
+        jTextFieldNomePesq.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jTextFieldSexoPesq.setText("");
+        jFormattedTextFieldFonePesq.setText("");
+        jFormattedTextFieldCpf.requestFocus();
+    }
+
+    public void setAtualizarCli() {
+        jButtonEditar.setEnabled(false);
+        jButtonPesquisar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        jTextFieldNomePesq.setEnabled(false);
+        jFormattedTextFieldFonePesq.setEnabled(false);
+        jTextFieldNomePesq.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jTextFieldSexoPesq.setText("");
+        jFormattedTextFieldFonePesq.setText("");
+    }
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         try {
             if (jFormattedTextFieldCpf.getText().equals("")) {
@@ -226,21 +280,11 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
         }
+        setEnabledEditar();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        jTextFieldNomePesq.setEditable(true);
-        jFormattedTextFieldCpf.setEditable(false);
-        jFormattedTextFieldFonePesq.setEditable(true);
-        jTextFieldSexoPesq.setEditable(false);
-        jFormattedTextFieldFonePesq.setEnabled(true);
-        jFormattedTextFieldCpf.setEnabled(false);
-        jTextFieldNomePesq.setEnabled(true);
-        jTextFieldSexoPesq.setEnabled(false);
-        jButtonPesquisar.setEnabled(false);
-        jButtonAtualizar.setEnabled(true);
-        jButtonRemover.setEnabled(true);
-        jButtonEditar.setEnabled(false);
+
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
@@ -255,31 +299,11 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
         }
-        jButtonEditar.setEnabled(false);
-        jButtonPesquisar.setEnabled(false);
-        jButtonRemover.setEnabled(false);
-        jButtonAtualizar.setEnabled(false);
-        jTextFieldNomePesq.setEnabled(false);
-        jFormattedTextFieldFonePesq.setEnabled(false);
-        jTextFieldNomePesq.setText("");
-        jFormattedTextFieldCpf.setText("");
-        jTextFieldSexoPesq.setText("");
-        jFormattedTextFieldFonePesq.setText("");
+        setRemoverCli();
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jButtonNovaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaPesquisaActionPerformed
-        jButtonPesquisar.setEnabled(true);
-        jFormattedTextFieldCpf.setEnabled(true);
-        jButtonEditar.setEnabled(false);
-        jButtonRemover.setEnabled(false);
-        jButtonAtualizar.setEnabled(false);
-        jTextFieldNomePesq.setEnabled(false);
-        jFormattedTextFieldFonePesq.setEnabled(false);
-        jTextFieldNomePesq.setText("");
-        jFormattedTextFieldCpf.setText("");
-        jTextFieldSexoPesq.setText("");
-        jFormattedTextFieldFonePesq.setText("");
-        jFormattedTextFieldCpf.requestFocus();
+        setNovaPesqCli();
     }//GEN-LAST:event_jButtonNovaPesquisaActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
@@ -297,16 +321,7 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
         }
-        jButtonEditar.setEnabled(false);
-        jButtonPesquisar.setEnabled(false);
-        jButtonRemover.setEnabled(false);
-        jButtonAtualizar.setEnabled(false);
-        jTextFieldNomePesq.setEnabled(false);
-        jFormattedTextFieldFonePesq.setEnabled(false);
-        jTextFieldNomePesq.setText("");
-        jFormattedTextFieldCpf.setText("");
-        jTextFieldSexoPesq.setText("");
-        jFormattedTextFieldFonePesq.setText("");
+        setAtualizarCli();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
 

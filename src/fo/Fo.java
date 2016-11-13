@@ -14,6 +14,12 @@ public class Fo {
     private Quarto quarto;
     private Cliente cliente;
 
+    // Foi necessário adicionar esse Construtor para poder ter uma ligação da "FO" com o "Cliente".
+    public  Fo() {
+        this.cliente = new Cliente();
+        this.quarto = new Quarto();
+    }
+
     public Quarto getQuarto() {
         return quarto;
     }
@@ -28,12 +34,6 @@ public class Fo {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-
-    // Foi necessário adicionar esse Construtor para poder ter uma ligação da "FO" com o "Cliente".
-    public void Fo() {
-        this.cliente = new Cliente();
-        this.quarto = new Quarto();
     }
 
     public int getCd_ocupacao() {

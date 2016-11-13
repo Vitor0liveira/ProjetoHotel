@@ -181,7 +181,16 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void setandoReservar() {
+        //Setando os campos
+        jTextFieldCdReserva.setText("");
+        jTextFieldCdOcupacao.setText("");
+        jFormattedTextFieldData.setText("");
+        jFormattedTextFieldCliCpf.setText("");
+        jComboBoxNrQuarto.setSelectedItem("1");
+        jComboBoxPeriodo.setSelectedItem("1");
+        jTextFieldCdReserva.requestFocus();
+    }
     private void jButtonReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservarActionPerformed
         // TODO add your handling code here:
         try {
@@ -202,15 +211,7 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-
-        //Setando os campos
-        jTextFieldCdReserva.setText("");
-        jTextFieldCdOcupacao.setText("");
-        jFormattedTextFieldData.setText("");
-        jFormattedTextFieldCliCpf.setText("");
-        jComboBoxNrQuarto.setSelectedItem("1");
-        jComboBoxPeriodo.setSelectedItem("1");
-        jTextFieldCdReserva.requestFocus();
+        setandoReservar();
     }//GEN-LAST:event_jButtonReservarActionPerformed
 
 

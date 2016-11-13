@@ -6,7 +6,6 @@
 package gui;
 
 import fachada.Fachada;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import reserva.Reserva;
@@ -20,11 +19,11 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
     /**
      * Creates new form JInternalFramePesqReserva
      */
-     DefaultTableModel modelo = new DefaultTableModel();
-     
+    DefaultTableModel modelo = new DefaultTableModel();
+
     public JInternalFramePesqReserva() {
         initComponents();
-        
+
     }
 
     /**
@@ -250,6 +249,72 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setEnabledPesqReserva() {
+        jButtonPesquisar.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        jButtonEditar.setEnabled(true);
+        jButtonRemover.setEnabled(false);
+    }
+
+    public void setEnabledEditarReserva() {
+        jButtonRemover.setEnabled(true);
+        jButtonAtualizar.setEnabled(true);
+        jButtonEditar.setEnabled(false);
+        jTextFieldQuarto.setEnabled(true);
+        jTextFieldSituacao.setEnabled(true);
+        jTextFieldPeriodo.setEnabled(true);
+        jFormattedTextFieldData.setEnabled(true);
+    }
+
+    public void setRemoverReserva() {
+        jTextFieldCdReserva.setText("");
+        jTextFieldOcupacao.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jFormattedTextFieldData.setText("");
+        jTextFieldPeriodo.setText("");
+        jTextFieldSituacao.setText("");
+        jTextFieldQuarto.setText("");
+        jTextFieldOcupacao.setText("");
+        jTextFieldCdReserva.setEnabled(false);
+        jFormattedTextFieldData.setEnabled(false);
+        jTextFieldPeriodo.setEnabled(false);
+        jTextFieldSituacao.setEnabled(false);
+        jTextFieldQuarto.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+    }
+
+    public void setNewPesqReserva() {
+        jTextFieldQuarto.setText("");
+        jTextFieldCdReserva.setText("");
+        jTextFieldOcupacao.setText("");
+        jTextFieldPeriodo.setText("");
+        jTextFieldSituacao.setText("");
+        jFormattedTextFieldData.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jButtonPesquisar.setEnabled(true);
+        jTextFieldCdReserva.setEnabled(true);
+        jTextFieldCdReserva.requestFocus();
+    }
+
+    public void setAtualizarReserva() {
+        jTextFieldQuarto.setText("");
+        jTextFieldCdReserva.setText("");
+        jTextFieldOcupacao.setText("");
+        jTextFieldPeriodo.setText("");
+        jTextFieldSituacao.setText("");
+        jFormattedTextFieldData.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jButtonPesquisar.setEnabled(false);
+        jTextFieldPeriodo.setEnabled(false);
+        jTextFieldSituacao.setEnabled(false);
+        jTextFieldQuarto.setEnabled(false);
+        jTextFieldCdReserva.setEnabled(false);
+        jFormattedTextFieldData.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+        jButtonPesquisar.setEnabled(false);
+    }
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         try {
             if (jTextFieldCdReserva.getText().equals("")) {
@@ -273,24 +338,16 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
             jTextFieldQuarto.setText(Integer.toString(r.getNr_quarto()));
             jTextFieldOcupacao.setText(Integer.toString(r.getCd_ocupacao()));
             jFormattedTextFieldCpf.setText(r.getCliente().getCpf_cliente());
-            jButtonPesquisar.setEnabled(false);
-            jButtonAtualizar.setEnabled(false);
-            jButtonEditar.setEnabled(true);
-            jButtonRemover.setEnabled(false);
-       
+
+            setEnabledPesqReserva();
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro.getMessage());
         }
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        jButtonRemover.setEnabled(true);
-        jButtonAtualizar.setEnabled(true);
-        jButtonEditar.setEnabled(false);
-        jTextFieldQuarto.setEnabled(true);
-        jTextFieldSituacao.setEnabled(true);
-        jTextFieldPeriodo.setEnabled(true);
-        jFormattedTextFieldData.setEnabled(true);
+        setEnabledEditarReserva();
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
@@ -305,21 +362,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
         }
-        jTextFieldCdReserva.setText("");
-        jTextFieldOcupacao.setText("");
-        jFormattedTextFieldCpf.setText("");
-        jFormattedTextFieldData.setText("");
-        jTextFieldPeriodo.setText("");
-        jTextFieldSituacao.setText("");
-        jTextFieldQuarto.setText("");
-        jTextFieldOcupacao.setText("");
-        jTextFieldCdReserva.setEnabled(false);
-        jFormattedTextFieldData.setEnabled(false);
-        jTextFieldPeriodo.setEnabled(false);
-        jTextFieldSituacao.setEnabled(false);
-        jTextFieldQuarto.setEnabled(false);
-        jButtonAtualizar.setEnabled(false);
-        jButtonRemover.setEnabled(false);
+        setRemoverReserva();
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
     private void jFormattedTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCpfActionPerformed
@@ -327,16 +370,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jFormattedTextFieldCpfActionPerformed
 
     private void jButtonNovaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaPesquisaActionPerformed
-        jTextFieldQuarto.setText("");
-        jTextFieldCdReserva.setText("");
-        jTextFieldOcupacao.setText("");
-        jTextFieldPeriodo.setText("");
-        jTextFieldSituacao.setText("");
-        jFormattedTextFieldData.setText("");
-        jFormattedTextFieldCpf.setText("");
-        jButtonPesquisar.setEnabled(true);
-        jTextFieldCdReserva.setEnabled(true);
-        jTextFieldCdReserva.requestFocus();
+        setNewPesqReserva();
     }//GEN-LAST:event_jButtonNovaPesquisaActionPerformed
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
@@ -357,22 +391,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-        jTextFieldQuarto.setText("");
-        jTextFieldCdReserva.setText("");
-        jTextFieldOcupacao.setText("");
-        jTextFieldPeriodo.setText("");
-        jTextFieldSituacao.setText("");
-        jFormattedTextFieldData.setText("");
-        jFormattedTextFieldCpf.setText("");
-        jButtonPesquisar.setEnabled(false);
-        jTextFieldPeriodo.setEnabled(false);
-        jTextFieldSituacao.setEnabled(false);
-        jTextFieldQuarto.setEnabled(false);
-        jTextFieldCdReserva.setEnabled(false);
-        jFormattedTextFieldData.setEnabled(false);
-        jButtonAtualizar.setEnabled(false);
-        jButtonRemover.setEnabled(false);
-        jButtonPesquisar.setEnabled(false);
+        setAtualizarReserva();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     private void jFormattedTextFieldDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataActionPerformed

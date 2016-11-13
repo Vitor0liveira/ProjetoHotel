@@ -148,7 +148,14 @@ public class JInternalFrameCadastrarCliente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void setandoCadCliente() {
+        //Setando os campos após o cadastro
+        jTextFieldNome.setText("");
+        jFormattedTextFieldCpf.setText("");
+        jFormattedTextFieldTelefone.setText("");
+        jComboBoxSexo.setSelectedItem("1");
+        jTextFieldNome.requestFocus();
+    }
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         try {
 
@@ -173,12 +180,7 @@ public class JInternalFrameCadastrarCliente extends javax.swing.JInternalFrame {
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-        //Setando os campos após o cadastro
-        jTextFieldNome.setText("");
-        jFormattedTextFieldCpf.setText("");
-        jFormattedTextFieldTelefone.setText("");
-        jComboBoxSexo.setSelectedItem("1");
-        jTextFieldNome.requestFocus();
+        setandoCadCliente();
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jComboBoxSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSexoActionPerformed
