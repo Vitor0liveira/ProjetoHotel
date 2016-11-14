@@ -12,7 +12,7 @@ public class DadosFo extends Dados implements InterfaceFo {
     public Fo pesquisarFo(Fo f) throws Exception {
         conectar();
         String sql = "SELECT cd_ocupacao, data_entrada, hora_entrada, data_saida, ";
-        sql += "hora_saida varlorDiaria, quarto, CPF_cliente FROM Fo ";
+        sql += "hora_saida, quarto, CPF_cliente FROM Fo ";
         sql += "WHERE cd_ocupacao = ? ";
 
         try {
@@ -25,12 +25,11 @@ public class DadosFo extends Dados implements InterfaceFo {
                 f.setHora_entrada(leitor.getString("hora_entrada"));
                 f.setData_saida(leitor.getString("data_saida"));
                 f.setHora_saida(leitor.getString("hora_saida"));
-                f.setValorDiaria(leitor.getFloat("valorDiaria"));
                 f.getQuarto().setNr_quarto(leitor.getInt("quarto"));
                 f.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
             }
-        } catch (Exception erro) {
-            throw new Exception("Problemas ao pesquisar a ocupação: " + erro.getMessage());
+        } catch (SQLException erro) {
+            throw new Exception("Problemas ao pesquisar a ficha de ocupação: " + erro.getMessage());
         }
         desconectar();
         return f;
@@ -101,8 +100,8 @@ public class DadosFo extends Dados implements InterfaceFo {
 
     @Override
     public ArrayList<Fo> listarFo() throws Exception {
-        ArrayList<Fo> retorno = new ArrayList<>();
         conectar();
+        ArrayList<Fo> retorno = new ArrayList<>();
 
         String sql = "SELECT cd_ocupacao, data_entrada, hora_entrada, ";
         sql += "data_saida, hora_saida, valorDiaria, quarto, CPF_cliente ";
@@ -122,11 +121,13 @@ public class DadosFo extends Dados implements InterfaceFo {
                 fO.setValorDiaria(leitor.getFloat("valorDiaria"));
                 fO.getQuarto().setNr_quarto(leitor.getInt("quarto"));
                 fO.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
+                
+                retorno.add(fO);
             }
-        } catch (Exception erro) {
-            throw new Exception("Erro: " + erro.getMessage());
+        } catch (SQLException erro) {
+            throw new Exception("Erro ao listar: " + erro.getMessage());
         }
-
+        desconectar();
         return retorno;
     }
 

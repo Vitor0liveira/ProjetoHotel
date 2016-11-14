@@ -20,8 +20,15 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
     /**
      * Creates new form JInternalFramePesqCliente
      */
+    DefaultTableModel modelo = new DefaultTableModel();
+
     public JInternalFrameListarOcupacao() {
         initComponents();
+        //Iniciando os nomes dos campos na table
+        modelo.setColumnIdentifiers(new String[]{"Cód. Ocupação", "Data Entrada", "Hora Entrada", "Data Saida",
+            "Hora Saida", "Valor Diaria", "Quarto", "CPF Cliente"});
+        jTableOcupacao.setModel(modelo);
+
     }
 
     /**
@@ -138,18 +145,18 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
         try {
             Fachada f = new Fachada();
             ArrayList<Fo> resp = f.listarFo();
-            DefaultTableModel modelo = new DefaultTableModel();
-            modelo.setColumnIdentifiers(new String[]{"Cód. Ocupação", "Data Entrada", "Hora Entrada", "Data Saida", 
-            "Hora Saida", "Valor Diaria", "Quarto", "CPF Cliente"});
+
+            modelo.setRowCount(0);
+
             if (resp.size() > 0) {
                 for (Fo fO : resp) {
-                    modelo.addRow(new String[]{fO.getCd_ocupacao() + "", fO.getData_entrada() + "", fO.getHora_entrada() + "", fO.getData_saida() + "",
-                    fO.getHora_saida() + "", fO.getValorDiaria() + "", fO.getQuarto().getNr_quarto() + "", fO.getCliente().getCpf_cliente()});
+                    modelo.addRow(new String[]{fO.getCd_ocupacao() + "", fO.getData_entrada(), fO.getHora_entrada(), fO.getData_saida(),
+                        fO.getHora_saida(), fO.getValorDiaria() + "", fO.getQuarto().getNr_quarto() + "", fO.getCliente().getCpf_cliente()});
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Não existe resultados!");
             }
-            jTableOcupacao.setModel(modelo);
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }

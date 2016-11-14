@@ -7,6 +7,8 @@ package gui;
 
 import fachada.Fachada;
 import fo.Fo;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -168,6 +170,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraSaida.setEnabled(false);
 
         jComboBoxNrQuarto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        jComboBoxNrQuarto.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -282,13 +285,14 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jComboBoxNrQuarto.setEnabled(true);
     }
 
-    public void enabledButtonsPesquisar() {
+    public void setEnabledButtonsPesq() {
         jButtonPesquisar.setEnabled(false);
         jButtonNovaPesquisa.setEnabled(true);
         jButtonAtualizar.setEnabled(false);
         jButtonEditar.setEnabled(true);
         jButtonRemover.setEnabled(false);
         jTextFieldCdOcupacao.setEnabled(true);
+        jComboBoxNrQuarto.setEnabled(false);
     }
 
     public void setNewPesquisaFo() {
@@ -296,16 +300,17 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraEntrada.setText("");
         jFormattedTextFieldDataSaida.setText("");
         jFormattedTextFieldHoraSaida.setText("");
+        jFormattedTextFieldCpf.setText("");
         jTextFieldCdOcupacao.setText("");
         jComboBoxNrQuarto.setSelectedItem("1");
         jTextFieldCdOcupacao.requestFocus();
 
         jButtonPesquisar.setEnabled(true);
-        jButtonPesquisar.setEnabled(true);
-        jButtonEditar.setEnabled(false);
+        jButtonEditar.setEnabled(true);
         jButtonRemover.setEnabled(false);
         jButtonAtualizar.setEnabled(false);
-        jTextFieldCdOcupacao.setEnabled(true);
+        jTextFieldCdOcupacao.setEnabled(false);
+        jComboBoxNrQuarto.setEnabled(false);
     }
 
     public void setRemoverFo() {
@@ -351,14 +356,25 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
 
         Fo fO = new Fo();
+        fO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
+
+        try {
+
+            Fachada f = new Fachada();
+            fO = f.pesquisarFo(fO);
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
+        }
 
         jFormattedTextFieldData.setText(fO.getData_entrada());
         jFormattedTextFieldDataSaida.setText(fO.getData_saida());
-        //jComboBoxNrQuarto.setAction(fO.getQuarto().getNr_quarto());
         jFormattedTextFieldHoraEntrada.setText(fO.getHora_entrada());
         jFormattedTextFieldHoraSaida.setText(fO.getHora_saida());
-
-        enabledButtonsPesquisar();
+        jFormattedTextFieldCpf.setText(fO.getCliente().getCpf_cliente());
+        jComboBoxNrQuarto.setSelectedIndex(fO.getQuarto().getNr_quarto() -1);
+        
+        setEnabledButtonsPesq();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
