@@ -101,6 +101,11 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextFieldCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldCpfActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nome:");
 
@@ -171,7 +176,7 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
         try {
             Fachada f = new Fachada();
             Cliente c = new Cliente();
-            if(jFormattedTextFieldCpf.getText().trim().equals("") == false){
+            if(jFormattedTextFieldCpf.getText().equals("   .   .   -  ") == false){
                 c.setCpf_cliente(jFormattedTextFieldCpf.getText());
             }
             c.setNm_cliente("%"+jTextFieldNome.getText().trim()+"%");
@@ -191,6 +196,10 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }//GEN-LAST:event_jButtonListarActionPerformed
+
+    private void jFormattedTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldCpfActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

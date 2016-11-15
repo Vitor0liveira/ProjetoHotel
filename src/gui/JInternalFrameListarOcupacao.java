@@ -168,7 +168,7 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
             Fachada f = new Fachada();
             Fo FO = new Fo();
             if(jTextFieldCdOcupacao.getText().trim().equals("") == false){
-                FO.getCliente().setCpf_cliente(jTextFieldCdOcupacao.getText());
+                FO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
             }
             FO.getCliente().setNm_cliente("%"+jTextFieldNome3.getText().trim()+"%");
             ArrayList<Fo> resp = f.listarFo(FO);

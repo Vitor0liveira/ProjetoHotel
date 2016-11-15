@@ -167,7 +167,7 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
             Fachada f = new Fachada();
             Reserva r = new Reserva();
             if(jTextFieldCdReserva.getText().trim().equals("") == false){
-                r.getCliente().setCpf_cliente(jTextFieldCdReserva.getText());
+                r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
             }
             r.getCliente().setNm_cliente("%"+jTextFieldNome2.getText().trim()+"%");
             ArrayList<Reserva> resp = f.listarReserva(r);
