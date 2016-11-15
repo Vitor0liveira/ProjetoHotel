@@ -75,14 +75,14 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
         String sql = "SELECT R.cd_reserva, R.data, R.periodo, R.situacao,  ";
         sql += "R.Nr_quarto, R.Cd_Ocupacao, C.CPF_cliente, C.nm_cliente ";
-        sql += "FROM reserva AS R INNER JOIN Cliente as C ";
+        sql += "FROM reserva AS R INNER JOIN Cliente AS C ";
         sql += "ON R.cpf_cliente = C.CPF_cliente ";
-        sql += "WHERE R.cd_reserva > 0";
+        sql += "WHERE R.cd_reserva > 0 ";
         if(filtro.getCd_reserva() > 0) {
-            sql += "AND cd_reserva > 0";
+            sql += " AND cd_reserva = ? ";
         }
         if(filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
-            sql += "AND nm_cliente LIKE ?";
+            sql += " AND nm_cliente LIKE ?";
         }
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
