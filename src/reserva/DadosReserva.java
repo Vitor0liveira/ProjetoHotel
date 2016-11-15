@@ -73,9 +73,11 @@ public class DadosReserva extends Dados implements InterfaceReserva {
         ArrayList<Reserva> retorno = new ArrayList<>();
         conectar();
 
-        String sql = "SELECT cd_reserva, data, periodo, ";
-        sql += "situacao, CPF_cliente, nr_quarto, cd_ocupacao ";
-        sql += "FROM Reserva WHERE cd_reserva > 0";
+        String sql = "SELECT R.cd_reserva, R.data, R.periodo, R.situacao,  ";
+        sql += "R.Nr_quarto, R.Cd_Ocupacao, C.CPF_cliente, C.nm_cliente ";
+        sql += "FROM reserva AS R INNER JOIN Cliente as C ";
+        sql += "ON R.cpf_cliente = C.CPF_cliente ";
+        sql += "WHERE R.cd_reserva > 0";
         if(filtro.getCd_reserva() > 0) {
             sql += "AND cd_reserva > 0";
         }
@@ -100,9 +102,10 @@ public class DadosReserva extends Dados implements InterfaceReserva {
                 r.setData(leitor.getString("data"));
                 r.setPeriodo(leitor.getInt("periodo"));
                 r.setSituacao(leitor.getInt("situacao"));
-                r.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
                 r.getQuarto().setNr_quarto(leitor.getInt("nr_quarto"));
                 r.setCd_ocupacao(leitor.getInt("cd_ocupacao"));
+                r.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
+                r.getCliente().setNm_cliente(leitor.getString("nm_cliente"));
 
                 retorno.add(r);
             }
