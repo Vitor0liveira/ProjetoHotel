@@ -176,7 +176,8 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
             }
             c.setNm_cliente("%"+jTextFieldNome.getText().trim()+"%");
             ArrayList<Cliente> resp = f.listarCliente(c);
-
+            
+            modelo.setRowCount(0);
             
             if (resp.size() > 0) {
                 for (Cliente cli : resp) {

@@ -172,7 +172,8 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
             r.getCliente().setNm_cliente("%"+jTextFieldNome2.getText().trim()+"%");
             ArrayList<Reserva> resp = f.listarReserva(r);
             
-
+            modelo.setRowCount(0);
+            
             if (resp.size() > 0) {
                 for (Reserva res : resp) {
                     modelo.addRow(new String[]{res.getCd_reserva() + "", res.getCd_ocupacao() + "", res.getCliente().getCpf_cliente() + "", 
