@@ -108,12 +108,12 @@ public class DadosFo extends Dados implements InterfaceFo {
         sql += "F.data_saida, F.hora_saida, F.valorDiaria, F.quarto ";
         sql += "FROM Cliente AS C INNER JOIN Fo AS F ";
         sql += "ON C.CPF_cliente = F.CPF_cliente ";
-        sql += "WHERE cd_ocupacao > 0";
+        sql += "WHERE cd_ocupacao > 0 ";
         if(filtro.getCd_ocupacao() > 0) {
-            sql += "AND cd_ocupacao = ?";
+            sql += " AND cd_ocupacao = ? ";
         }
         if(filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
-            sql += "AND nm_cliente LIKE ?";
+            sql += " AND nm_cliente LIKE ? ";
         }
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
