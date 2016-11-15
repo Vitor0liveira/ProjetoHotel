@@ -76,7 +76,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
         sql += " telefone, sexo ";
         sql += "  FROM Cliente WHERE CPF_cliente IS NOT NULL ";
         if(filtro.getCpf_cliente().equals("") == false) {
-            sql += "CPF_cliente = ?";
+            sql += "AND CPF_cliente = ?";
         }
         if(filtro.getNm_cliente() != null && filtro.getNm_cliente().trim().equals("") == false) {
             sql += "AND nm_cliente LIKE ?";
