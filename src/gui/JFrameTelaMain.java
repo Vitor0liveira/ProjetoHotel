@@ -41,7 +41,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -152,13 +152,13 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         });
         jMenu2.add(jRadioButtonMenuItem2);
 
-        jMenuItem3.setText("Listar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem6.setText("Listar");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
 
@@ -286,19 +286,19 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         lisCli.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        JInternalFrameListarReserva lisRes = new JInternalFrameListarReserva();
-        jDesktopPaneAreaTrabalho.add(lisRes);
-        lisRes.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         JInternalFrameListarOcupacao lisOcu = new JInternalFrameListarOcupacao();
         jDesktopPaneAreaTrabalho.add(lisOcu);
         lisOcu.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        JInternalFrameListarReserva lisRes = new JInternalFrameListarReserva();
+        jDesktopPaneAreaTrabalho.add(lisRes);
+        lisRes.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,9 +347,9 @@ public class JFrameTelaMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;

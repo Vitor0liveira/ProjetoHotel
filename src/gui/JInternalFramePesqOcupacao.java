@@ -309,7 +309,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jButtonEditar.setEnabled(true);
         jButtonRemover.setEnabled(false);
         jButtonAtualizar.setEnabled(false);
-        jTextFieldCdOcupacao.setEnabled(false);
+        jTextFieldCdOcupacao.setEnabled(true);
         jComboBoxNrQuarto.setEnabled(false);
     }
 

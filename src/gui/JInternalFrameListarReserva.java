@@ -25,9 +25,9 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
     public JInternalFrameListarReserva() {
         initComponents();
             //Iniciando os nomes dos campos na table
-            modelo.setColumnIdentifiers(new String[]{"Cód. Reserva", "Cód. Ocupação", "CPF Cliente", "Nome", "Quarto", 
+            modelo.setColumnIdentifiers(new String[]{"Cód. Reserva", "Cód. Ocupação", "CPF Cliente", "Quarto", 
             "Período", "Situação", "Data"});
-            jTableCliente.setModel(modelo);
+            jTableReserva.setModel(modelo);
     }
 
     /**
@@ -181,7 +181,7 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
 
             if (resp.size() > 0) {
                 for (Reserva res : resp) {
-                    modelo.addRow(new String[]{res.getCd_reserva() + "", res.getCd_ocupacao() + "", res.getCliente().getCpf_cliente() + "", res.getCliente().getNm_cliente() + "", 
+                    modelo.addRow(new String[]{res.getCd_reserva() + "", res.getCd_ocupacao() + "", res.getCliente().getCpf_cliente() + "", 
                     res.getQuarto().getNr_quarto() + "", res.getPeriodo() + "", res.getSituacao() + "", res.getData()});
                 }
             } else {
