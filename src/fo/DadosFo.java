@@ -104,9 +104,11 @@ public class DadosFo extends Dados implements InterfaceFo {
         ArrayList<Fo> retorno = new ArrayList<>();
         conectar();
         
-        String sql = "SELECT cd_ocupacao, data_entrada, hora_entrada, ";
-        sql += "data_saida, hora_saida, valorDiaria, quarto, CPF_cliente ";
-        sql += "FROM Fo WHERE cd_ocupacao > 0";
+        String sql = "SELECT C.CPF_cliente, C.nm_cliente, F.cd_ocupacao, F.data_entrada, F.hora_entrada, ";
+        sql += "F.data_saida, F.hora_saida, F.valorDiaria, F.quarto ";
+        sql += "FROM Cliente AS C INNER JOIN Fo AS F ";
+        sql += "ON C.CPF_cliente = F.CPF_cliente ";
+        sql += "WHERE cd_ocupacao > 0";
         if(filtro.getCd_ocupacao() > 0) {
             sql += "AND cd_ocupacao = ?";
         }

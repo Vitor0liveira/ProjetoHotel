@@ -49,9 +49,9 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTableOcupacaoDetalhe = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
-        jFormattedTextFieldCpf3 = new javax.swing.JFormattedTextField();
         jTextFieldNome3 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jTextFieldCdOcupacao = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -96,13 +96,7 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
         ));
         jScrollPane5.setViewportView(jTableOcupacaoDetalhe);
 
-        jLabel11.setText("CPF:");
-
-        try {
-            jFormattedTextFieldCpf3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jLabel11.setText("Cód. Ocupação:");
 
         jLabel12.setText("Nome:");
 
@@ -125,7 +119,7 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextFieldCpf3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldCdOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -139,9 +133,9 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jFormattedTextFieldCpf3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextFieldNome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldNome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCdOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -173,8 +167,8 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
         try {
             Fachada f = new Fachada();
             Fo FO = new Fo();
-            if(jFormattedTextFieldCpf3.getText().trim().equals("") == false){
-                FO.getCliente().setCpf_cliente(jFormattedTextFieldCpf3.getText());
+            if(jTextFieldCdOcupacao.getText().trim().equals("") == false){
+                FO.getCliente().setCpf_cliente(jTextFieldCdOcupacao.getText());
             }
             FO.getCliente().setNm_cliente("%"+jTextFieldNome3.getText().trim()+"%");
             ArrayList<Fo> resp = f.listarFo(FO);
@@ -198,7 +192,6 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonListar;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCpf3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -208,6 +201,7 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTableOcupacao;
     private javax.swing.JTable jTableOcupacaoDetalhe;
+    private javax.swing.JTextField jTextFieldCdOcupacao;
     private javax.swing.JTextField jTextFieldNome3;
     // End of variables declaration//GEN-END:variables
 }
