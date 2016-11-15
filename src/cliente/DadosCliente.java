@@ -67,6 +67,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
 
     @Override
     public ArrayList<Cliente> listarCliente(Cliente filtro) throws Exception {
+      int posPar = 1; 
         ArrayList<Cliente> retorno = new ArrayList<>();
         //abrindo a conexÃ£o
         conectar();
@@ -84,6 +85,14 @@ public class DadosCliente extends Dados implements InterfaceCliente {
         try {
             //executando a instrução sql
             PreparedStatement cmd = conn.prepareStatement(sql);
+            if(filtro.getCpf_cliente().equals("") == false) {
+                cmd.setString(posPar, filtro.getCpf_cliente());
+                posPar++;
+            }
+            if(filtro.getNm_cliente() != null && filtro.getNm_cliente().trim().equals("") == false) {
+                cmd.setString(posPar, filtro.getNm_cliente());
+                posPar++;
+            }
             //
             ResultSet leitor = cmd.executeQuery();
             while (leitor.next()) {

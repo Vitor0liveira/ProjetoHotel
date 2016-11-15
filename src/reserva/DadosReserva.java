@@ -69,6 +69,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
     @Override
     public ArrayList<Reserva> listarReserva(Reserva filtro) throws Exception {
+      int posPar = 1;  
         ArrayList<Reserva> retorno = new ArrayList<>();
         conectar();
 
@@ -83,6 +84,14 @@ public class DadosReserva extends Dados implements InterfaceReserva {
         }
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
+            if(filtro.getCd_reserva() > 0) {
+                cmd.setInt(posPar, filtro.getCd_reserva());
+                posPar++;
+            }
+            if(filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
+                cmd.setString(posPar, filtro.getCliente().getNm_cliente());
+                posPar++;
+            }
             ResultSet leitor = cmd.executeQuery();
 
             while (leitor.next()) {
