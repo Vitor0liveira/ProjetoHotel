@@ -26,7 +26,7 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
         initComponents();
         //Iniciando os nomes dos campos na table
         modelo.setColumnIdentifiers(new String[]{"Cód. Ocupação", "Data Entrada", "Hora Entrada", "Data Saida",
-        "Hora Saida", "Valor Diaria", "Quarto", "CPF Cliente"});
+        "Hora Saida", "Valor Diaria", "Quarto", "CPF Cliente", "Nome"});
         jTableOcupacao.setModel(modelo);
 
     }
@@ -178,7 +178,7 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
             if (resp.size() > 0) {
                 for (Fo fO : resp) {
                     modelo.addRow(new String[]{fO.getCd_ocupacao() + "", fO.getData_entrada(), fO.getHora_entrada(), fO.getData_saida(),
-                        fO.getHora_saida(), fO.getValorDiaria() + "", fO.getQuarto().getNr_quarto() + "", fO.getCliente().getCpf_cliente()});
+                        fO.getHora_saida(), fO.getValorDiaria() + "", fO.getQuarto().getNr_quarto() + "", fO.getCliente().getCpf_cliente() + "", fO.getCliente().getNm_cliente()});
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Não existe resultados!");
