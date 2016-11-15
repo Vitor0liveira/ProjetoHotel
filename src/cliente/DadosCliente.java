@@ -66,14 +66,20 @@ public class DadosCliente extends Dados implements InterfaceCliente {
     }
 
     @Override
-    public ArrayList<Cliente> listarCliente() throws Exception {
+    public ArrayList<Cliente> listarCliente(Cliente filtro) throws Exception {
         ArrayList<Cliente> retorno = new ArrayList<>();
         //abrindo a conexÃ£o
         conectar();
 
         String sql = " SELECT CPF_cliente, nm_cliente, ";
         sql += " telefone, sexo ";
-        sql += "  from Cliente";
+        sql += "  FROM Cliente WHERE CPF_cliente IS NOT NULL ";
+        if(filtro.getCpf_cliente().equals("") == false) {
+            sql += "CPF_cliente = ?";
+        }
+        if(filtro.getNm_cliente() != null && filtro.getNm_cliente().trim().equals("") == false) {
+            sql += "AND nm_cliente LIKE ?";
+        }
 
         try {
             //executando a instrução sql

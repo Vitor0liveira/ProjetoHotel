@@ -38,9 +38,9 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo 
     }
 
     @Override
-    public ArrayList<Cliente> listarCliente() throws Exception {
+    public ArrayList<Cliente> listarCliente(Cliente filtro) throws Exception {
         NegocioCliente nC = new NegocioCliente();
-        return nC.listarCliente();
+        return nC.listarCliente(filtro);
     }
 
     @Override
@@ -62,9 +62,9 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo 
     }
 
     @Override
-    public ArrayList<Reserva> listarReserva() throws Exception {
+    public ArrayList<Reserva> listarReserva(Reserva filtro) throws Exception {
         NegocioReserva nR = new NegocioReserva();
-        return nR.listarReserva();
+        return nR.listarReserva(filtro);
     }
 
     @Override
@@ -98,9 +98,9 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo 
     }
 
     @Override
-    public ArrayList<Fo> listarFo() throws Exception {
+    public ArrayList<Fo> listarFo(Fo filtro) throws Exception {
         NegocioFo nF = new NegocioFo();
-        return nF.listarFo(); 
+        return nF.listarFo(filtro); 
     }
 
 }

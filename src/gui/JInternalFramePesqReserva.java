@@ -52,9 +52,9 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
         jTextFieldCdReserva = new javax.swing.JTextField();
         jTextFieldPeriodo = new javax.swing.JTextField();
         jTextFieldSituacao = new javax.swing.JTextField();
-        jTextFieldOcupacao = new javax.swing.JTextField();
-        jTextFieldQuarto = new javax.swing.JTextField();
         jFormattedTextFieldData = new javax.swing.JFormattedTextField();
+        jComboBoxNrQuarto = new javax.swing.JComboBox<>();
+        jTextFieldOcupacao = new javax.swing.JTextField();
 
         setClosable(true);
         setForeground(java.awt.Color.green);
@@ -133,10 +133,6 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
 
         jTextFieldSituacao.setEnabled(false);
 
-        jTextFieldOcupacao.setEnabled(false);
-
-        jTextFieldQuarto.setEnabled(false);
-
         try {
             jFormattedTextFieldData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -148,6 +144,16 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
                 jFormattedTextFieldDataActionPerformed(evt);
             }
         });
+
+        jComboBoxNrQuarto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" }));
+        jComboBoxNrQuarto.setEnabled(false);
+        jComboBoxNrQuarto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxNrQuartoActionPerformed(evt);
+            }
+        });
+
+        jTextFieldOcupacao.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -177,6 +183,12 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonAtualizar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonEditar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonRemover))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,18 +199,11 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButtonAtualizar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonEditar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonRemover)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(jComboBoxNrQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel11)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,17 +220,17 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
                     .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextFieldPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(jTextFieldSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextFieldQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
+                    .addComponent(jComboBoxNrQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAtualizar)
                     .addComponent(jButtonEditar)
@@ -239,11 +244,13 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -260,7 +267,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
         jButtonRemover.setEnabled(true);
         jButtonAtualizar.setEnabled(true);
         jButtonEditar.setEnabled(false);
-        jTextFieldQuarto.setEnabled(true);
+        jComboBoxNrQuarto.setEnabled(true);
         jTextFieldSituacao.setEnabled(true);
         jTextFieldPeriodo.setEnabled(true);
         jFormattedTextFieldData.setEnabled(true);
@@ -273,19 +280,19 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
         jFormattedTextFieldData.setText("");
         jTextFieldPeriodo.setText("");
         jTextFieldSituacao.setText("");
-        jTextFieldQuarto.setText("");
+        jComboBoxNrQuarto.setSelectedIndex(1);
         jTextFieldOcupacao.setText("");
         jTextFieldCdReserva.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
         jTextFieldPeriodo.setEnabled(false);
         jTextFieldSituacao.setEnabled(false);
-        jTextFieldQuarto.setEnabled(false);
+        jComboBoxNrQuarto.setEnabled(false);
         jButtonAtualizar.setEnabled(false);
         jButtonRemover.setEnabled(false);
     }
 
     public void setNewPesqReserva() {
-        jTextFieldQuarto.setText("");
+        jComboBoxNrQuarto.setSelectedIndex(1);
         jTextFieldCdReserva.setText("");
         jTextFieldOcupacao.setText("");
         jTextFieldPeriodo.setText("");
@@ -298,7 +305,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
     }
 
     public void setAtualizarReserva() {
-        jTextFieldQuarto.setText("");
+        jComboBoxNrQuarto.setSelectedIndex(1);
         jTextFieldCdReserva.setText("");
         jTextFieldOcupacao.setText("");
         jTextFieldPeriodo.setText("");
@@ -308,7 +315,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
         jButtonPesquisar.setEnabled(false);
         jTextFieldPeriodo.setEnabled(false);
         jTextFieldSituacao.setEnabled(false);
-        jTextFieldQuarto.setEnabled(false);
+        jComboBoxNrQuarto.setEnabled(false);
         jTextFieldCdReserva.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
         jButtonAtualizar.setEnabled(false);
@@ -335,7 +342,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
             jTextFieldPeriodo.setText(Integer.toString(r.getPeriodo()));
             jFormattedTextFieldData.setText(r.getData());
             jTextFieldSituacao.setText(Integer.toString(r.getSituacao()));
-            jTextFieldQuarto.setText(Integer.toString(r.getNr_quarto()));
+            jComboBoxNrQuarto.setSelectedIndex(r.getQuarto().getNr_quarto() -1);
             jTextFieldOcupacao.setText(Integer.toString(r.getCd_ocupacao()));
             jFormattedTextFieldCpf.setText(r.getCliente().getCpf_cliente());
 
@@ -380,7 +387,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
             rR.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
             rR.setPeriodo(Integer.parseInt(jTextFieldPeriodo.getText()));
             rR.setSituacao(Integer.parseInt(jTextFieldSituacao.getText()));
-            rR.setNr_quarto(Integer.parseInt(jTextFieldQuarto.getText()));
+            rR.getQuarto().setNr_quarto(jComboBoxNrQuarto.getItemCount());
             rR.setData(jFormattedTextFieldData.getText());
 
             Fachada f = new Fachada();
@@ -398,6 +405,10 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFieldDataActionPerformed
 
+    private void jComboBoxNrQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNrQuartoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxNrQuartoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtualizar;
@@ -405,6 +416,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonNovaPesquisa;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonRemover;
+    private javax.swing.JComboBox<String> jComboBoxNrQuarto;
     private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
     private javax.swing.JFormattedTextField jFormattedTextFieldData;
     private javax.swing.JLabel jLabel10;
@@ -418,7 +430,6 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldCdReserva;
     private javax.swing.JTextField jTextFieldOcupacao;
     private javax.swing.JTextField jTextFieldPeriodo;
-    private javax.swing.JTextField jTextFieldQuarto;
     private javax.swing.JTextField jTextFieldSituacao;
     // End of variables declaration//GEN-END:variables
 }

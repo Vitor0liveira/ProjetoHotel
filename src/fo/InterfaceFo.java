@@ -13,5 +13,5 @@ public interface InterfaceFo {
     // Método de atualização de ocupações.
     public void atualizarFo (Fo f) throws Exception;
     // Método de listagem de ocupações.
-    ArrayList<Fo> listarFo() throws Exception;
+    ArrayList<Fo> listarFo(Fo filtro) throws Exception;
 }

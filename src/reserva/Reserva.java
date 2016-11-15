@@ -1,6 +1,7 @@
 package reserva;
 
 import cliente.Cliente;
+import quarto.Quarto;
 
 public class Reserva {
 
@@ -9,11 +10,12 @@ public class Reserva {
     private int periodo;
     private int situacao;
     private Cliente cliente;
-    private int nr_quarto;
+    private Quarto quarto;
     private int cd_ocupacao;
 
     public Reserva() {
         this.cliente = new Cliente();
+        this.quarto = new Quarto();
     }
 
     @Override
@@ -25,7 +27,7 @@ public class Reserva {
         retorno += "Período: " + this.periodo + "\n";
         retorno += "Situação: " + this.situacao + "\n";
         retorno += "Cliente CPF: " + this.cliente + "\n";
-        retorno += "Número do quarto: " + this.nr_quarto + "\n";
+        retorno += "Número do quarto: " + this.quarto + "\n";
         retorno += "Código ocupação: " + this.cd_ocupacao;
 
         return retorno;
@@ -71,12 +73,12 @@ public class Reserva {
         situacao = stcao;
     }
 
-    public int getNr_quarto() {
-        return this.nr_quarto;
+    public Quarto getQuarto() {
+        return quarto;
     }
 
-    public void setNr_quarto(int nr_qrt) {
-        nr_quarto = nr_qrt;
+    public void setQuarto(Quarto quarto) {
+        this.quarto = quarto;
     }
 
     public int getCd_ocupacao() {

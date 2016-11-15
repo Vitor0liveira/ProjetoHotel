@@ -99,14 +99,19 @@ public class DadosFo extends Dados implements InterfaceFo {
     }
 
     @Override
-    public ArrayList<Fo> listarFo() throws Exception {
+    public ArrayList<Fo> listarFo(Fo filtro) throws Exception {
         conectar();
         ArrayList<Fo> retorno = new ArrayList<>();
 
         String sql = "SELECT cd_ocupacao, data_entrada, hora_entrada, ";
         sql += "data_saida, hora_saida, valorDiaria, quarto, CPF_cliente ";
-        sql += "FROM Fo ";
-
+        sql += "FROM Fo WHERE cd_ocupacao > 0";
+        if(filtro.getCd_ocupacao() > 0) {
+            sql += "AND cd_ocupacao = ?";
+        }
+        if(filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
+            sql += "AND nm_cliente like ?";
+        }
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
             ResultSet leitor = cmd.executeQuery();

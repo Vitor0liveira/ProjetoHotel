@@ -93,6 +93,11 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
         jComboBoxNrQuarto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" }));
 
         jComboBoxPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jComboBoxPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPeriodoActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Cód. Ocupação:");
 
@@ -202,7 +207,7 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
             r.setPeriodo(jComboBoxPeriodo.getSelectedIndex() + 1);
             r.setSituacao(jComboBoxSituacao.getSelectedIndex() + 1);
             r.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
-            r.setNr_quarto(jComboBoxNrQuarto.getSelectedIndex() + 1);
+            r.getQuarto().setNr_quarto(jComboBoxNrQuarto.getSelectedIndex() + 1);
             //Enviando o objeto
             Fachada f = new Fachada();
             f.fazerReserva(r);
@@ -213,6 +218,10 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
         }
         setandoReservar();
     }//GEN-LAST:event_jButtonReservarActionPerformed
+
+    private void jComboBoxPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPeriodoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxPeriodoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -42,9 +42,9 @@ public class NegocioFo implements InterfaceFo {
     }
 
     @Override
-    public ArrayList<Fo> listarFo() throws Exception {
+    public ArrayList<Fo> listarFo(Fo filtro) throws Exception {
         DadosFo dF = new DadosFo();
-        return dF.listarFo();
+        return dF.listarFo(filtro);
     }
 
 }

@@ -23,7 +23,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
             cmd.setInt(3, r.getPeriodo());
             cmd.setInt(4, r.getSituacao());
             cmd.setString(5, r.getCliente().getCpf_cliente());
-            cmd.setInt(6, r.getNr_quarto());
+            cmd.setInt(6, r.getQuarto().getNr_quarto());
             cmd.setInt(7, r.getCd_ocupacao());
             cmd.execute();
         } catch (SQLException e) {
@@ -43,7 +43,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
             cmd.setString(1, r.getData());
             cmd.setInt(2, r.getPeriodo());
             cmd.setInt(3, r.getSituacao());
-            cmd.setInt(4, r.getNr_quarto());
+            cmd.setInt(4, r.getQuarto().getNr_quarto());
             cmd.setInt(5, r.getCd_reserva());
             cmd.execute();
         } catch (SQLException erro) {
@@ -68,13 +68,19 @@ public class DadosReserva extends Dados implements InterfaceReserva {
     }
 
     @Override
-    public ArrayList<Reserva> listarReserva() throws Exception {
+    public ArrayList<Reserva> listarReserva(Reserva filtro) throws Exception {
         ArrayList<Reserva> retorno = new ArrayList<>();
         conectar();
 
         String sql = "SELECT cd_reserva, data, periodo, ";
         sql += "situacao, CPF_cliente, nr_quarto, cd_ocupacao ";
-        sql += "FROM Reserva";
+        sql += "FROM Reserva WHERE cd_reserva > 0";
+        if(filtro.getCd_reserva() > 0) {
+            sql += "AND cd_reserva > 0";
+        }
+        if(filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
+            sql += "AND nm_cliente LIKE ?";
+        }
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
             ResultSet leitor = cmd.executeQuery();
@@ -86,7 +92,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
                 r.setPeriodo(leitor.getInt("periodo"));
                 r.setSituacao(leitor.getInt("situacao"));
                 r.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
-                r.setNr_quarto(leitor.getInt("nr_quarto"));
+                r.getQuarto().setNr_quarto(leitor.getInt("nr_quarto"));
                 r.setCd_ocupacao(leitor.getInt("cd_ocupacao"));
 
                 retorno.add(r);
@@ -119,7 +125,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
                 r.setData(leitor.getString("data"));
                 r.setPeriodo(leitor.getInt("periodo"));
                 r.setSituacao(leitor.getInt("situacao"));
-                r.setNr_quarto(leitor.getInt("Nr_quarto"));
+                r.getQuarto().setNr_quarto(leitor.getInt("Nr_quarto"));
                 r.setCd_ocupacao(leitor.getInt("Cd_Ocupacao"));
                 r.getCliente().setCpf_cliente(leitor.getString("cpf_cliente"));
             }

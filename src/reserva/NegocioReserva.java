@@ -46,9 +46,9 @@ public class NegocioReserva implements InterfaceReserva {
     }
 
     @Override
-    public ArrayList<Reserva> listarReserva() throws Exception {
+    public ArrayList<Reserva> listarReserva(Reserva filtro) throws Exception {
         DadosReserva dR = new DadosReserva();
-        return dR.listarReserva();
+        return dR.listarReserva(filtro);
     }
 
     @Override
