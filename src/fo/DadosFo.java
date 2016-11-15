@@ -137,6 +137,7 @@ public class DadosFo extends Dados implements InterfaceFo {
                 fO.setValorDiaria(leitor.getFloat("valorDiaria"));
                 fO.getQuarto().setNr_quarto(leitor.getInt("quarto"));
                 fO.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
+                fO.getCliente().setNm_cliente(leitor.getString("nm_cliente"));
                 
                 retorno.add(fO);
             }
