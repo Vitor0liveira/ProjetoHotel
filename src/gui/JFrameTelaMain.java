@@ -103,6 +103,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
             .addGap(0, 881, Short.MAX_VALUE)
         );
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/folder.png"))); // NOI18N
         jMenu5.setText("Arquivo");
 
         jMenuItem3.setText("Sair");
@@ -146,6 +147,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/door.png"))); // NOI18N
         jMenu2.setText("Reservas");
 
         jRadioButtonMenuItem1.setSelected(true);
@@ -176,6 +178,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/door_in.png"))); // NOI18N
         jMenu4.setText("Ocupações");
 
         jMenuItem2.setText("Cadastrar");

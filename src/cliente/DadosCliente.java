@@ -67,7 +67,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
 
     @Override
     public ArrayList<Cliente> listarCliente(Cliente filtro) throws Exception {
-      int posPar = 1; 
+        int posPar = 1;
         ArrayList<Cliente> retorno = new ArrayList<>();
         //abrindo a conexÃ£o
         conectar();
@@ -75,21 +75,21 @@ public class DadosCliente extends Dados implements InterfaceCliente {
         String sql = " SELECT CPF_cliente, nm_cliente, ";
         sql += " telefone, sexo ";
         sql += "  FROM Cliente WHERE CPF_cliente IS NOT NULL ";
-        if(filtro.getCpf_cliente() != null && filtro.getCpf_cliente().equals("") == false) {
+        if (filtro.getCpf_cliente() != null && filtro.getCpf_cliente().equals("") == false) {
             sql += "AND CPF_cliente = ? ";
         }
-        if(filtro.getNm_cliente() != null && filtro.getNm_cliente().trim().equals("") == false) {
+        if (filtro.getNm_cliente() != null && filtro.getNm_cliente().trim().equals("") == false) {
             sql += "AND nm_cliente LIKE ? ";
         }
 
         try {
             //executando a instrução sql
             PreparedStatement cmd = conn.prepareStatement(sql);
-            if(filtro.getCpf_cliente() != null && filtro.getCpf_cliente().equals("") == false) {
+            if (filtro.getCpf_cliente() != null && filtro.getCpf_cliente().equals("") == false) {
                 cmd.setString(posPar, filtro.getCpf_cliente());
                 posPar++;
             }
-            if(filtro.getNm_cliente() != null && filtro.getNm_cliente().trim().equals("") == false) {
+            if (filtro.getNm_cliente() != null && filtro.getNm_cliente().trim().equals("") == false) {
                 cmd.setString(posPar, filtro.getNm_cliente());
                 posPar++;
             }
