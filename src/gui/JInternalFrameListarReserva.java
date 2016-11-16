@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import reserva.Reserva;
+import servicos.Servico;
 
 /**
  *
@@ -21,6 +22,7 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
      * Creates new form JInternalFramePesqCliente
      */
     DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modeloDetalhes = new DefaultTableModel();
     
     public JInternalFrameListarReserva() {
         initComponents();
@@ -28,6 +30,8 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
             modelo.setColumnIdentifiers(new String[]{"Cód. Reserva", "Cód. Ocupação", "CPF Cliente", "Nome", "Quarto", 
             "Período", "Situação", "Data"});
             jTableReserva.setModel(modelo);
+            modeloDetalhes.setColumnIdentifiers(new String[]{"Cód. Serviço", "Descrição", "Valor"});
+            jTableReservaDetalhe.setModel(modeloDetalhes);
     }
 
     /**
@@ -69,6 +73,11 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTableReserva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableReservaMouseClicked(evt);
+            }
+        });
         jScrollPane7.setViewportView(jTableReserva);
 
         jLabel9.setText("Listagem:");
@@ -187,6 +196,25 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }//GEN-LAST:event_jButtonListarActionPerformed
+
+    private void jTableReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableReservaMouseClicked
+        // TODO add your handling code here:
+        int row = jTableReserva.getSelectedRow();
+        if(row > -1) {
+            try {
+                Reserva r = new Reserva();
+                r.setCd_reserva(Integer.parseInt((String) jTableReserva.getValueAt(row, 0)));
+                Fachada f = new Fachada();
+                modeloDetalhes.setRowCount(0);
+                r = f.procurarServicos(r);
+                for (Servico s : r.getServico()) {
+                    modeloDetalhes.addRow(new Object[]{s.getCd_servico(), s.getDescricao(), s.getValor()});
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jTableReservaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

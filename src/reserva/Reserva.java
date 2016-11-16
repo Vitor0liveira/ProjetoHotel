@@ -1,6 +1,7 @@
 package reserva;
 
 import cliente.Cliente;
+import java.util.ArrayList;
 import quarto.Quarto;
 import servicos.Servico;
 
@@ -12,13 +13,13 @@ public class Reserva {
     private int situacao;
     private Cliente cliente;
     private Quarto quarto;
-    private Servico servico;
+    private ArrayList<Servico> servico;
     private int cd_ocupacao;
 
     public Reserva() {
         this.cliente = new Cliente();
         this.quarto = new Quarto();
-        this.servico = new Servico();
+        this.servico = new ArrayList<Servico>();
     }
 
     @Override
@@ -84,11 +85,11 @@ public class Reserva {
         this.quarto = quarto;
     }
     
-    public Servico getServico() {
+    public ArrayList<Servico> getServico() {
         return servico;
     }
     
-    public void setServico(Servico servico) {
+    public void setServico(ArrayList<Servico> servico) {
         this.servico = servico;
     }
 

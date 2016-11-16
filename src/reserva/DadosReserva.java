@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import servicos.Servico;
 
 public class DadosReserva extends Dados implements InterfaceReserva {
 
@@ -149,4 +150,31 @@ public class DadosReserva extends Dados implements InterfaceReserva {
         return r;
     }
 
+    @Override
+    public Reserva procurarServicos(Reserva r) throws Exception {
+              conectar();
+        String sql = "SELECT SER.Cd_Servico, SER.descricao, SER.valor FROM Reserva AS R ";
+        sql += "INNER JOIN Servico AS SER ON R.Cd_Ocupacao = SER.Cd_Ocupacao ";
+        sql += "WHERE R.Cd_Ocupacao = ? ";
+
+        try {
+            PreparedStatement cmd = conn.prepareStatement(sql);
+            cmd.setInt(1, r.getCd_reserva());
+            ResultSet leitor = cmd.executeQuery();
+            while (leitor.next()) {
+                Servico s = new Servico();
+                s.setCd_servico(leitor.getInt("Cd_Servico"));
+                s.setDescricao(leitor.getString("descricao"));
+                s.setValor(leitor.getFloat("valor"));
+                r.getServico().add(s);
+            }
+        } catch (SQLException erro) {
+            throw new Exception("Problemas ao pesquisar a reserva: " + erro.getMessage());
+        }
+        desconectar();
+        return r;
+    }
+
 }
+
+
