@@ -19,8 +19,8 @@ public class NegocioFo implements InterfaceFo {
     @Override
     public Fo pesquisarFo(Fo f) throws Exception {
         DadosFo dF = new DadosFo();
-       return dF.pesquisarFo(f);
-       
+        return dF.pesquisarFo(f);
+
     }
 
     @Override
@@ -45,6 +45,12 @@ public class NegocioFo implements InterfaceFo {
     public ArrayList<Fo> listarFo(Fo filtro) throws Exception {
         DadosFo dF = new DadosFo();
         return dF.listarFo(filtro);
+    }
+
+    @Override
+    public Fo procurarServicos(Fo f) throws Exception {
+        DadosFo dF = new DadosFo();
+        return dF.procurarServicos(f);
     }
 
 }

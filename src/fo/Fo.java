@@ -1,6 +1,7 @@
 package fo;
 
 import cliente.Cliente;
+import java.util.ArrayList;
 import quarto.Quarto;
 import servicos.Servico;
 
@@ -14,20 +15,20 @@ public class Fo {
     private float valorDiaria;
     private Quarto quarto;
     private Cliente cliente;
-    private Servico servico;
+    private ArrayList<Servico> servico;
 
     // Foi necessário adicionar esse Construtor para poder ter uma ligação da "FO" com o "Cliente", "Quarto" e "Seriço".
     public  Fo() {
         this.cliente = new Cliente();
         this.quarto = new Quarto();
-        this.servico = new Servico();
+        this.servico = new ArrayList<>();
     }
     
-    public Servico getServico() {
+    public ArrayList<Servico> getServico() {
         return servico;
     }
     
-    public void setServico(Servico servico) {
+    public void setServico(ArrayList<Servico> servico) {
         this.servico = servico;
     }
 

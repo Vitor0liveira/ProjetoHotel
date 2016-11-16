@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import servicos.Servico;
 
 public class DadosFo extends Dados implements InterfaceFo {
 
@@ -100,28 +101,28 @@ public class DadosFo extends Dados implements InterfaceFo {
 
     @Override
     public ArrayList<Fo> listarFo(Fo filtro) throws Exception {
-      int posPar = 1;  
+        int posPar = 1;
         ArrayList<Fo> retorno = new ArrayList<>();
         conectar();
-        
+
         String sql = "SELECT C.CPF_cliente, C.nm_cliente, F.cd_ocupacao, F.data_entrada, F.hora_entrada, ";
         sql += "F.data_saida, F.hora_saida, F.valorDiaria, F.quarto ";
         sql += "FROM Cliente AS C INNER JOIN Fo AS F ";
         sql += "ON C.CPF_cliente = F.CPF_cliente ";
         sql += "WHERE cd_ocupacao > 0 ";
-        if(filtro.getCd_ocupacao() > 0) {
+        if (filtro.getCd_ocupacao() > 0) {
             sql += " AND cd_ocupacao = ? ";
         }
-        if(filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
+        if (filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
             sql += " AND nm_cliente LIKE ? ";
         }
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
-            if(filtro.getCd_ocupacao() > 0) {
+            if (filtro.getCd_ocupacao() > 0) {
                 cmd.setInt(posPar, filtro.getCd_ocupacao());
                 posPar++;
             }
-            if(filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
+            if (filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
                 cmd.setString(posPar, filtro.getCliente().getNm_cliente());
                 posPar++;
             }
@@ -138,7 +139,7 @@ public class DadosFo extends Dados implements InterfaceFo {
                 fO.getQuarto().setNr_quarto(leitor.getInt("quarto"));
                 fO.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
                 fO.getCliente().setNm_cliente(leitor.getString("nm_cliente"));
-                
+
                 retorno.add(fO);
             }
         } catch (SQLException erro) {
@@ -146,6 +147,31 @@ public class DadosFo extends Dados implements InterfaceFo {
         }
         desconectar();
         return retorno;
+    }
+
+    @Override
+    public Fo procurarServicos(Fo f) throws Exception {
+        conectar();
+        String sql = "SELECT SER.Cd_Servico, SER.descricao, SER.valor FROM Fo AS FO ";
+        sql += "INNER JOIN Servico AS SER ON FO.Cd_Ocupacao = SER.Cd_Ocupacao ";
+        sql += "WHERE FO.Cd_Ocupacao = ? ";
+
+        try {
+            PreparedStatement cmd = conn.prepareStatement(sql);
+            cmd.setInt(1, f.getCd_ocupacao());
+            ResultSet leitor = cmd.executeQuery();
+            while (leitor.next()) {
+                Servico s = new Servico();
+                s.setCd_servico(leitor.getInt("Cd_Servico"));
+                s.setDescricao(leitor.getString("descricao"));
+                s.setValor(leitor.getFloat("valor"));
+                f.getServico().add(s);
+            }
+        } catch (SQLException erro) {
+            throw new Exception("Problemas ao pesquisar a ficha de ocupação: " + erro.getMessage());
+        }
+        desconectar();
+        return f;
     }
 
 }

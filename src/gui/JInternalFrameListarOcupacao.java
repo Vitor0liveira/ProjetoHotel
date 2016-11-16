@@ -8,8 +8,12 @@ package gui;
 import fachada.Fachada;
 import fo.Fo;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import servicos.Servico;
 
 /**
  *
@@ -21,14 +25,16 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
      * Creates new form JInternalFramePesqCliente
      */
     DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modeloDetalhes = new DefaultTableModel();
 
     public JInternalFrameListarOcupacao() {
         initComponents();
         //Iniciando os nomes dos campos na table
         modelo.setColumnIdentifiers(new String[]{"Cód. Ocupação", "Data Entrada", "Hora Entrada", "Data Saida",
-        "Hora Saida", "Valor Diaria", "Quarto", "CPF Cliente", "Nome"});
+            "Hora Saida", "Valor Diaria", "Quarto", "CPF Cliente", "Nome"});
         jTableOcupacao.setModel(modelo);
-
+        modeloDetalhes.setColumnIdentifiers(new String[]{"Cód. Serviço", "Descrição", "Valor"});
+        jTableOcupacaoDetalhe.setModel(modeloDetalhes);
     }
 
     /**
@@ -173,14 +179,14 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
         try {
             Fachada f = new Fachada();
             Fo FO = new Fo();
-            if(jTextFieldCdOcupacao.getText().trim().equals("") == false){
+            if (jTextFieldCdOcupacao.getText().trim().equals("") == false) {
                 FO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
             }
-            FO.getCliente().setNm_cliente("%"+jTextFieldNome3.getText().trim()+"%");
+            FO.getCliente().setNm_cliente("%" + jTextFieldNome3.getText().trim() + "%");
             ArrayList<Fo> resp = f.listarFo(FO);
 
             modelo.setRowCount(0);
-            
+
             if (resp.size() > 0) {
                 for (Fo fO : resp) {
                     modelo.addRow(new String[]{fO.getCd_ocupacao() + "", fO.getData_entrada() + "", fO.getHora_entrada() + "", fO.getData_saida() + "",
@@ -197,8 +203,20 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
 
     private void jTableOcupacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableOcupacaoMouseClicked
         // TODO add your handling code here:
-        if (jTableOcupacao.getSelectedRow() > -1) {
-            JOptionPane.showMessageDialog(null, jTableOcupacao.getSelectedRow());
+        int row = jTableOcupacao.getSelectedRow();
+        if (row > -1) {
+            try {
+                Fo fO = new Fo();
+                fO.setCd_ocupacao(Integer.parseInt((String) jTableOcupacao.getValueAt(row, 0)));
+                Fachada f = new Fachada();
+                modeloDetalhes.setRowCount(0);
+                fO = f.procurarServicos(fO);
+                for (Servico s : fO.getServico()) {
+                    modeloDetalhes.addRow(new Object[]{s.getCd_servico(), s.getDescricao(), s.getValor()});
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
         }
     }//GEN-LAST:event_jTableOcupacaoMouseClicked
 
