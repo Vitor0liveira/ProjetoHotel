@@ -10,6 +10,7 @@ import fachada.Fachada;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import reserva.Reserva;
 
 /**
  *
@@ -21,12 +22,17 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
      * Creates new form JInternalFramePesqCliente
      */
     DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modeloDetalhes = new DefaultTableModel();
     
     public JInternalFrameListarCliente() {
         initComponents();
         //Iniciando os nomes dos campos na table
         modelo.setColumnIdentifiers(new String[]{"CPF", "Nome", "Sexo", "Telefone"});
         jTableCliente.setModel(modelo);
+        modeloDetalhes.setColumnIdentifiers(new String[]{"CPF", "Nome", "Cód. Reserva", "Data", "Quarto", "Período",
+        "Situação"});
+        
+                
     }
 
     /**
@@ -68,6 +74,11 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTableCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableClienteMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTableCliente);
 
         jButtonListar.setText("Listar");
@@ -200,6 +211,27 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
     private void jFormattedTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFieldCpfActionPerformed
+
+    private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
+        // TODO add your handling code here:
+                int row = jTableCliente.getSelectedRow();
+        if (row > -1) {
+            try {
+                Cliente c = new Cliente();
+                Reserva r = new Reserva();
+                c.setCpf_cliente((String) jTableCliente.getValueAt(row, 0));
+                Fachada f = new Fachada();
+                modeloDetalhes.setRowCount(0);
+                c = f.detalhesCliente(c);
+                for (Cliente cli : c.getCliente()) {
+                    modeloDetalhes.addRow(new Object[]{cli.getCliente(), cli.getNm_cliente(), r.getCd_reserva(), r.getData(), r.getQuarto().getNr_quarto(),
+                    r.getPeriodo(), r.getSituacao()});
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jTableClienteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

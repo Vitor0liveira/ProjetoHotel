@@ -54,4 +54,10 @@ public class NegocioCliente implements InterfaceCliente {
         }
         return c;
     }
+
+    @Override
+    public Cliente detalhesCliente(Cliente c) throws Exception {
+        DadosCliente dC = new DadosCliente();
+        return dC.detalhesCliente(c);
+    }
 }

@@ -42,6 +42,11 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo 
         NegocioCliente nC = new NegocioCliente();
         return nC.listarCliente(filtro);
     }
+    
+    @Override
+    public Cliente detalhesCliente(Cliente c) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public void fazerReserva(Reserva r) throws Exception {

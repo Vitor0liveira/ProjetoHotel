@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import reserva.Reserva;
 
 public class DadosCliente extends Dados implements InterfaceCliente {
 
@@ -137,6 +138,36 @@ public class DadosCliente extends Dados implements InterfaceCliente {
         desconectar();
 
         return cli;
+    }
+
+    @Override
+    public Cliente detalhesCliente(Cliente c) throws Exception {
+        conectar();
+        
+        String sql = "SELECT C.CPF_cliente, C.nm_cliente, R.cd_reserva, R.data, R.Nr_quarto, R.periodo, R.situacao FROM Cliente AS C ";
+        sql += "INNER JOIN reserva AS R ON C.CPF_cliente = R.CPF_cliente ";
+        sql += "WHERE R.CPF_cliente = ? ";
+
+        try {
+            PreparedStatement cmd = conn.prepareStatement(sql);
+            cmd.setString(1, c.getCpf_cliente());
+            ResultSet leitor = cmd.executeQuery();
+            while (leitor.next()) {
+                Reserva r = new Reserva();
+                r.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
+                r.getCliente().setNm_cliente(leitor.getString("nm_cliente"));
+                r.setCd_reserva(leitor.getInt("cd_reserva"));
+                r.setData(leitor.getString(leitor.getString("data")));
+                r.getQuarto().setNr_quarto(leitor.getInt("Nr_quarto"));
+                r.setPeriodo(leitor.getInt("periodo"));
+                r.setSituacao(leitor.getInt("situacao"));
+                c.getCliente().add(c);
+            }
+        } catch (SQLException erro) {
+            throw new Exception("Problemas ao pesquisar cliente: " + erro.getMessage());
+        }
+        desconectar();
+        return c;
     }
 
 }

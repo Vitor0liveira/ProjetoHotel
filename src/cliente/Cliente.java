@@ -1,11 +1,14 @@
 package cliente;
 
+import java.util.ArrayList;
+
 public class Cliente {
 
     private String cpf_cliente;
     private String nm_cliente;
     private String telefone;
     private String sexo;
+    private ArrayList<Cliente> detalhesCliente;
 
     public String getCpf_cliente() {
         return cpf_cliente;
@@ -37,6 +40,13 @@ public class Cliente {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+        public ArrayList<Cliente> getCliente() {
+        return detalhesCliente;
+    }
+    
+    public void setCliente(ArrayList<Cliente> detalhesCliente) {
+        this.detalhesCliente = detalhesCliente;
     }
 
 }

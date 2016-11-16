@@ -14,5 +14,7 @@ public interface InterfaceCliente {
     ArrayList<Cliente> listarCliente(Cliente filtro) throws Exception;
     //pesquisar um cliente cadastrado.
     Cliente pesquisarCliente(String cpf) throws Exception;
+    // Método lista detalhes do cliente.
+    Cliente detalhesCliente(Cliente c) throws Exception;
 
 }
