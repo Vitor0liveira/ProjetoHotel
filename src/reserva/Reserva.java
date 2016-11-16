@@ -2,6 +2,7 @@ package reserva;
 
 import cliente.Cliente;
 import quarto.Quarto;
+import servicos.Servico;
 
 public class Reserva {
 
@@ -11,11 +12,13 @@ public class Reserva {
     private int situacao;
     private Cliente cliente;
     private Quarto quarto;
+    private Servico servico;
     private int cd_ocupacao;
 
     public Reserva() {
         this.cliente = new Cliente();
         this.quarto = new Quarto();
+        this.servico = new Servico();
     }
 
     @Override
@@ -79,6 +82,14 @@ public class Reserva {
 
     public void setQuarto(Quarto quarto) {
         this.quarto = quarto;
+    }
+    
+    public Servico getServico() {
+        return servico;
+    }
+    
+    public void setServico(Servico servico) {
+        this.servico = servico;
     }
 
     public int getCd_ocupacao() {

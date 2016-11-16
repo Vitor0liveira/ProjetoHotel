@@ -70,6 +70,12 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTableOcupacao.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jTableOcupacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableOcupacaoMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTableOcupacao);
 
         jButtonListar.setText("Listar");
@@ -177,8 +183,8 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
             
             if (resp.size() > 0) {
                 for (Fo fO : resp) {
-                    modelo.addRow(new String[]{fO.getCd_ocupacao() + "", fO.getData_entrada(), fO.getHora_entrada(), fO.getData_saida(),
-                        fO.getHora_saida(), fO.getValorDiaria() + "", fO.getQuarto().getNr_quarto() + "", fO.getCliente().getCpf_cliente() + "", fO.getCliente().getNm_cliente()});
+                    modelo.addRow(new String[]{fO.getCd_ocupacao() + "", fO.getData_entrada() + "", fO.getHora_entrada() + "", fO.getData_saida() + "",
+                        fO.getHora_saida() + "", fO.getValorDiaria() + "", fO.getQuarto().getNr_quarto() + "", fO.getCliente().getCpf_cliente() + "", fO.getCliente().getNm_cliente()});
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Não existe resultados!");
@@ -188,6 +194,13 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }//GEN-LAST:event_jButtonListarActionPerformed
+
+    private void jTableOcupacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableOcupacaoMouseClicked
+        // TODO add your handling code here:
+        if (jTableOcupacao.getSelectedRow() > -1) {
+            JOptionPane.showMessageDialog(null, jTableOcupacao.getSelectedRow());
+        }
+    }//GEN-LAST:event_jTableOcupacaoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

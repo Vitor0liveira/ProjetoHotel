@@ -2,6 +2,7 @@ package fo;
 
 import cliente.Cliente;
 import quarto.Quarto;
+import servicos.Servico;
 
 public class Fo {
 
@@ -13,11 +14,21 @@ public class Fo {
     private float valorDiaria;
     private Quarto quarto;
     private Cliente cliente;
+    private Servico servico;
 
-    // Foi necessário adicionar esse Construtor para poder ter uma ligação da "FO" com o "Cliente".
+    // Foi necessário adicionar esse Construtor para poder ter uma ligação da "FO" com o "Cliente", "Quarto" e "Seriço".
     public  Fo() {
         this.cliente = new Cliente();
         this.quarto = new Quarto();
+        this.servico = new Servico();
+    }
+    
+    public Servico getServico() {
+        return servico;
+    }
+    
+    public void setServico(Servico servico) {
+        this.servico = servico;
     }
 
     public Quarto getQuarto() {
