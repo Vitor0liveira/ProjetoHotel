@@ -23,16 +23,17 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
      */
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableModel modeloDetalhes = new DefaultTableModel();
-    
+
     public JInternalFrameListarCliente() {
         initComponents();
         //Iniciando os nomes dos campos na table
         modelo.setColumnIdentifiers(new String[]{"CPF", "Nome", "Sexo", "Telefone"});
         jTableCliente.setModel(modelo);
-        modeloDetalhes.setColumnIdentifiers(new String[]{"CPF", "Nome", "Cód. Reserva", "Data", "Quarto", "Período",
-        "Situação"});
         
-                
+        modeloDetalhes.setColumnIdentifiers(new String[]{"CPF", "Nome", "Cód. Reserva", "Data", "Quarto", "Período",
+            "Situação"});
+        jTableClienteDetalhe.setModel(modeloDetalhes);
+
     }
 
     /**
@@ -74,6 +75,7 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTableCliente.getTableHeader().setReorderingAllowed(false);
         jTableCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableClienteMouseClicked(evt);
@@ -103,6 +105,7 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTableClienteDetalhe.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jTableClienteDetalhe);
 
         jLabel2.setText("CPF:");
@@ -185,24 +188,24 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         try {
-            Fachada f = new Fachada();
             Cliente c = new Cliente();
-            if(jFormattedTextFieldCpf.getText().equals("   .   .   -  ") == false){
+            Fachada f = new Fachada();
+
+            if (jFormattedTextFieldCpf.getText().equals("   .   .   -  ") == false) {
                 c.setCpf_cliente(jFormattedTextFieldCpf.getText());
             }
-            c.setNm_cliente("%"+jTextFieldNome.getText().trim()+"%");
+            c.setNm_cliente("%" + jTextFieldNome.getText().trim() + "%");
             ArrayList<Cliente> resp = f.listarCliente(c);
-            
+
             modelo.setRowCount(0);
-            
+
             if (resp.size() > 0) {
                 for (Cliente cli : resp) {
-                    modelo.addRow(new String[]{cli.getCpf_cliente() + "", cli.getNm_cliente() + "", cli.getSexo() + "", cli.getTelefone()});
+                    modelo.addRow(new String[]{cli.getCpf_cliente(), cli.getNm_cliente(), cli.getSexo(), cli.getTelefone()});
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Não existe resultados!");
             }
-            
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
@@ -214,23 +217,24 @@ public class JInternalFrameListarCliente extends javax.swing.JInternalFrame {
 
     private void jTableClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClienteMouseClicked
         // TODO add your handling code here:
-                int row = jTableCliente.getSelectedRow();
+        int row = jTableCliente.getSelectedRow();
         if (row > -1) {
             try {
-                Cliente c = new Cliente();
                 Reserva r = new Reserva();
-                c.setCpf_cliente((String) jTableCliente.getValueAt(row, 0));
+                r.getCliente().setCpf_cliente((String) jTableCliente.getValueAt(row, 0));
                 Fachada f = new Fachada();
+                ArrayList<Reserva> reservaArray = f.listarReserva(r);
+                //System.out.println(reservaArray.size());
                 modeloDetalhes.setRowCount(0);
-                c = f.detalhesCliente(c);
-                for (Cliente cli : c.getCliente()) {
-                    modeloDetalhes.addRow(new Object[]{cli.getCliente(), cli.getNm_cliente(), r.getCd_reserva(), r.getData(), r.getQuarto().getNr_quarto(),
-                    r.getPeriodo(), r.getSituacao()});
+                for (Reserva reserva : reservaArray) {
+                     modeloDetalhes.addRow(new Object[]{reserva.getCliente().getCpf_cliente(), reserva.getCliente().getNm_cliente(), reserva.getCd_reserva(), reserva.getData(), reserva.getQuarto().getNr_quarto(),
+                        reserva.getPeriodo(), reserva.getSituacao()});
                 }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(this, erro.getMessage());
             }
         }
+        
     }//GEN-LAST:event_jTableClienteMouseClicked
 
 

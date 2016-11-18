@@ -319,6 +319,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraEntrada.setText("");
         jFormattedTextFieldDataSaida.setText("");
         jFormattedTextFieldHoraSaida.setText("");
+        jFormattedTextFieldCpf.setText("");
         jComboBoxNrQuarto.setSelectedItem("1");
 
         jTextFieldCdOcupacao.setEnabled(false);
@@ -338,6 +339,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldDataSaida.setText("");
         jFormattedTextFieldHoraSaida.setText("");
         jComboBoxNrQuarto.setSelectedItem("1");
+        jFormattedTextFieldCpf.setText("");
 
         jTextFieldCdOcupacao.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
@@ -364,7 +366,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
             fO = f.pesquisarFo(fO);
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
 
         jFormattedTextFieldData.setText(fO.getData_entrada());
@@ -414,7 +416,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
             fO.setHora_entrada(jFormattedTextFieldHoraEntrada.getText());
             fO.setData_saida(jFormattedTextFieldDataSaida.getText());
             fO.setHora_saida(jFormattedTextFieldHoraSaida.getText());
-            fO.getQuarto().setNr_quarto(jComboBoxNrQuarto.getItemCount());
+            fO.getQuarto().setNr_quarto(Integer.parseInt((String) jComboBoxNrQuarto.getSelectedItem()));
 
             Fachada f = new Fachada();
             f.atualizarFo(fO);

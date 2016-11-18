@@ -33,9 +33,9 @@ public class NegocioCliente implements InterfaceCliente {
     }
 
     @Override
-    public void apagarCliente(Cliente c) throws Exception {
+    public void removerCliente(Cliente c) throws Exception {
         DadosCliente dC = new DadosCliente();
-        dC.apagarCliente(c);
+        dC.removerCliente(c);
     }
 
     @Override

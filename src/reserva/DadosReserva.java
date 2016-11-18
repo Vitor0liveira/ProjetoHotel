@@ -69,7 +69,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
     @Override
     public ArrayList<Reserva> listarReserva(Reserva filtro) throws Exception {
-      int posPar = 1;  
+        int posPar = 1;
         ArrayList<Reserva> retorno = new ArrayList<>();
         conectar();
 
@@ -78,20 +78,27 @@ public class DadosReserva extends Dados implements InterfaceReserva {
         sql += "FROM reserva AS R INNER JOIN Cliente AS C ";
         sql += "ON R.cpf_cliente = C.CPF_cliente ";
         sql += "WHERE R.cd_reserva > 0 ";
-        if(filtro.getCd_reserva() > 0) {
-            sql += " AND cd_reserva = ? ";
+        if (filtro.getCd_reserva() > 0) {
+            sql += " AND R.cd_reserva = ? ";
         }
-        if(filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
-            sql += " AND nm_cliente LIKE ?";
+        if (filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
+            sql += " AND C.nm_cliente LIKE ?";
+        }
+        if (filtro.getCliente().getCpf_cliente() != null && filtro.getCliente().getCpf_cliente().trim().equals("") == false) {
+            sql += " AND C.cpf_cliente = ?";
         }
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
-            if(filtro.getCd_reserva() > 0) {
+            if (filtro.getCd_reserva() > 0) {
                 cmd.setInt(posPar, filtro.getCd_reserva());
                 posPar++;
             }
-            if(filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
+            if (filtro.getCliente().getNm_cliente() != null && filtro.getCliente().getNm_cliente().trim().equals("") == false) {
                 cmd.setString(posPar, filtro.getCliente().getNm_cliente());
+                posPar++;
+            }
+            if (filtro.getCliente().getCpf_cliente() != null && filtro.getCliente().getCpf_cliente().trim().equals("") == false) {
+                cmd.setString(posPar, filtro.getCliente().getCpf_cliente());
                 posPar++;
             }
             ResultSet leitor = cmd.executeQuery();
@@ -150,5 +157,3 @@ public class DadosReserva extends Dados implements InterfaceReserva {
     }
 
 }
-
-

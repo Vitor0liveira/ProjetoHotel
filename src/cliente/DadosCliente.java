@@ -53,7 +53,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
     }
 
     @Override
-    public void apagarCliente(Cliente c) throws Exception {
+    public void removerCliente(Cliente c) throws Exception {
         conectar();
         String Sql = "DELETE FROM Cliente WHERE CPF_cliente = ?; ";
         try {
@@ -94,8 +94,8 @@ public class DadosCliente extends Dados implements InterfaceCliente {
                 cmd.setString(posPar, filtro.getNm_cliente());
                 posPar++;
             }
-            //
             ResultSet leitor = cmd.executeQuery();
+            
             while (leitor.next()) {
                 Cliente c = new Cliente();
                 c.setCpf_cliente(leitor.getString("CPF_cliente"));
@@ -136,7 +136,6 @@ public class DadosCliente extends Dados implements InterfaceCliente {
             throw new Exception("Problemas ao pesquisar cliente: " + erro.getMessage());
         }
         desconectar();
-
         return cli;
     }
 
@@ -147,7 +146,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
         String sql = "SELECT C.CPF_cliente, C.nm_cliente, R.cd_reserva, R.data, R.Nr_quarto, R.periodo, R.situacao FROM Cliente AS C ";
         sql += "INNER JOIN reserva AS R ON C.CPF_cliente = R.CPF_cliente ";
         sql += "WHERE R.CPF_cliente = ? ";
-
+      
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setString(1, c.getCpf_cliente());
@@ -157,14 +156,15 @@ public class DadosCliente extends Dados implements InterfaceCliente {
                 r.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
                 r.getCliente().setNm_cliente(leitor.getString("nm_cliente"));
                 r.setCd_reserva(leitor.getInt("cd_reserva"));
-                r.setData(leitor.getString(leitor.getString("data")));
+                r.setData(leitor.getString("data"));
                 r.getQuarto().setNr_quarto(leitor.getInt("Nr_quarto"));
                 r.setPeriodo(leitor.getInt("periodo"));
                 r.setSituacao(leitor.getInt("situacao"));
+                
                 c.getCliente().add(c);
             }
         } catch (SQLException erro) {
-            throw new Exception("Problemas ao pesquisar cliente: " + erro.getMessage());
+            throw new Exception("Problemas ao detalhar cliente: " + erro.getMessage());
         }
         desconectar();
         return c;

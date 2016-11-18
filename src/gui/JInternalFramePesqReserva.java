@@ -387,7 +387,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
             rR.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
             rR.setPeriodo(Integer.parseInt(jTextFieldPeriodo.getText()));
             rR.setSituacao(Integer.parseInt(jTextFieldSituacao.getText()));
-            rR.getQuarto().setNr_quarto(jComboBoxNrQuarto.getItemCount());
+            rR.getQuarto().setNr_quarto(Integer.parseInt((String) jComboBoxNrQuarto.getSelectedItem()));
             rR.setData(jFormattedTextFieldData.getText());
 
             Fachada f = new Fachada();

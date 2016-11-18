@@ -154,7 +154,7 @@ public class DadosFo extends Dados implements InterfaceFo {
         conectar();
         String sql = "SELECT SER.Cd_Servico, SER.descricao, SER.valor FROM Fo AS FO ";
         sql += "INNER JOIN Servico AS SER ON FO.Cd_Ocupacao = SER.Cd_Ocupacao ";
-        sql += "WHERE FO.Cd_Ocupacao = ? ";
+        sql += "WHERE FO.Cd_Ocupacao = ?";
 
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
@@ -165,10 +165,11 @@ public class DadosFo extends Dados implements InterfaceFo {
                 s.setCd_servico(leitor.getInt("Cd_Servico"));
                 s.setDescricao(leitor.getString("descricao"));
                 s.setValor(leitor.getFloat("valor"));
+                
                 f.getServico().add(s);
             }
         } catch (SQLException erro) {
-            throw new Exception("Problemas ao pesquisar a ficha de ocupação: " + erro.getMessage());
+            throw new Exception("Problemas ao procurar serviços em Fo: " + erro.getMessage());
         }
         desconectar();
         return f;

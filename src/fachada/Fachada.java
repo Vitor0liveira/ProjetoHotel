@@ -32,9 +32,9 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo 
     }
 
     @Override
-    public void apagarCliente(Cliente c) throws Exception {
+    public void removerCliente(Cliente c) throws Exception {
         NegocioCliente nC = new NegocioCliente();
-        nC.apagarCliente(c);
+        nC.removerCliente(c);
     }
 
     @Override
@@ -45,7 +45,8 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo 
     
     @Override
     public Cliente detalhesCliente(Cliente c) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        NegocioCliente nC = new NegocioCliente();
+        return nC.detalhesCliente(c);
     }
 
     @Override

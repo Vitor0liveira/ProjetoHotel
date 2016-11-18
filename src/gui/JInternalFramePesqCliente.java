@@ -199,13 +199,9 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void setEnabledEditar() {
-        jTextFieldNomePesq.setEditable(true);
-        jFormattedTextFieldCpf.setEditable(false);
-        jFormattedTextFieldFonePesq.setEditable(true);
-        jTextFieldSexoPesq.setEditable(false);
-        jFormattedTextFieldFonePesq.setEnabled(true);
         jFormattedTextFieldCpf.setEnabled(false);
         jTextFieldNomePesq.setEnabled(true);
+        jFormattedTextFieldFonePesq.setEnabled(true);
         jTextFieldSexoPesq.setEnabled(false);
         jButtonPesquisar.setEnabled(false);
         jButtonAtualizar.setEnabled(true);
@@ -242,16 +238,25 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
     }
 
     public void setAtualizarCli() {
-        jButtonEditar.setEnabled(false);
-        jButtonPesquisar.setEnabled(false);
-        jButtonRemover.setEnabled(false);
-        jButtonAtualizar.setEnabled(false);
-        jTextFieldNomePesq.setEnabled(false);
-        jFormattedTextFieldFonePesq.setEnabled(false);
         jTextFieldNomePesq.setText("");
         jFormattedTextFieldCpf.setText("");
         jTextFieldSexoPesq.setText("");
         jFormattedTextFieldFonePesq.setText("");
+
+        jButtonEditar.setEnabled(true);
+        jButtonPesquisar.setEnabled(false);
+        jButtonNovaPesquisa.setEnabled(true);
+        jButtonAtualizar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+
+    }
+
+    private void setPesquisarCli() {
+
+        jButtonPesquisar.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        jButtonEditar.setEnabled(true);
+        jButtonRemover.setEnabled(false);
     }
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         try {
@@ -268,23 +273,17 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
                 jFormattedTextFieldCpf.requestFocus();
                 return;
             }
-
             jTextFieldNomePesq.setText(cli.getNm_cliente());
             jFormattedTextFieldFonePesq.setText(cli.getTelefone());
             jTextFieldSexoPesq.setText(cli.getSexo());
-            jButtonPesquisar.setEnabled(false);
-            jButtonAtualizar.setEnabled(false);
-            jButtonEditar.setEnabled(true);
-            jButtonRemover.setEnabled(false);
-
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
         }
-        setEnabledEditar();
+        setPesquisarCli();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-
+        setEnabledEditar();
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
@@ -293,7 +292,7 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
             cli.setCpf_cliente(jFormattedTextFieldCpf.getText());
 
             Fachada f = new Fachada();
-            f.apagarCliente(cli);
+            f.removerCliente(cli);
 
             JOptionPane.showMessageDialog(this, "Cliente removido com sucesso.");
         } catch (Exception erro) {
@@ -308,18 +307,19 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         try {
-            Cliente cli = new Cliente();
-            cli.setCpf_cliente(jFormattedTextFieldCpf.getText());
-            cli.setNm_cliente(jTextFieldNomePesq.getText());
-            cli.setTelefone(jFormattedTextFieldFonePesq.getText());
+            Cliente c = new Cliente();
+            c.setCpf_cliente(jFormattedTextFieldCpf.getText());
+            c.setNm_cliente(jTextFieldNomePesq.getText());
+            c.setTelefone(jFormattedTextFieldFonePesq.getText());
+            c.setSexo(jTextFieldSexoPesq.getText());
+
+            Fachada f = new Fachada();
+            f.atualizarCliente(c);
 
             JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!");
 
-            Fachada f = new Fachada();
-            f.atualizarCliente(cli);
-
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
+            JOptionPane.showMessageDialog(this, erro.getMessage());
         }
         setAtualizarCli();
     }//GEN-LAST:event_jButtonAtualizarActionPerformed

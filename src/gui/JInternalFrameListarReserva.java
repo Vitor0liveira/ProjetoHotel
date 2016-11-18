@@ -68,6 +68,7 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTableReserva.getTableHeader().setReorderingAllowed(false);
         jScrollPane7.setViewportView(jTableReserva);
 
         jLabel9.setText("Listagem:");

@@ -8,8 +8,6 @@ package gui;
 import fachada.Fachada;
 import fo.Fo;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -76,7 +74,7 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
 
             }
         ));
-        jTableOcupacao.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jTableOcupacao.getTableHeader().setReorderingAllowed(false);
         jTableOcupacao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableOcupacaoMouseClicked(evt);
@@ -106,6 +104,7 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTableOcupacaoDetalhe.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(jTableOcupacaoDetalhe);
 
         jLabel11.setText("Cód. Ocupação:");
@@ -203,19 +202,22 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
 
     private void jTableOcupacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableOcupacaoMouseClicked
         // TODO add your handling code here:
-        int row = jTableOcupacao.getSelectedRow();
-        if (row > -1) {
+        int row = jTableOcupacao.getSelectedRow(); //Pegar a linha selecionada da tabela
+        if (row > -1) { //Executa apenas se for maior que -1. -1: nenhuma selecionada, 0: 1ª linha...
             try {
                 Fo fO = new Fo();
+                //Colocar em código de ocupação o valor da linha selecionada e da coluna 0 (nesse caso, o código)
                 fO.setCd_ocupacao(Integer.parseInt((String) jTableOcupacao.getValueAt(row, 0)));
                 Fachada f = new Fachada();
                 modeloDetalhes.setRowCount(0);
                 fO = f.procurarServicos(fO);
+                //Ele vai executar um comando dentro do for com cada serviço de fO
                 for (Servico s : fO.getServico()) {
+                    //Vai adicionar uma linha com o serviço, descrição e valor
                     modeloDetalhes.addRow(new Object[]{s.getCd_servico(), s.getDescricao(), s.getValor()});
                 }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage());
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(this, erro.getMessage());
             }
         }
     }//GEN-LAST:event_jTableOcupacaoMouseClicked
