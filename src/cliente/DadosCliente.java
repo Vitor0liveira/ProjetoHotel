@@ -26,7 +26,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
             cmd.execute();
 
         } catch (SQLException erro) {
-            throw new Exception("Problemas ao executar a inserção: " + erro.getMessage());
+            throw new Exception("Problemas ao executar a inserção, CPF duplicado: " + erro.getMessage());
         }
 
         desconectar();

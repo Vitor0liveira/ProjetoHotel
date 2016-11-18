@@ -13,4 +13,6 @@ public interface InterfaceReserva {
     ArrayList<Reserva> listarReserva(Reserva filtro) throws Exception;
     // pesquisarReserva verifica se uma determinada reserva, está contida na tabela 'Reserva'.
     Reserva pesquisarReserva(int cd_reserva) throws Exception;
+    
+    Reserva procurarCliente (Reserva r) throws Exception;
 }

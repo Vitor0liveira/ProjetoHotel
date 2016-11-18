@@ -165,7 +165,7 @@ public class DadosFo extends Dados implements InterfaceFo {
                 s.setCd_servico(leitor.getInt("Cd_Servico"));
                 s.setDescricao(leitor.getString("descricao"));
                 s.setValor(leitor.getFloat("valor"));
-                
+
                 f.getServico().add(s);
             }
         } catch (SQLException erro) {

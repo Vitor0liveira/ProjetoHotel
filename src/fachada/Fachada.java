@@ -115,4 +115,10 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo 
         return nF.procurarServicos(f);
     }
 
+    @Override
+    public Reserva procurarCliente(Reserva r) throws Exception {
+        NegocioReserva nR = new NegocioReserva();
+         return nR.procurarCliente(r);
+    }
+
 }

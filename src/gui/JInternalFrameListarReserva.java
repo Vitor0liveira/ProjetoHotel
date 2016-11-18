@@ -5,6 +5,7 @@
  */
 package gui;
 
+import cliente.Cliente;
 import fachada.Fachada;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -23,13 +24,16 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
      */
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableModel modeloDetalhes = new DefaultTableModel();
-    
+
     public JInternalFrameListarReserva() {
         initComponents();
-            //Iniciando os nomes dos campos na table
-            modelo.setColumnIdentifiers(new String[]{"Cód. Reserva", "Cód. Ocupação", "CPF Cliente", "Nome", "Quarto", 
+        //Iniciando os nomes dos campos na table
+        modelo.setColumnIdentifiers(new String[]{"Cód. Reserva", "Cód. Ocupação", "CPF Cliente", "Nome", "Quarto",
             "Período", "Situação", "Data"});
-            jTableReserva.setModel(modelo);
+        jTableReserva.setModel(modelo);
+
+        modeloDetalhes.setColumnIdentifiers(new String[]{"CPF Cliente", "Nome", "Telefone", "Sexo"});
+        jTableReservaDetalhes.setModel(modeloDetalhes);
     }
 
     /**
@@ -45,11 +49,14 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         jTableReserva = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        jButtonListar2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jTextFieldNome2 = new javax.swing.JTextField();
         jTextFieldCdReserva = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableReservaDetalhes = new javax.swing.JTable();
+        jButtonListar2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -69,9 +76,29 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
             }
         ));
         jTableReserva.getTableHeader().setReorderingAllowed(false);
+        jTableReserva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableReservaMouseClicked(evt);
+            }
+        });
         jScrollPane7.setViewportView(jTableReserva);
 
         jLabel9.setText("Listagem:");
+
+        jLabel11.setText("Cód. Reserva:");
+
+        jLabel12.setText("Nome:");
+
+        jTableReservaDetalhes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jTableReservaDetalhes.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTableReservaDetalhes);
 
         jButtonListar2.setText("Listar");
         jButtonListar2.addActionListener(new java.awt.event.ActionListener() {
@@ -80,9 +107,7 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel11.setText("Cód. Reserva:");
-
-        jLabel12.setText("Nome:");
+        jLabel1.setText("Detalhes:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -91,8 +116,8 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonListar2))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -105,30 +130,32 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel9))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane7))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonListar2))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jTextFieldNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldCdReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)))
-                .addGap(30, 30, 30))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jTextFieldNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCdReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jButtonListar2)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,47 +166,70 @@ public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
-           try {
+        try {
             Fachada f = new Fachada();
             Reserva r = new Reserva();
-            if(jTextFieldCdReserva.getText().trim().equals("") == false){
+            if (jTextFieldCdReserva.getText().trim().equals("") == false) {
                 r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
             }
-            r.getCliente().setNm_cliente("%"+jTextFieldNome2.getText().trim()+"%");
+            r.getCliente().setNm_cliente("%" + jTextFieldNome2.getText().trim() + "%");
             ArrayList<Reserva> resp = f.listarReserva(r);
-            
+
             modelo.setRowCount(0);
-            
+
             if (resp.size() > 0) {
                 for (Reserva res : resp) {
-                    modelo.addRow(new String[]{res.getCd_reserva() + "", res.getCd_ocupacao() + "", res.getCliente().getCpf_cliente() + "", 
-                    res.getCliente().getNm_cliente() + "", res.getQuarto().getNr_quarto() + "", res.getPeriodo() + "", res.getSituacao() + "", res.getData()});
+                    modelo.addRow(new String[]{res.getCd_reserva() + "", res.getCd_ocupacao() + "", res.getCliente().getCpf_cliente() + "",
+                        res.getCliente().getNm_cliente() + "", res.getQuarto().getNr_quarto() + "", res.getPeriodo() + "", res.getSituacao() + "", res.getData()});
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Não existe resultados!");
             }
-            
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
     }//GEN-LAST:event_jButtonListarActionPerformed
 
+    private void jTableReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableReservaMouseClicked
+        // TODO add your handling code here:
+        int row = jTableReserva.getSelectedRow();
+        if (row > -1) {
+            try {
+                Reserva r = new Reserva();
+                r.setCd_reserva(Integer.parseInt((String) jTableReserva.getValueAt(row, 0)));
+                Fachada f = new Fachada();
+                modeloDetalhes.setRowCount(0);
+                r = f.procurarCliente(r);
+                modeloDetalhes.addRow(new Object[]{r.getCliente().getCpf_cliente(), r.getCliente().getNm_cliente(),
+                    r.getCliente().getTelefone(), r.getCliente().getSexo()});
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jTableReservaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonListar2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTable jTableReserva;
+    private javax.swing.JTable jTableReservaDetalhes;
     private javax.swing.JTextField jTextFieldCdReserva;
     private javax.swing.JTextField jTextFieldNome2;
     // End of variables declaration//GEN-END:variables

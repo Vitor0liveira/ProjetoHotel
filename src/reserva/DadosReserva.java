@@ -1,5 +1,6 @@
 package reserva;
 
+import cliente.Cliente;
 import conexao.Dados;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -152,7 +153,31 @@ public class DadosReserva extends Dados implements InterfaceReserva {
             throw new Exception("Problemas ao pesquisar a reserva: " + erro.getMessage());
         }
         desconectar();
+        return r;
+    }
 
+    @Override
+    public Reserva procurarCliente(Reserva r) throws Exception {
+        conectar();
+        String sql = "SELECT C.CPF_cliente, C.nm_cliente, C.telefone, C.sexo FROM Reserva AS R ";
+        sql += "INNER JOIN Cliente AS C ON C.CPF_cliente = R.CPF_cliente ";
+        sql += "WHERE R.cd_reserva = ? ";
+        try {
+            PreparedStatement cmd = conn.prepareStatement(sql);
+            cmd.setInt(1, r.getCd_reserva());
+            ResultSet leitor = cmd.executeQuery();
+            while (leitor.next()) {
+                r.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
+                r.getCliente().setNm_cliente(leitor.getString("nm_cliente"));
+                r.getCliente().setTelefone(leitor.getString("telefone"));
+                r.getCliente().setSexo(leitor.getString("sexo"));
+                
+            }
+
+        } catch (SQLException erro) {
+            throw new Exception("Problemas ao procurar cliente: " + erro.getMessage());
+        }
+        desconectar();
         return r;
     }
 

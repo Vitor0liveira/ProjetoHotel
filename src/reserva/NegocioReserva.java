@@ -58,4 +58,10 @@ public class NegocioReserva implements InterfaceReserva {
         return r;
     }
 
+    @Override
+    public Reserva procurarCliente(Reserva r) throws Exception {
+        DadosReserva dR = new DadosReserva();
+        return dR.procurarCliente(r);
+    }
+
 }
