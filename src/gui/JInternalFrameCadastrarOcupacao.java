@@ -223,7 +223,7 @@ public class JInternalFrameCadastrarOcupacao extends javax.swing.JInternalFrame 
         jFormattedTextFieldHoraEntrada.setText("");
         jFormattedTextFieldDataSaida.setText("");
         jFormattedTextFieldHoraSaida.setText("");
-        jComboBoxNrQuarto.setSelectedItem("1");
+        jComboBoxNrQuarto.setSelectedItem("Selecione");
         jFormattedTextFieldHoraSaida1.setText("");
         jTextFieldCdOcupacao.requestFocus();
     }
@@ -238,7 +238,7 @@ public class JInternalFrameCadastrarOcupacao extends javax.swing.JInternalFrame 
             fO.setHora_entrada(jFormattedTextFieldHoraEntrada.getText());
             fO.setData_saida(jFormattedTextFieldDataSaida.getText());
             fO.setHora_saida(jFormattedTextFieldHoraSaida.getText());
-            fO.getQuarto().setNr_quarto(jComboBoxNrQuarto.getSelectedIndex() + 1);
+            fO.getQuarto().setNr_quarto(jComboBoxNrQuarto.getSelectedIndex());
             fO.setValorDiaria(Float.parseFloat(jFormattedTextFieldHoraSaida1.getText().replace(".", "").replace(",", ".")));
 
             Fachada f = new Fachada();

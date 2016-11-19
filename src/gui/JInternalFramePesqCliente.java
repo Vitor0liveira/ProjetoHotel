@@ -62,7 +62,6 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Nome:");
 
-        jTextFieldNomePesq.setEditable(false);
         jTextFieldNomePesq.setEnabled(false);
 
         jLabel3.setText("Fone:");
@@ -91,7 +90,6 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        jFormattedTextFieldFonePesq.setEditable(false);
         try {
             jFormattedTextFieldFonePesq.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #.####-####")));
         } catch (java.text.ParseException ex) {
@@ -254,6 +252,8 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
         jButtonNovaPesquisa.setEnabled(true);
         jButtonAtualizar.setEnabled(false);
         jButtonRemover.setEnabled(false);
+        jTextFieldNomePesq.setEnabled(false);
+        jFormattedTextFieldFonePesq.setEnabled(false);
 
     }
 
@@ -281,14 +281,12 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
             }
             jTextFieldNomePesq.setText(cli.getNm_cliente());
             jFormattedTextFieldFonePesq.setText(cli.getTelefone());
-            if (jComboBoxSexo.getSelectedItem().equals("Masculino")) {
-                cli.setSexo("M");
-            } else if (jComboBoxSexo.getSelectedItem().equals("Feminino")) {
-                cli.setSexo("F");
+            if (cli.getSexo().equals("M")) {
+                jComboBoxSexo.setSelectedItem("Masculino");
             } else {
-                cli.setSexo("O");
+                jComboBoxSexo.setSelectedItem("Feminino");
             }
-            
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, "Erro: " + erro.getMessage());
         }

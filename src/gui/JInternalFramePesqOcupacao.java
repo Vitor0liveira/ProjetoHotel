@@ -169,7 +169,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         }
         jFormattedTextFieldHoraSaida.setEnabled(false);
 
-        jComboBoxNrQuarto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" }));
+        jComboBoxNrQuarto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" }));
         jComboBoxNrQuarto.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -302,11 +302,11 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraSaida.setText("");
         jFormattedTextFieldCpf.setText("");
         jTextFieldCdOcupacao.setText("");
-        jComboBoxNrQuarto.setSelectedItem("1");
+        jComboBoxNrQuarto.setSelectedItem("Selecione");
         jTextFieldCdOcupacao.requestFocus();
 
         jButtonPesquisar.setEnabled(true);
-        jButtonEditar.setEnabled(true);
+        jButtonEditar.setEnabled(false);
         jButtonRemover.setEnabled(false);
         jButtonAtualizar.setEnabled(false);
         jTextFieldCdOcupacao.setEnabled(true);
@@ -320,8 +320,9 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldDataSaida.setText("");
         jFormattedTextFieldHoraSaida.setText("");
         jFormattedTextFieldCpf.setText("");
-        jComboBoxNrQuarto.setSelectedItem("1");
+        jComboBoxNrQuarto.setSelectedItem("Selecione");
 
+        jComboBoxNrQuarto.setEnabled(false);
         jTextFieldCdOcupacao.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
         jFormattedTextFieldDataSaida.setEnabled(false);
@@ -338,8 +339,9 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraEntrada.setText("");
         jFormattedTextFieldDataSaida.setText("");
         jFormattedTextFieldHoraSaida.setText("");
-        jComboBoxNrQuarto.setSelectedItem("1");
+        jComboBoxNrQuarto.setSelectedItem("Selecione");
         jFormattedTextFieldCpf.setText("");
+        
 
         jTextFieldCdOcupacao.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
@@ -347,7 +349,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldDataSaida.setEnabled(false);
         jFormattedTextFieldHoraSaida.setEnabled(false);
         jComboBoxNrQuarto.setEnabled(true);
-
+        jComboBoxNrQuarto.setEnabled(false);
         jButtonPesquisar.setEnabled(false);
         jButtonAtualizar.setEnabled(false);
         jButtonRemover.setEnabled(false);
@@ -374,7 +376,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraEntrada.setText(fO.getHora_entrada());
         jFormattedTextFieldHoraSaida.setText(fO.getHora_saida());
         jFormattedTextFieldCpf.setText(fO.getCliente().getCpf_cliente());
-        jComboBoxNrQuarto.setSelectedIndex(fO.getQuarto().getNr_quarto() -1);
+        jComboBoxNrQuarto.setSelectedItem(fO.getQuarto().getNr_quarto() + "");
         
         setEnabledButtonsPesq();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed

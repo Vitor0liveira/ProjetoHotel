@@ -18,6 +18,8 @@ public class JFrameTelaMain extends javax.swing.JFrame {
      */
     public JFrameTelaMain() {
         initComponents();
+        
+        this.setExtendedState(JFrameTelaMain.MAXIMIZED_BOTH);
     }
 
     /**

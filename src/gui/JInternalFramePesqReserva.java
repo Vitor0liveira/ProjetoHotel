@@ -291,7 +291,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
         jFormattedTextFieldData.setText("");
         jComboBoxPeriodo.setSelectedItem("Selecione");
         jComboBoxSituacao.setSelectedItem("Selecione");
-        jComboBoxNrQuarto.setSelectedItem("Seleicone");
+        jComboBoxNrQuarto.setSelectedItem("Selecione");
         jTextFieldOcupacao.setText("");
         jTextFieldCdReserva.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
@@ -310,9 +310,16 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
         jComboBoxSituacao.setSelectedItem("Selecione");
         jFormattedTextFieldData.setText("");
         jFormattedTextFieldCpf.setText("");
+        jTextFieldCdReserva.requestFocus();
         jButtonPesquisar.setEnabled(true);
         jTextFieldCdReserva.setEnabled(true);
-        jTextFieldCdReserva.requestFocus();
+        jButtonEditar.setEnabled(false);
+        jButtonRemover.setEnabled(false);
+        jButtonAtualizar.setEnabled(false);
+        jFormattedTextFieldData.setEnabled(false);
+        jComboBoxPeriodo.setEnabled(false);
+        jComboBoxNrQuarto.setEnabled(false);
+        jComboBoxSituacao.setEnabled(false);
     }
 
     public void setAtualizarReserva() {
@@ -352,8 +359,8 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
 
             jComboBoxPeriodo.setSelectedItem(Integer.toString(r.getPeriodo()));
             jFormattedTextFieldData.setText(r.getData());
-            jComboBoxSituacao.setSelectedItem(Integer.toString(r.getSituacao()));
-            jComboBoxNrQuarto.setSelectedIndex(r.getQuarto().getNr_quarto() -1);
+            jComboBoxSituacao.setSelectedIndex(r.getSituacao() + 1);
+            jComboBoxNrQuarto.setSelectedItem(r.getQuarto().getNr_quarto() + "");
             jTextFieldOcupacao.setText(Integer.toString(r.getCd_ocupacao()));
             jFormattedTextFieldCpf.setText(r.getCliente().getCpf_cliente());
 
@@ -396,8 +403,8 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
             Reserva rR = new Reserva();
 
             rR.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
-            rR.setPeriodo(jComboBoxPeriodo.getSelectedIndex() + 1);
-            rR.setSituacao(jComboBoxSituacao.getSelectedIndex() +1);
+            rR.setPeriodo(jComboBoxPeriodo.getSelectedIndex());
+            rR.setSituacao(jComboBoxSituacao.getSelectedIndex()-1);
             rR.getQuarto().setNr_quarto(Integer.parseInt((String) jComboBoxNrQuarto.getSelectedItem()));
             rR.setData(jFormattedTextFieldData.getText());
 

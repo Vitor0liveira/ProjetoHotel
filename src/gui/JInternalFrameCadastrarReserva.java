@@ -206,11 +206,10 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
             r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
             r.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
             r.setData(jFormattedTextFieldData.getText());
-            r.setPeriodo(jComboBoxPeriodo.getSelectedIndex() + 1);
-            r.setSituacao(jComboBoxSituacao.getSelectedIndex() + 1);
-            //r.setSituacao(Integer.valueOf((String)jComboBoxSituacao.getSelectedItem())); 
+            r.setPeriodo(jComboBoxPeriodo.getSelectedIndex());
+            r.setSituacao(jComboBoxSituacao.getSelectedIndex() -1);
             r.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
-            r.getQuarto().setNr_quarto(jComboBoxNrQuarto.getSelectedIndex() + 1);
+            r.getQuarto().setNr_quarto(jComboBoxNrQuarto.getSelectedIndex());
             //Enviando o objeto
             Fachada f = new Fachada();
             f.fazerReserva(r);
