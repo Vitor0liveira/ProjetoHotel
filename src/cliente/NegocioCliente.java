@@ -17,7 +17,7 @@ public class NegocioCliente implements InterfaceCliente {
             throw new Exception("Por favor, preencha o campo nome.");
         }
         
-        if (c.getTelefone().trim().length() < 15) {
+        if (c.getTelefone().trim().length() < 16) {
             throw new Exception("Por favor, preencha o campo telefone.");
         }  
     } 
@@ -27,7 +27,7 @@ public class NegocioCliente implements InterfaceCliente {
             throw new Exception("Por favor, preencha o campo nome.");
         }
 
-        if (c.getTelefone().trim().length() < 15) {
+        if (c.getTelefone().trim().length() < 16) {
             throw new Exception("Por favor, preencha o campo telefone.");
         }          
     }
