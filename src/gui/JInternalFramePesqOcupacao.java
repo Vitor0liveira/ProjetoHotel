@@ -354,6 +354,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jButtonAtualizar.setEnabled(false);
         jButtonRemover.setEnabled(false);
         jButtonPesquisar.setEnabled(false);
+        jTextFieldCdOcupacao.setEnabled(false);
     }
 
 

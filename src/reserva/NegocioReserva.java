@@ -15,15 +15,66 @@ public class NegocioReserva implements InterfaceReserva {
             throw new Exception("Por Favor, informe um período válido.");
         }
 
-        if (r.getData().equals("")) {
+        if (r.getData().equals("  /  /   ")) {
             throw new Exception("Por Favor, informe a data.");
         }
 
         if (r.getCd_reserva() <= 0) {
             throw new Exception("Por Favor, informe um código de reserva válido.");
         }
+        
+        if (r.getCd_reserva() == r.getCd_reserva()) {
+            throw new Exception("Código de reserva já existente.");
+        }
+        
+        if (r.getCd_ocupacao() == r.getCd_ocupacao()) {
+            throw new Exception("Código de ocupação já existente.");
+        }
+        
+        if (r.getQuarto().getNr_quarto() == r.getQuarto().getNr_quarto()) {
+            throw new Exception("Informe um quarto válido.");
+        }
+        
+        if (r.getQuarto().getNr_quarto() <= 0) {
+            throw new Exception("Informe um quarto válido.");
+        }
     }
 
+    public void validarAtualizarReserva (Reserva r) throws Exception {
+        if (r.getData().equals("  /  /    ")) {
+            throw new Exception("Informe uma data válida.");
+        }
+        
+        if (r.getQuarto().getNr_quarto() <= 0) {
+            throw new Exception("Informe um quarto válido.");
+        }
+        
+        if (r.getQuarto().getNr_quarto() == r.getQuarto().getNr_quarto()) {
+            throw new Exception("Informe um quarto válido.");
+        }
+        
+        if (r.getSituacao() < 0) {
+            throw new Exception("Informe uma situação válida.");
+        }
+        
+        if (r.getPeriodo() < 0) {
+            throw new Exception("Informe um período válido.");
+        }
+    }
+    
+    public void validarRemoverReserva (Reserva r) throws Exception {
+        if (r.getCd_reserva() <= 0) {
+            throw new Exception("Reserva não encontrada.");
+        }
+    }
+
+    public void validarPesquisarReserva (int cd_reserva) throws Exception {
+        Reserva r = new Reserva();
+        if (r.getCd_reserva() <= 0) {
+            throw new Exception("Reserva não encontrada.");
+        }
+    }    
+    
     @Override
     public void fazerReserva(Reserva r) throws Exception {
         validarCamposBasicos(r);
@@ -33,14 +84,14 @@ public class NegocioReserva implements InterfaceReserva {
 
     @Override
     public void atualizarReserva(Reserva r) throws Exception {
-        //validarCamposBasicos(r);
-        //Precisa-se de outra validação de campo, pois o atualizar não precisa de CPF. 
+        validarAtualizarReserva(r);
         DadosReserva dR = new DadosReserva();
         dR.atualizarReserva(r);
     }
 
     @Override
     public void removerReserva(Reserva r) throws Exception {
+        validarRemoverReserva(r);
         DadosReserva dR = new DadosReserva();
         dR.removerReserva(r);
     }
@@ -53,6 +104,7 @@ public class NegocioReserva implements InterfaceReserva {
 
     @Override
     public Reserva pesquisarReserva(int cd_reserva) throws Exception {
+        validarPesquisarReserva(cd_reserva);
         DadosReserva dR = new DadosReserva();
         Reserva r = dR.pesquisarReserva(cd_reserva);
         return r;

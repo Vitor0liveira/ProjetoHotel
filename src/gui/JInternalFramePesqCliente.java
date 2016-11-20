@@ -254,6 +254,7 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
         jButtonRemover.setEnabled(false);
         jTextFieldNomePesq.setEnabled(false);
         jFormattedTextFieldFonePesq.setEnabled(false);
+        jButtonEditar.setEnabled(false);
 
     }
 
