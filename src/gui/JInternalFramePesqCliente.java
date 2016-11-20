@@ -274,6 +274,13 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
             }
             Fachada f = new Fachada();
             Cliente cli = f.pesquisarCliente(jFormattedTextFieldCpf.getText());
+            
+            if (cli.getNm_cliente() == null) {
+                JOptionPane.showMessageDialog(this, "Nenhum cliente encontrado!");
+                jFormattedTextFieldCpf.setText("");
+                jFormattedTextFieldCpf.requestFocus();
+                return;
+            }
 
             if (cli.getCpf_cliente() == null) {
                 jFormattedTextFieldCpf.setText("");

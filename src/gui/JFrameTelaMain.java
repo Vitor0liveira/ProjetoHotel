@@ -272,7 +272,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
 
     private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
         // TODO add your handling code here:
-        JInternalFrameCadastrarReserva cadRes = new JInternalFrameCadastrarReserva();
+        JInternalFrameCadastrarReserva cadRes = new JInternalFrameCadastrarReserva(this);
         jDesktopPaneAreaTrabalho.add(cadRes);
         cadRes.setVisible(true);
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
@@ -357,6 +357,10 @@ public class JFrameTelaMain extends javax.swing.JFrame {
                 new JFrameTelaMain().setVisible(true);
             }
         });
+    }
+    
+    public void cadastrarOcupacao() {
+        jMenuItem2ActionPerformed(new java.awt.event.ActionEvent(this, WIDTH, ""));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

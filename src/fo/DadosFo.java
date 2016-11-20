@@ -12,8 +12,8 @@ public class DadosFo extends Dados implements InterfaceFo {
     @Override
     public Fo pesquisarFo(Fo f) throws Exception {
         conectar();
-        String sql = "SELECT cd_ocupacao, data_entrada, hora_entrada, data_saida, ";
-        sql += "hora_saida, quarto, CPF_cliente FROM Fo ";
+        String sql = "SELECT cd_ocupacao, dataEntrada, hrEntrada, dtSaida, ";
+        sql += "hrSaida, nr_quarto, CPF_cliente FROM Fo ";
         sql += "WHERE cd_ocupacao = ? ";
 
         try {
@@ -21,12 +21,13 @@ public class DadosFo extends Dados implements InterfaceFo {
             cmd.setInt(1, f.getCd_ocupacao());
             ResultSet leitor = cmd.executeQuery();
             while (leitor.next()) {
+                System.out.println(leitor.getInt("cd_ocupacao"));
                 f.setCd_ocupacao(leitor.getInt("cd_ocupacao"));
-                f.setData_entrada(leitor.getString("data_entrada"));
-                f.setHora_entrada(leitor.getString("hora_entrada"));
-                f.setData_saida(leitor.getString("data_saida"));
-                f.setHora_saida(leitor.getString("hora_saida"));
-                f.getQuarto().setNr_quarto(leitor.getInt("quarto"));
+                f.setData_entrada(leitor.getString("dataEntrada"));
+                f.setHora_entrada(leitor.getString("hrEntrada"));
+                f.setData_saida(leitor.getString("dtSaida"));
+                f.setHora_saida(leitor.getString("hrSaida"));
+                f.getQuarto().setNr_quarto(leitor.getInt("nr_quarto"));
                 f.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
             }
         } catch (SQLException erro) {
@@ -40,8 +41,8 @@ public class DadosFo extends Dados implements InterfaceFo {
     public void cadastrarFo(Fo f) throws Exception {
         conectar();
 
-        String sql = "INSERT INTO Fo (cd_ocupacao, data_entrada, hora_entrada, data_saida, hora_saida, ";
-        sql += "valorDiaria, quarto, CPF_cliente) ";
+        String sql = "INSERT INTO Fo (cd_ocupacao, dataEntrada, hrEntrada, dtSaida, hrSaida, ";
+        sql += "valorDiaria, nr_quarto, CPF_cliente) ";
         sql += "VALUES (?,?,?,?,?,?,?,?) ";
 
         try {
@@ -80,8 +81,8 @@ public class DadosFo extends Dados implements InterfaceFo {
     public void atualizarFo(Fo f) throws Exception {
         conectar();
 
-        String sql = "UPDATE Fo SET data_entrada = ?, hora_entrada = ?, data_saida = ?, hora_saida = ?, ";
-        sql += "quarto = ? WHERE cd_ocupacao = ?";
+        String sql = "UPDATE Fo SET dataEntrada = ?, hrEntrada = ?, dtSaida = ?, hrSaida = ?, ";
+        sql += "nr_quarto = ? WHERE cd_ocupacao = ?";
 
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
@@ -105,8 +106,8 @@ public class DadosFo extends Dados implements InterfaceFo {
         ArrayList<Fo> retorno = new ArrayList<>();
         conectar();
 
-        String sql = "SELECT C.CPF_cliente, C.nm_cliente, F.cd_ocupacao, F.data_entrada, F.hora_entrada, ";
-        sql += "F.data_saida, F.hora_saida, F.valorDiaria, F.quarto ";
+        String sql = "SELECT C.CPF_cliente, C.nm_cliente, F.cd_ocupacao, F.dataEntrada, F.hrEntrada, ";
+        sql += "F.dtSaida, F.hrSaida, F.valorDiaria, F.nr_quarto ";
         sql += "FROM Cliente AS C INNER JOIN Fo AS F ";
         sql += "ON C.CPF_cliente = F.CPF_cliente ";
         sql += "WHERE cd_ocupacao > 0 ";
@@ -131,12 +132,12 @@ public class DadosFo extends Dados implements InterfaceFo {
             while (leitor.next()) {
                 Fo fO = new Fo();
                 fO.setCd_ocupacao(leitor.getInt("cd_ocupacao"));
-                fO.setData_entrada(leitor.getString("data_entrada"));
-                fO.setHora_entrada(leitor.getString("hora_entrada"));
-                fO.setData_saida(leitor.getString("data_saida"));
-                fO.setHora_saida(leitor.getString("hora_saida"));
+                fO.setData_entrada(leitor.getString("dataEntrada"));
+                fO.setHora_entrada(leitor.getString("hrEntrada"));
+                fO.setData_saida(leitor.getString("dtSaida"));
+                fO.setHora_saida(leitor.getString("hrSaida"));
                 fO.setValorDiaria(leitor.getFloat("valorDiaria"));
-                fO.getQuarto().setNr_quarto(leitor.getInt("quarto"));
+                fO.getQuarto().setNr_quarto(leitor.getInt("nr_quarto"));
                 fO.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
                 fO.getCliente().setNm_cliente(leitor.getString("nm_cliente"));
 

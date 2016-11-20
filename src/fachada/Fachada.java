@@ -6,6 +6,7 @@ import cliente.NegocioCliente;
 import fo.Fo;
 import fo.InterfaceFo;
 import fo.NegocioFo;
+import gui.JFrameTelaMain;
 import java.util.ArrayList;
 import reserva.InterfaceReserva;
 import reserva.NegocioReserva;

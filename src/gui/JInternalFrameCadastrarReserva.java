@@ -18,7 +18,10 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
     /**
      * Creates new form JInternalFrameCadastrarReserva
      */
-    public JInternalFrameCadastrarReserva() {
+    JFrameTelaMain main;
+
+    public JInternalFrameCadastrarReserva(JFrameTelaMain main) {
+        this.main = main;
         initComponents();
     }
 
@@ -207,7 +210,7 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
             r.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
             r.setData(jFormattedTextFieldData.getText());
             r.setPeriodo(jComboBoxPeriodo.getSelectedIndex());
-            r.setSituacao(jComboBoxSituacao.getSelectedIndex() -1);
+            r.setSituacao(jComboBoxSituacao.getSelectedIndex() - 1);
             r.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
             r.getQuarto().setNr_quarto(jComboBoxNrQuarto.getSelectedIndex());
             //Enviando o objeto
@@ -216,9 +219,17 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Reserva efetuada com sucesso.");
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro.getMessage());
+            if (erro.getMessage().equals("Ocupação não encontrada.")) {
+                int escolha = JOptionPane.showConfirmDialog(null, "Ocupação não encontrada. Deseja cadastrar?"); //Cria uma pergunta
+                //0 = Sim; 1 = Não; 2 = Cancelar
+                if (escolha == 0) { //Se for sim, mostra a tela de cadastro de ocupação, pois a reserva precisa de uma ocupação existente
+                    main.cadastrarOcupacao();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, erro.getMessage());
+            }
         }
-        setandoReservar();
+            setandoReservar();
     }//GEN-LAST:event_jButtonReservarActionPerformed
 
     private void jComboBoxPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPeriodoActionPerformed

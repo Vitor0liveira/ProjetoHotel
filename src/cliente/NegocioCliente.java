@@ -86,10 +86,9 @@ public class NegocioCliente implements InterfaceCliente {
 
     @Override
     public Cliente pesquisarCliente(String cpf) throws Exception {
-        validarPesquisarCliente(cpf);
+        System.out.println("a");
         DadosCliente dC = new DadosCliente();
-        Cliente c = dC.pesquisarCliente(cpf);
-        return c;
+        return dC.pesquisarCliente(cpf);
     }
 
     @Override

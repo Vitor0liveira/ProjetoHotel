@@ -51,9 +51,9 @@ public class NegocioFo implements InterfaceFo {
             throw new Exception("Por favor, informe um quarto válido.");
         }
         
-        if (f.getQuarto().getNr_quarto() == f.getQuarto().getNr_quarto()) {
+        /*if (f.getQuarto().getNr_quarto() == f.getQuarto().getNr_quarto()) {
             throw new Exception("Quarto já ocupado.");
-        }
+        }*/
         
         if (f.getData_entrada().equals("  /  /   ")) {
             throw new Exception("Por favor, informe data de entrada válida.");
