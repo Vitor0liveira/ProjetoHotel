@@ -19,7 +19,7 @@ public class DadosServicos extends Dados implements InterfaceServicos {
             Cmd.execute();
 
         } catch (SQLException E) {
-            throw new Exception("Erro: " + E.getMessage());
+            throw new Exception("Erro ao pesquisar serviço: " + E.getMessage());
         }
         desconectar();
 
