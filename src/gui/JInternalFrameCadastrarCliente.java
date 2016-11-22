@@ -7,6 +7,7 @@ package gui;
 
 import cliente.Cliente;
 import fachada.Fachada;
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
 /**
@@ -159,6 +160,18 @@ public class JInternalFrameCadastrarCliente extends javax.swing.JInternalFrame {
         jComboBoxSexo.setSelectedItem("Selecione");
         jTextFieldNome.requestFocus();
     }
+
+    public void setandoPrimaryKey() {
+        jFormattedTextFieldCpf.setText("");
+        jFormattedTextFieldCpf.requestFocus();
+    }
+
+    public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
+    }
+
+
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         try {
 
@@ -176,14 +189,15 @@ public class JInternalFrameCadastrarCliente extends javax.swing.JInternalFrame {
             }
 
             Fachada f = new Fachada();
+            setandoPrimaryKey();
             f.cadastrarCliente(c);
-
             JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso.");
+            setandoCadCliente();
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-        setandoCadCliente();
+
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jComboBoxSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSexoActionPerformed

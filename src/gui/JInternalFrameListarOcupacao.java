@@ -6,7 +6,8 @@
 package gui;
 
 import fachada.Fachada;
-import fo.Fo;
+import fichaOcupacao.FichaOcupacao;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -173,21 +174,24 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+     public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
+    }
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         try {
             Fachada f = new Fachada();
-            Fo FO = new Fo();
+            FichaOcupacao FO = new FichaOcupacao();
             if (jTextFieldCdOcupacao.getText().trim().equals("") == false) {
                 FO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
             }
             FO.getCliente().setNm_cliente("%" + jTextFieldNome3.getText().trim() + "%");
-            ArrayList<Fo> resp = f.listarFo(FO);
+            ArrayList<FichaOcupacao> resp = f.listarFo(FO);
 
             modelo.setRowCount(0);
 
             if (resp.size() > 0) {
-                for (Fo fO : resp) {
+                for (FichaOcupacao fO : resp) {
                     modelo.addRow(new String[]{fO.getCd_ocupacao() + "", fO.getData_entrada() + "", fO.getHora_entrada() + "", fO.getData_saida() + "",
                         fO.getHora_saida() + "", fO.getValorDiaria() + "", fO.getQuarto().getNr_quarto() + "", fO.getCliente().getCpf_cliente() + "", fO.getCliente().getNm_cliente()});
                 }
@@ -205,7 +209,7 @@ public class JInternalFrameListarOcupacao extends javax.swing.JInternalFrame {
         int row = jTableOcupacao.getSelectedRow(); //Pegar a linha selecionada da tabela
         if (row > -1) { //Executa apenas se for maior que -1. -1: nenhuma selecionada, 0: 1ª linha...
             try {
-                Fo fO = new Fo();
+                FichaOcupacao fO = new FichaOcupacao();
                 //Colocar em código de ocupação o valor da linha selecionada e da coluna 0 (nesse caso, o código)
                 fO.setCd_ocupacao(Integer.parseInt((String) jTableOcupacao.getValueAt(row, 0)));
                 Fachada f = new Fachada();

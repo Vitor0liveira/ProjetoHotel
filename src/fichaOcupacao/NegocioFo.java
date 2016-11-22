@@ -1,10 +1,10 @@
-package fo;
+package fichaOcupacao;
 
 import java.util.ArrayList;
 
 public class NegocioFo implements InterfaceFo {
 
-    public void validarcamposBasicos(Fo f) throws Exception {
+    public void validarcamposBasicos(FichaOcupacao f) throws Exception {
         if (f.getCd_ocupacao() < 0) {
             throw new Exception("Por favor, informe um código de ocupação válido.");
         }
@@ -46,7 +46,7 @@ public class NegocioFo implements InterfaceFo {
         }         
     }
     
-    public void validarAtualizarOcupacao (Fo f) throws Exception {
+    public void validarAtualizarOcupacao (FichaOcupacao f) throws Exception {
         if (f.getQuarto().getNr_quarto() <= 0) {
             throw new Exception("Por favor, informe um quarto válido.");
         }
@@ -72,53 +72,53 @@ public class NegocioFo implements InterfaceFo {
         }        
     }
     
-    public void validarRemoverOcupacao (Fo f) throws Exception {
+    public void validarRemoverOcupacao (FichaOcupacao f) throws Exception {
         if (f.getCd_ocupacao() <= 0) {
             throw new Exception("Código de ocupação não encontrado.");
         }
     }
 
-    public void validarPesquisarOcupcao (Fo f) throws Exception {
+    public void validarPesquisarOcupcao (FichaOcupacao f) throws Exception {
         if (f.getCd_ocupacao() <= 0) {
             throw new Exception("Código de ocupação não encontrado.");
         }        
     }
     
     @Override
-    public Fo pesquisarFo(Fo f) throws Exception {
+    public FichaOcupacao pesquisarFo(FichaOcupacao f) throws Exception {
         DadosFo dF = new DadosFo();
         return dF.pesquisarFo(f);
 
     }
 
     @Override
-    public void cadastrarFo(Fo f) throws Exception {
+    public void cadastrarFo(FichaOcupacao f) throws Exception {
         DadosFo dF = new DadosFo();
         dF.cadastrarFo(f);
     }
 
     @Override
-    public void removerFo(Fo f) throws Exception {
+    public void removerFo(FichaOcupacao f) throws Exception {
         validarRemoverOcupacao(f);
         DadosFo dF = new DadosFo();
         dF.removerFo(f);
     }
 
     @Override
-    public void atualizarFo(Fo f) throws Exception {
+    public void atualizarFo(FichaOcupacao f) throws Exception {
         validarAtualizarOcupacao(f);
         DadosFo dF = new DadosFo();
         dF.atualizarFo(f);
     }
 
     @Override
-    public ArrayList<Fo> listarFo(Fo filtro) throws Exception {
+    public ArrayList<FichaOcupacao> listarFo(FichaOcupacao filtro) throws Exception {
         DadosFo dF = new DadosFo();
         return dF.listarFo(filtro);
     }
 
     @Override
-    public Fo procurarServicos(Fo f) throws Exception {
+    public FichaOcupacao procurarServicos(FichaOcupacao f) throws Exception {
         DadosFo dF = new DadosFo();
         return dF.procurarServicos(f);
     }

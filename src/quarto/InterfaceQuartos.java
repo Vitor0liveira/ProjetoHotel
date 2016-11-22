@@ -1,8 +1,9 @@
 package quarto;
 
+import java.util.ArrayList;
+
 public interface InterfaceQuartos {
 
-    // Método de Pesquisar os Quartos.
-    public void pesquisarQuartos(Quarto q) throws Exception;
-
+    // Método de listar Quartos
+    ArrayList<Quarto> listarQuartos(Quarto filtro) throws Exception; 
 }

@@ -1,7 +1,7 @@
 package reserva;
 
 import fachada.Fachada;
-import fo.Fo;
+import fichaOcupacao.FichaOcupacao;
 import java.util.ArrayList;
 
 public class NegocioReserva implements InterfaceReserva {
@@ -35,7 +35,7 @@ public class NegocioReserva implements InterfaceReserva {
         }
         
         Fachada f = new Fachada();
-        Fo fO = new Fo(); //Cria fO
+        FichaOcupacao fO = new FichaOcupacao(); //Cria fO
         fO.setCd_ocupacao(r.getCd_ocupacao()); //Coloca o código para o código
         fO = f.pesquisarFo(fO); //Retorna o fO pesquisado
         if (fO.getCliente().getCpf_cliente() == null) { //Se não existir o cliente, executa o escopo abaixo

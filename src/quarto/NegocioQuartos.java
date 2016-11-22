@@ -1,5 +1,7 @@
 package quarto;
 
+import java.util.ArrayList;
+
 public class NegocioQuartos implements InterfaceQuartos {
 
     public void validarCamposBasicos(Quarto q) throws Exception {
@@ -32,13 +34,10 @@ public class NegocioQuartos implements InterfaceQuartos {
         }
 
     }
-
     @Override
-    public void pesquisarQuartos(Quarto q) throws Exception {
-        validarCamposBasicos(q);
-
+    public ArrayList<Quarto> listarQuartos(Quarto filtro) throws Exception {
         DadosQuartos dQ = new DadosQuartos();
-        dQ.pesquisarQuartos(q);
+        return dQ.listarQuartos(filtro);
     }
 
 }

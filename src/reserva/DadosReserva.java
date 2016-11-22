@@ -1,8 +1,6 @@
 package reserva;
 
-import cliente.Cliente;
 import conexao.Dados;
-import gui.JFrameTelaMain;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -79,7 +77,11 @@ public class DadosReserva extends Dados implements InterfaceReserva {
         sql += "R.Nr_quarto, R.Cd_Ocupacao, C.CPF_cliente, C.nm_cliente ";
         sql += "FROM reserva AS R INNER JOIN Cliente AS C ";
         sql += "ON R.cpf_cliente = C.CPF_cliente ";
+        sql += "INNER JOIN Quarto AS Q ";
+        sql += "ON Q.nr_quarto = R.nr_quarto ";
         sql += "WHERE R.cd_reserva > 0 ";
+        
+        
         if (filtro.getCd_reserva() > 0) {
             sql += " AND R.cd_reserva = ? ";
         }
@@ -120,7 +122,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
             }
 
         } catch (SQLException erro) {
-            throw new Exception("Erro: " + erro.getMessage());
+            throw new Exception("Erro ao listar reserva: " + erro.getMessage());
         }
 
         desconectar();

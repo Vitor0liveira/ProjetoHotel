@@ -1,11 +1,11 @@
-package fo;
+package fichaOcupacao;
 
 import cliente.Cliente;
 import java.util.ArrayList;
 import quarto.Quarto;
 import servicos.Servico;
 
-public class Fo {
+public class FichaOcupacao {
 
     private int cd_ocupacao;
     private String data_entrada;
@@ -18,7 +18,7 @@ public class Fo {
     private ArrayList<Servico> servico;
 
     // Foi necessário adicionar esse Construtor para poder ter uma ligação da "FO" com o "Cliente", "Quarto" e "Seriço".
-    public  Fo() {
+    public  FichaOcupacao() {
         this.cliente = new Cliente();
         this.quarto = new Quarto();
         this.servico = new ArrayList<>();

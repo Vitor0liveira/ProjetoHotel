@@ -6,6 +6,7 @@
 package gui;
 
 import fachada.Fachada;
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import reserva.Reserva;
@@ -340,6 +341,11 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
         jButtonRemover.setEnabled(false);
         jButtonPesquisar.setEnabled(false);
     }
+
+    public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
+    }
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         try {
             if (jTextFieldCdReserva.getText().equals("")) {
@@ -404,7 +410,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
 
             rR.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
             rR.setPeriodo(jComboBoxPeriodo.getSelectedIndex());
-            rR.setSituacao(jComboBoxSituacao.getSelectedIndex()-1);
+            rR.setSituacao(jComboBoxSituacao.getSelectedIndex() - 1);
             rR.getQuarto().setNr_quarto(Integer.parseInt((String) jComboBoxNrQuarto.getSelectedItem()));
             rR.setData(jFormattedTextFieldData.getText());
 

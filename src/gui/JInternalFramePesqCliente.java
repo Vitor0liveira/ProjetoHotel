@@ -7,6 +7,7 @@ package gui;
 
 import cliente.Cliente;
 import fachada.Fachada;
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
 /**
@@ -264,6 +265,10 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
         jButtonAtualizar.setEnabled(false);
         jButtonEditar.setEnabled(true);
         jButtonRemover.setEnabled(false);
+    }
+     public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
     }
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
         try {

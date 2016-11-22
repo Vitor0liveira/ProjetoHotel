@@ -1,6 +1,5 @@
 package reserva;
 
-import gui.JFrameTelaMain;
 import java.util.ArrayList;
 
 public interface InterfaceReserva {

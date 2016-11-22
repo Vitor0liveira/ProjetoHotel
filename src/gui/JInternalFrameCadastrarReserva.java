@@ -5,8 +5,15 @@
  */
 package gui;
 
+import cliente.Cliente;
 import fachada.Fachada;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import quarto.Quarto;
 import reserva.Reserva;
 
 /**
@@ -19,10 +26,19 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
      * Creates new form JInternalFrameCadastrarReserva
      */
     JFrameTelaMain main;
+    ArrayList<Quarto> quartos = new ArrayList<>();
+    DefaultComboBoxModel modeloQ = new DefaultComboBoxModel();
+
+    ArrayList<Cliente> clientes = new ArrayList<>();
+    DefaultComboBoxModel modelo = new DefaultComboBoxModel();
 
     public JInternalFrameCadastrarReserva(JFrameTelaMain main) {
         this.main = main;
         initComponents();
+        carregarClientes();
+        carregarQuartos();
+
+        //carregarQuartos();
     }
 
     /**
@@ -41,7 +57,6 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jFormattedTextFieldData = new javax.swing.JFormattedTextField();
-        jFormattedTextFieldCliCpf = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jComboBoxSituacao = new javax.swing.JComboBox<>();
@@ -50,6 +65,7 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
         jComboBoxPeriodo = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jTextFieldCdOcupacao = new javax.swing.JTextField();
+        jComboBoxCpfCli = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -79,12 +95,6 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
-        try {
-            jFormattedTextFieldCliCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         jLabel7.setText("Periodo:");
 
         jLabel3.setText("Situação:");
@@ -92,8 +102,6 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
         jComboBoxSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "0 - Em aberto", "1 - Confirmada", "2 - Cancelada" }));
 
         jLabel4.setText("Nº do Quarto:");
-
-        jComboBoxNrQuarto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" }));
 
         jComboBoxPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jComboBoxPeriodo.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +120,22 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jComboBoxNrQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldCdReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,30 +144,17 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldCdOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextFieldCliCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxSituacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxNrQuarto, 0, 141, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel7))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel5)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 173, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxCpfCli, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonReservar)
@@ -158,14 +169,19 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
                     .addComponent(jTextFieldCdReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(jTextFieldCdOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldCliCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBoxNrQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jComboBoxPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxCpfCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jComboBoxNrQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,15 +211,31 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
         jTextFieldCdReserva.setText("");
         jTextFieldCdOcupacao.setText("");
         jFormattedTextFieldData.setText("");
-        jFormattedTextFieldCliCpf.setText("");
+        jComboBoxCpfCli.setSelectedIndex(0);
         jComboBoxNrQuarto.setSelectedItem("Selecione");
         jComboBoxPeriodo.setSelectedItem("Selecione");
         jComboBoxSituacao.setSelectedItem("Selecione");
         jTextFieldCdReserva.requestFocus();
     }
+
+    public void setandoPrimaryKey() {
+        jTextFieldCdReserva.setText("");
+        jTextFieldCdReserva.requestFocus();
+    }
+
+    public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
+    }
     private void jButtonReservarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReservarActionPerformed
         // TODO add your handling code here:
         try {
+            if (jComboBoxNrQuarto.getSelectedIndex() < 0) {
+                JOptionPane.showMessageDialog(this, "Selecione um quarto.");
+                jComboBoxNrQuarto.requestFocus();
+                return;
+            }
+
             Reserva r = new Reserva();
             //Alimentando o objeto
             r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
@@ -211,12 +243,15 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
             r.setData(jFormattedTextFieldData.getText());
             r.setPeriodo(jComboBoxPeriodo.getSelectedIndex());
             r.setSituacao(jComboBoxSituacao.getSelectedIndex() - 1);
-            r.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
-            r.getQuarto().setNr_quarto(jComboBoxNrQuarto.getSelectedIndex());
+            r.setCliente(clientes.get(jComboBoxCpfCli.getSelectedIndex()));
+            Quarto q = quartos.get(jComboBoxNrQuarto.getSelectedIndex());
+            r.setQuarto(q);
             //Enviando o objeto
             Fachada f = new Fachada();
+            setandoPrimaryKey();
             f.fazerReserva(r);
             JOptionPane.showMessageDialog(this, "Reserva efetuada com sucesso.");
+            setandoReservar();
 
         } catch (Exception erro) {
             if (erro.getMessage().equals("Ocupação não encontrada.")) {
@@ -229,7 +264,6 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, erro.getMessage());
             }
         }
-            setandoReservar();
     }//GEN-LAST:event_jButtonReservarActionPerformed
 
     private void jComboBoxPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPeriodoActionPerformed
@@ -239,10 +273,10 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonReservar;
+    private javax.swing.JComboBox<String> jComboBoxCpfCli;
     private javax.swing.JComboBox<String> jComboBoxNrQuarto;
     private javax.swing.JComboBox<String> jComboBoxPeriodo;
     private javax.swing.JComboBox<String> jComboBoxSituacao;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCliCpf;
     private javax.swing.JFormattedTextField jFormattedTextFieldData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -255,4 +289,32 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldCdOcupacao;
     private javax.swing.JTextField jTextFieldCdReserva;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarClientes() {
+        Fachada f = new Fachada();
+        try {
+            clientes = f.listarCliente(new Cliente());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(main, erro.getMessage());
+        }
+        for (Cliente c : clientes) {
+            modelo.addElement(c.getCpf_cliente() + ": " + c.getNm_cliente());
+        }
+        jComboBoxCpfCli.setModel(modelo);
+    }
+
+    public void carregarQuartos() {
+        Fachada f = new Fachada();
+        try {
+            quartos = f.listarQuartos(new Quarto());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(main, erro.getMessage());
+        }
+        for (Quarto q : quartos) {
+            modeloQ.addElement(q.getNr_quarto() + ": " + q.getDs_quarto());
+        }
+        System.out.println(quartos);
+        jComboBoxNrQuarto.setModel(modeloQ);
+
+    }
 }

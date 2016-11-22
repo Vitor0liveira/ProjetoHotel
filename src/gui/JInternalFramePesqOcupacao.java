@@ -6,9 +6,8 @@
 package gui;
 
 import fachada.Fachada;
-import fo.Fo;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import fichaOcupacao.FichaOcupacao;
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -341,7 +340,6 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraSaida.setText("");
         jComboBoxNrQuarto.setSelectedItem("Selecione");
         jFormattedTextFieldCpf.setText("");
-        
 
         jTextFieldCdOcupacao.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
@@ -357,10 +355,14 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jTextFieldCdOcupacao.setEnabled(false);
     }
 
+    public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
+    }
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
 
-        Fo fO = new Fo();
+        FichaOcupacao fO = new FichaOcupacao();
         fO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
 
         try {
@@ -378,7 +380,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraSaida.setText(fO.getHora_saida());
         jFormattedTextFieldCpf.setText(fO.getCliente().getCpf_cliente());
         jComboBoxNrQuarto.setSelectedItem(fO.getQuarto().getNr_quarto() + "");
-        
+
         setEnabledButtonsPesq();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
@@ -388,7 +390,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         try {
-            Fo fO = new Fo();
+            FichaOcupacao fO = new FichaOcupacao();
 
             fO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
 
@@ -412,7 +414,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
 
     private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         try {
-            Fo fO = new Fo();
+            FichaOcupacao fO = new FichaOcupacao();
 
             fO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
             fO.setData_entrada(jFormattedTextFieldData.getText());

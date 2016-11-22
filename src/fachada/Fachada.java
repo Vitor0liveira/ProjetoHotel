@@ -3,16 +3,18 @@ package fachada;
 import cliente.Cliente;
 import cliente.InterfaceCliente;
 import cliente.NegocioCliente;
-import fo.Fo;
-import fo.InterfaceFo;
-import fo.NegocioFo;
-import gui.JFrameTelaMain;
+import fichaOcupacao.FichaOcupacao;
+import fichaOcupacao.InterfaceFo;
+import fichaOcupacao.NegocioFo;
 import java.util.ArrayList;
+import quarto.InterfaceQuartos;
+import quarto.NegocioQuartos;
+import quarto.Quarto;
 import reserva.InterfaceReserva;
 import reserva.NegocioReserva;
 import reserva.Reserva;
 
-public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo {
+public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo, InterfaceQuartos {
 
     @Override
     public void cadastrarCliente(Cliente c) throws Exception {
@@ -81,37 +83,37 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo 
     }
 
     @Override
-    public Fo pesquisarFo(Fo f) throws Exception {
+    public FichaOcupacao pesquisarFo(FichaOcupacao f) throws Exception {
         NegocioFo nF = new NegocioFo();
         return nF.pesquisarFo(f);
     }
 
     @Override
-    public void cadastrarFo(Fo f) throws Exception {
+    public void cadastrarFo(FichaOcupacao f) throws Exception {
         NegocioFo nF = new NegocioFo();
         nF.cadastrarFo(f);
     }
 
     @Override
-    public void removerFo(Fo f) throws Exception {
+    public void removerFo(FichaOcupacao f) throws Exception {
         NegocioFo nF = new NegocioFo();
         nF.removerFo(f);
     }
 
     @Override
-    public void atualizarFo(Fo f) throws Exception {
+    public void atualizarFo(FichaOcupacao f) throws Exception {
         NegocioFo nF = new NegocioFo();
         nF.atualizarFo(f);
     }
 
     @Override
-    public ArrayList<Fo> listarFo(Fo filtro) throws Exception {
+    public ArrayList<FichaOcupacao> listarFo(FichaOcupacao filtro) throws Exception {
         NegocioFo nF = new NegocioFo();
         return nF.listarFo(filtro);
     }
 
     @Override
-    public Fo procurarServicos(Fo f) throws Exception {
+    public FichaOcupacao procurarServicos(FichaOcupacao f) throws Exception {
         NegocioFo nF = new NegocioFo();
         return nF.procurarServicos(f);
     }
@@ -120,6 +122,12 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo 
     public Reserva procurarCliente(Reserva r) throws Exception {
         NegocioReserva nR = new NegocioReserva();
          return nR.procurarCliente(r);
+    }
+
+    @Override
+    public ArrayList<Quarto> listarQuartos(Quarto filtro) throws Exception {
+        NegocioQuartos nQ = new NegocioQuartos();
+        return nQ.listarQuartos(filtro);
     }
 
 }

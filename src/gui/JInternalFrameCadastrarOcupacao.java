@@ -6,7 +6,8 @@
 package gui;
 
 import fachada.Fachada;
-import fo.Fo;
+import fichaOcupacao.FichaOcupacao;
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
 /**
@@ -120,7 +121,7 @@ public class JInternalFrameCadastrarOcupacao extends javax.swing.JInternalFrame 
         jLabel8.setText("Valor Diária:");
 
         try {
-            jFormattedTextFieldHoraSaida1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#.###,##")));
+            jFormattedTextFieldHoraSaida1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###,##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -214,7 +215,11 @@ public class JInternalFrameCadastrarOcupacao extends javax.swing.JInternalFrame 
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void setandoPrimaryKey(){
+        jTextFieldCdOcupacao.setText("");
+        jTextFieldCdOcupacao.requestFocus();
+    }
     public void setandoCampoCadastrarFo() {
         //Setando os campos
         jTextFieldCdOcupacao.setText("");
@@ -227,10 +232,14 @@ public class JInternalFrameCadastrarOcupacao extends javax.swing.JInternalFrame 
         jFormattedTextFieldHoraSaida1.setText("");
         jTextFieldCdOcupacao.requestFocus();
     }
+     public void setPosicao() {
+        Dimension d = this.getDesktopPane().getSize();
+        this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
+    }
     private void jButtonOcuparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOcuparActionPerformed
         // TODO add your handling code here:
         try {
-            Fo fO = new Fo();
+            FichaOcupacao fO = new FichaOcupacao();
 
             fO.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
             fO.getCliente().setCpf_cliente(jFormattedTextFieldCliCpf.getText());
@@ -239,16 +248,16 @@ public class JInternalFrameCadastrarOcupacao extends javax.swing.JInternalFrame 
             fO.setData_saida(jFormattedTextFieldDataSaida.getText());
             fO.setHora_saida(jFormattedTextFieldHoraSaida.getText());
             fO.getQuarto().setNr_quarto(jComboBoxNrQuarto.getSelectedIndex());
-            fO.setValorDiaria(Float.parseFloat(jFormattedTextFieldHoraSaida1.getText().replace(".", "").replace(",", ".")));
+            fO.setValorDiaria(Float.parseFloat(jFormattedTextFieldHoraSaida1.getText().replace(",", ".")));
 
             Fachada f = new Fachada();
+            setandoPrimaryKey();
             f.cadastrarFo(fO);
             JOptionPane.showMessageDialog(this, "Ficha de ocupação efetuada com sucesso.");
-
+            setandoCampoCadastrarFo();
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(this, erro.getMessage());
         }
-        setandoCampoCadastrarFo();
     }//GEN-LAST:event_jButtonOcuparActionPerformed
 
     private void jComboBoxNrQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNrQuartoActionPerformed

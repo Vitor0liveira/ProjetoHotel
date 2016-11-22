@@ -108,6 +108,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/folder.png"))); // NOI18N
         jMenu5.setText("Arquivo");
 
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
         jMenuItem3.setText("Sair");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +122,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/group.png"))); // NOI18N
         jMenu1.setText("Clientes");
 
+        jRadioButtonMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         jRadioButtonMenuItem3.setSelected(true);
         jRadioButtonMenuItem3.setText("Cadastrar");
         jRadioButtonMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +132,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         });
         jMenu1.add(jRadioButtonMenuItem3);
 
+        jRadioButtonMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
         jRadioButtonMenuItem4.setSelected(true);
         jRadioButtonMenuItem4.setText("Pesquisar");
         jRadioButtonMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +142,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         });
         jMenu1.add(jRadioButtonMenuItem4);
 
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         jMenuItem4.setText("Listar");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +156,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/door.png"))); // NOI18N
         jMenu2.setText("Reservas");
 
+        jRadioButtonMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("Cadastrar");
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +166,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         });
         jMenu2.add(jRadioButtonMenuItem1);
 
+        jRadioButtonMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         jRadioButtonMenuItem2.setSelected(true);
         jRadioButtonMenuItem2.setText("Pesquisar");
         jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +176,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         });
         jMenu2.add(jRadioButtonMenuItem2);
 
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
         jMenuItem6.setText("Listar");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,6 +190,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/door_in.png"))); // NOI18N
         jMenu4.setText("Ocupações");
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         jMenuItem2.setText("Cadastrar");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +199,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem2);
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
         jMenuItem1.setText("Pesquisar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,6 +208,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem1);
 
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
         jMenuItem5.setText("Listar");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,6 +227,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
             }
         });
 
+        jRadioButtonMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
         jRadioButtonMenuItem5.setSelected(true);
         jRadioButtonMenuItem5.setText("Versão");
         jRadioButtonMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -261,6 +272,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
        JInternalFrameCadastrarCliente cadCli = new JInternalFrameCadastrarCliente();
        jDesktopPaneAreaTrabalho.add(cadCli);
        cadCli.setVisible(true);
+       cadCli.setPosicao();
     }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
 
     private void jRadioButtonMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem4ActionPerformed
@@ -268,6 +280,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         JInternalFramePesqCliente pesqCli = new JInternalFramePesqCliente();
         jDesktopPaneAreaTrabalho.add(pesqCli);
         pesqCli.setVisible(true);
+        pesqCli.setPosicao();
     }//GEN-LAST:event_jRadioButtonMenuItem4ActionPerformed
 
     private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
@@ -275,6 +288,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         JInternalFrameCadastrarReserva cadRes = new JInternalFrameCadastrarReserva(this);
         jDesktopPaneAreaTrabalho.add(cadRes);
         cadRes.setVisible(true);
+        cadRes.setPosicao();
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
 
     private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
@@ -282,6 +296,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         JInternalFramePesqReserva pesRes = new JInternalFramePesqReserva();
         jDesktopPaneAreaTrabalho.add(pesRes);
         pesRes.setVisible(true);
+        pesRes.setPosicao();
     }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -289,6 +304,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         JInternalFrameCadastrarOcupacao cadOcu = new JInternalFrameCadastrarOcupacao();
         jDesktopPaneAreaTrabalho.add(cadOcu);
         cadOcu.setVisible(true);
+        cadOcu.setPosicao();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -296,6 +312,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         JInternalFramePesqOcupacao pesOcu = new JInternalFramePesqOcupacao();
         jDesktopPaneAreaTrabalho.add(pesOcu);
         pesOcu.setVisible(true);
+        pesOcu.setPosicao();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -303,6 +320,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         JInternalFrameListarCliente lisCli = new JInternalFrameListarCliente();
         jDesktopPaneAreaTrabalho.add(lisCli);
         lisCli.setVisible(true);
+        lisCli.setPosicao();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -310,6 +328,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         JInternalFrameListarOcupacao lisOcu = new JInternalFrameListarOcupacao();
         jDesktopPaneAreaTrabalho.add(lisOcu);
         lisOcu.setVisible(true);
+        lisOcu.setPosicao();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -317,6 +336,7 @@ public class JFrameTelaMain extends javax.swing.JFrame {
         JInternalFrameListarReserva lisRes = new JInternalFrameListarReserva();
         jDesktopPaneAreaTrabalho.add(lisRes);
         lisRes.setVisible(true);
+        lisRes.setPosicao();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed

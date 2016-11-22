@@ -1,4 +1,4 @@
-package fo;
+package fichaOcupacao;
 
 import conexao.Dados;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import servicos.Servico;
 public class DadosFo extends Dados implements InterfaceFo {
 
     @Override
-    public Fo pesquisarFo(Fo f) throws Exception {
+    public FichaOcupacao pesquisarFo(FichaOcupacao f) throws Exception {
         conectar();
         String sql = "SELECT cd_ocupacao, dataEntrada, hrEntrada, dtSaida, ";
         sql += "hrSaida, nr_quarto, CPF_cliente FROM Fo ";
@@ -38,7 +38,7 @@ public class DadosFo extends Dados implements InterfaceFo {
     }
 
     @Override
-    public void cadastrarFo(Fo f) throws Exception {
+    public void cadastrarFo(FichaOcupacao f) throws Exception {
         conectar();
 
         String sql = "INSERT INTO Fo (cd_ocupacao, dataEntrada, hrEntrada, dtSaida, hrSaida, ";
@@ -64,7 +64,7 @@ public class DadosFo extends Dados implements InterfaceFo {
     }
 
     @Override
-    public void removerFo(Fo f) throws Exception {
+    public void removerFo(FichaOcupacao f) throws Exception {
         conectar();
         String sql = "DELETE FROM Fo WHERE cd_ocupacao = ? ";
 
@@ -78,7 +78,7 @@ public class DadosFo extends Dados implements InterfaceFo {
     }
 
     @Override
-    public void atualizarFo(Fo f) throws Exception {
+    public void atualizarFo(FichaOcupacao f) throws Exception {
         conectar();
 
         String sql = "UPDATE Fo SET dataEntrada = ?, hrEntrada = ?, dtSaida = ?, hrSaida = ?, ";
@@ -101,9 +101,9 @@ public class DadosFo extends Dados implements InterfaceFo {
     }
 
     @Override
-    public ArrayList<Fo> listarFo(Fo filtro) throws Exception {
+    public ArrayList<FichaOcupacao> listarFo(FichaOcupacao filtro) throws Exception {
         int posPar = 1;
-        ArrayList<Fo> retorno = new ArrayList<>();
+        ArrayList<FichaOcupacao> retorno = new ArrayList<>();
         conectar();
 
         String sql = "SELECT C.CPF_cliente, C.nm_cliente, F.cd_ocupacao, F.dataEntrada, F.hrEntrada, ";
@@ -130,7 +130,7 @@ public class DadosFo extends Dados implements InterfaceFo {
             ResultSet leitor = cmd.executeQuery();
 
             while (leitor.next()) {
-                Fo fO = new Fo();
+                FichaOcupacao fO = new FichaOcupacao();
                 fO.setCd_ocupacao(leitor.getInt("cd_ocupacao"));
                 fO.setData_entrada(leitor.getString("dataEntrada"));
                 fO.setHora_entrada(leitor.getString("hrEntrada"));
@@ -144,14 +144,14 @@ public class DadosFo extends Dados implements InterfaceFo {
                 retorno.add(fO);
             }
         } catch (SQLException erro) {
-            throw new Exception("Erro ao listar: " + erro.getMessage());
+            throw new Exception("Erro ao listar ficha de ocupação: " + erro.getMessage());
         }
         desconectar();
         return retorno;
     }
 
     @Override
-    public Fo procurarServicos(Fo f) throws Exception {
+    public FichaOcupacao procurarServicos(FichaOcupacao f) throws Exception {
         conectar();
         String sql = "SELECT SER.Cd_Servico, SER.descricao, SER.valor FROM Fo AS FO ";
         sql += "INNER JOIN Servico AS SER ON FO.Cd_Ocupacao = SER.Cd_Ocupacao ";
