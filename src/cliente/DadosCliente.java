@@ -159,8 +159,8 @@ public class DadosCliente extends Dados implements InterfaceCliente {
                 r.setData(leitor.getString("data"));
                 r.getQuarto().setNr_quarto(leitor.getInt("Nr_quarto"));
                 r.setPeriodo(leitor.getInt("periodo"));
-                r.setSituacao(leitor.getInt("situacao"));
-                
+                r.getSituacao().setCd_situacao(leitor.getInt("cd_situacao"));
+                r.getSituacao().setDs_situacao(leitor.getString("ds_situacao"));
                 c.getCliente().add(c);
             }
         } catch (SQLException erro) {

@@ -4,13 +4,14 @@ import cliente.Cliente;
 import java.util.ArrayList;
 import quarto.Quarto;
 import servicos.Servico;
+import situacao.Situacao;
 
 public class Reserva {
 
     private int cd_reserva;
     private String data;
     private int periodo;
-    private int situacao;
+    private Situacao situacao;
     private Cliente cliente;
     private Quarto quarto;
     private ArrayList<Servico> servico;
@@ -69,12 +70,12 @@ public class Reserva {
         periodo = prd;
     }
 
-    public int getSituacao() {
+    public Situacao getSituacao() {
         return this.situacao;
     }
 
-    public void setSituacao(int stcao) {
-        situacao = stcao;
+    public void setSituacao(Situacao s) {
+        situacao = s;
     }
 
     public Quarto getQuarto() {

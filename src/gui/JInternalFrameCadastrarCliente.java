@@ -62,12 +62,22 @@ public class JInternalFrameCadastrarCliente extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextFieldCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldCpfActionPerformed(evt);
+            }
+        });
 
         try {
             jFormattedTextFieldTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #.####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextFieldTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldTelefoneActionPerformed(evt);
+            }
+        });
 
         jButtonCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tick.png"))); // NOI18N
         jButtonCadastrar.setText("Cadastrar");
@@ -174,7 +184,21 @@ public class JInternalFrameCadastrarCliente extends javax.swing.JInternalFrame {
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
         try {
-
+            
+            if (jTextFieldNome.getText().trim().equals("   .   .   -  ")) {
+                JOptionPane.showMessageDialog(this, "Informe o nome do cliente.");
+                jTextFieldNome.requestFocus();
+                return;
+            }
+            if (jFormattedTextFieldTelefone.equals("(  )  .    -    ")) {
+                JOptionPane.showMessageDialog(this, "Informe o número do telefone.");
+                jFormattedTextFieldTelefone.requestFocus();
+                return;
+            }
+            if (jComboBoxSexo.getSelectedIndex() < 0) {
+                JOptionPane.showMessageDialog(this, "Informe o sexo.");
+            }
+            
             Cliente c = new Cliente();
 
             c.setNm_cliente(jTextFieldNome.getText());
@@ -195,7 +219,7 @@ public class JInternalFrameCadastrarCliente extends javax.swing.JInternalFrame {
             setandoCadCliente();
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, erro.getMessage());
+            JOptionPane.showMessageDialog(this, ""+erro.getMessage());
         }
 
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
@@ -203,6 +227,14 @@ public class JInternalFrameCadastrarCliente extends javax.swing.JInternalFrame {
     private void jComboBoxSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSexoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxSexoActionPerformed
+
+    private void jFormattedTextFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldTelefoneActionPerformed
+
+    private void jFormattedTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldCpfActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

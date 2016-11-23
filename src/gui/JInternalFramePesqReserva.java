@@ -365,7 +365,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
 
             jComboBoxPeriodo.setSelectedItem(Integer.toString(r.getPeriodo()));
             jFormattedTextFieldData.setText(r.getData());
-            jComboBoxSituacao.setSelectedIndex(r.getSituacao() + 1);
+            jComboBoxSituacao.setSelectedIndex(r.getSituacao().getCd_situacao() + 1);
             jComboBoxNrQuarto.setSelectedItem(r.getQuarto().getNr_quarto() + "");
             jTextFieldOcupacao.setText(Integer.toString(r.getCd_ocupacao()));
             jFormattedTextFieldCpf.setText(r.getCliente().getCpf_cliente());
@@ -410,7 +410,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
 
             rR.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
             rR.setPeriodo(jComboBoxPeriodo.getSelectedIndex());
-            rR.setSituacao(jComboBoxSituacao.getSelectedIndex() - 1);
+            rR.getSituacao().setCd_situacao(jComboBoxSituacao.getSelectedIndex() - 1);
             rR.getQuarto().setNr_quarto(Integer.parseInt((String) jComboBoxNrQuarto.getSelectedItem()));
             rR.setData(jFormattedTextFieldData.getText());
 

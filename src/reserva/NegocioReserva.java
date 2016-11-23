@@ -78,6 +78,10 @@ public class NegocioReserva implements InterfaceReserva {
     @Override
     public void fazerReserva(Reserva r) throws Exception {
         validarCamposBasicos(r);
+        Reserva r2 = this.pesquisarReserva(r.getCd_reserva());
+        if (r2.getCd_reserva() > 0) {
+            throw new Exception("Número da reserva existente.");
+        }
         DadosReserva dR = new DadosReserva();
         dR.fazerReserva(r);
     }
