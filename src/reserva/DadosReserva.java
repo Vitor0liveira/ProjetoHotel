@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 public class DadosReserva extends Dados implements InterfaceReserva {
 
-    String sqlGenerico = "";
+    /*String sqlGenerico = "";
 
     public DadosReserva() {
         sqlGenerico += "SELECT data, periodo, Nr_quarto, cpf_cliente, Cd_Ocupacao, Reserva.cd_situacao, Situacao.ds_situacao ";
         sqlGenerico += "FROM Reserva, Situacao WHERE Situacao.cd_situacao = Reserva.cd_situacao ";
-    }
+    }*/
 
     @Override
     public void fazerReserva(Reserva r) throws Exception {
@@ -33,8 +33,8 @@ public class DadosReserva extends Dados implements InterfaceReserva {
             cmd.setInt(6, r.getQuarto().getNr_quarto());
             cmd.setInt(7, r.getCd_ocupacao());
             cmd.execute();
-        } catch (SQLException e) {
-            throw new Exception("Erro ao executar inserção: " + e.getMessage());
+        } catch (SQLException erro) {
+            throw new Exception("Erro ao executar inserção: " + erro.getMessage());
         }
         desconectar();
 
@@ -139,9 +139,10 @@ public class DadosReserva extends Dados implements InterfaceReserva {
     public Reserva pesquisarReserva(int cd_reserva) throws Exception {
         conectar();
         Reserva r = new Reserva();
-
-        String sql = sqlGenerico;
-        sql += " AND cd_reserva = ?";
+        
+        String sql;
+        sql = "SELECT data, periodo, situacao, Nr_quarto, cpf_cliente, Cd_Ocupacao ";
+        sql += "FROM Reserva WHERE cd_reserva = ?";
 
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
@@ -151,7 +152,6 @@ public class DadosReserva extends Dados implements InterfaceReserva {
                 r.setCd_reserva(cd_reserva);
                 r.setData(leitor.getString("data"));
                 r.setPeriodo(leitor.getInt("periodo"));
-
                 r.getQuarto().setNr_quarto(leitor.getInt("Nr_quarto"));
                 r.setCd_ocupacao(leitor.getInt("Cd_Ocupacao"));
                 r.getCliente().setCpf_cliente(leitor.getString("cpf_cliente"));

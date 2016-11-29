@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -219,7 +219,7 @@ public class JInternalFrameCadastrarCliente extends javax.swing.JInternalFrame {
             setandoCadCliente();
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(this, ""+erro.getMessage());
+            JOptionPane.showMessageDialog(this, "" + erro.getMessage());
         }
 
     }//GEN-LAST:event_jButtonCadastrarActionPerformed

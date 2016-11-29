@@ -106,7 +106,7 @@ public class DadosCliente extends Dados implements InterfaceCliente {
             }
         } catch (SQLException erro) {
             //caso haja algum erro neste mÃ©todo serÃ¡ levantada esta execeÃ§Ã£o
-            throw new Exception("Erro: " + erro.getMessage());
+            throw new Exception("Erro ao listar cliente: " + erro.getMessage());
         }
         //fechando a conexÃ£o com o banco de dados
         desconectar();

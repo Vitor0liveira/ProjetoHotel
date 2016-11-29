@@ -5,11 +5,15 @@
  */
 package gui;
 
+import cliente.Cliente;
 import fachada.Fachada;
 import fichaOcupacao.FichaOcupacao;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import quarto.Quarto;
 
 /**
  *
@@ -20,10 +24,20 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
     /**
      * Creates new form JInternalFramePesqReserva
      */
+    JFrameTelaMain main;
+
+    ArrayList<Cliente> clientes = new ArrayList<>();
+    DefaultComboBoxModel modeloC = new DefaultComboBoxModel();
+
+    ArrayList<Quarto> quartos = new ArrayList<>();
+    DefaultComboBoxModel modeloQ = new DefaultComboBoxModel();
+
     DefaultTableModel modelo = new DefaultTableModel();
 
     public JInternalFramePesqOcupacao() {
         initComponents();
+        carregarClientes();
+        carregarQuartos();
 
     }
 
@@ -40,7 +54,6 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jButtonPesquisar = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonRemover = new javax.swing.JButton();
-        jFormattedTextFieldCpf = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         jButtonNovaPesquisa = new javax.swing.JButton();
         jButtonAtualizar = new javax.swing.JButton();
@@ -55,6 +68,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldDataSaida = new javax.swing.JFormattedTextField();
         jFormattedTextFieldHoraEntrada = new javax.swing.JFormattedTextField();
         jFormattedTextFieldHoraSaida = new javax.swing.JFormattedTextField();
+        jComboBoxCpfCli = new javax.swing.JComboBox<>();
         jComboBoxNrQuarto = new javax.swing.JComboBox<>();
 
         setClosable(true);
@@ -85,18 +99,6 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRemoverActionPerformed(evt);
-            }
-        });
-
-        try {
-            jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldCpf.setEnabled(false);
-        jFormattedTextFieldCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldCpfActionPerformed(evt);
             }
         });
 
@@ -168,7 +170,8 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         }
         jFormattedTextFieldHoraSaida.setEnabled(false);
 
-        jComboBoxNrQuarto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50" }));
+        jComboBoxCpfCli.setEnabled(false);
+
         jComboBoxNrQuarto.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -182,46 +185,49 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
                         .addComponent(jButtonAtualizar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonRemover))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxNrQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel11))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel7))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldCdOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonPesquisar)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonNovaPesquisa)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextFieldHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(43, 43, 43)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldCdOcupacao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(46, 46, 46)
+                            .addComponent(jButtonPesquisar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonNovaPesquisa))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(37, 37, 37)
+                            .addComponent(jLabel5)
+                            .addGap(18, 18, 18)
+                            .addComponent(jComboBoxCpfCli, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jFormattedTextFieldHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jFormattedTextFieldDataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jLabel10)
+                                        .addGap(18, 18, 18)))
+                                .addComponent(jLabel1))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jFormattedTextFieldDataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel9))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jLabel11)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jFormattedTextFieldHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jFormattedTextFieldHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(65, 65, 65))
+                                .addComponent(jComboBoxNrQuarto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,38 +241,40 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxCpfCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jFormattedTextFieldDataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11)
+                    .addComponent(jFormattedTextFieldHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jFormattedTextFieldDataSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
+                    .addComponent(jLabel1)
+                    .addComponent(jFormattedTextFieldHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(jFormattedTextFieldHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxNrQuarto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAtualizar)
                     .addComponent(jButtonEditar)
                     .addComponent(jButtonRemover))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -276,7 +284,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jButtonRemover.setEnabled(true);
         jButtonAtualizar.setEnabled(true);
         jButtonEditar.setEnabled(false);
-        jFormattedTextFieldCpf.setEnabled(false);
+        jComboBoxCpfCli.setEnabled(false);
         jFormattedTextFieldData.setEnabled(true);
         jFormattedTextFieldHoraEntrada.setEnabled(true);
         jFormattedTextFieldDataSaida.setEnabled(true);
@@ -292,6 +300,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jButtonRemover.setEnabled(false);
         jTextFieldCdOcupacao.setEnabled(true);
         jComboBoxNrQuarto.setEnabled(false);
+        jComboBoxCpfCli.setEnabled(false);
     }
 
     public void setNewPesquisaFo() {
@@ -299,9 +308,9 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraEntrada.setText("");
         jFormattedTextFieldDataSaida.setText("");
         jFormattedTextFieldHoraSaida.setText("");
-        jFormattedTextFieldCpf.setText("");
+        jComboBoxCpfCli.setSelectedIndex(0);
         jTextFieldCdOcupacao.setText("");
-        jComboBoxNrQuarto.setSelectedItem("Selecione");
+        jComboBoxNrQuarto.setSelectedIndex(0);
         jTextFieldCdOcupacao.requestFocus();
 
         jButtonPesquisar.setEnabled(true);
@@ -318,8 +327,8 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraEntrada.setText("");
         jFormattedTextFieldDataSaida.setText("");
         jFormattedTextFieldHoraSaida.setText("");
-        jFormattedTextFieldCpf.setText("");
-        jComboBoxNrQuarto.setSelectedItem("Selecione");
+        jComboBoxCpfCli.setSelectedIndex(0);
+        jComboBoxNrQuarto.setSelectedIndex(0);
 
         jComboBoxNrQuarto.setEnabled(false);
         jTextFieldCdOcupacao.setEnabled(false);
@@ -338,8 +347,8 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldHoraEntrada.setText("");
         jFormattedTextFieldDataSaida.setText("");
         jFormattedTextFieldHoraSaida.setText("");
-        jComboBoxNrQuarto.setSelectedItem("Selecione");
-        jFormattedTextFieldCpf.setText("");
+        jComboBoxNrQuarto.setSelectedIndex(0);
+        jComboBoxCpfCli.setSelectedIndex(0);
 
         jTextFieldCdOcupacao.setEnabled(false);
         jFormattedTextFieldData.setEnabled(false);
@@ -360,6 +369,11 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
     }
 
+    public void setandoPrimaryKey() {
+        jTextFieldCdOcupacao.setText("");
+        jTextFieldCdOcupacao.requestFocus();
+    }
+
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
 
         FichaOcupacao fO = new FichaOcupacao();
@@ -368,6 +382,7 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         try {
 
             Fachada f = new Fachada();
+            setandoPrimaryKey();
             fO = f.pesquisarFo(fO);
 
         } catch (Exception erro) {
@@ -378,8 +393,10 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         jFormattedTextFieldDataSaida.setText(fO.getData_saida());
         jFormattedTextFieldHoraEntrada.setText(fO.getHora_entrada());
         jFormattedTextFieldHoraSaida.setText(fO.getHora_saida());
-        jFormattedTextFieldCpf.setText(fO.getCliente().getCpf_cliente());
-        jComboBoxNrQuarto.setSelectedItem(fO.getQuarto().getNr_quarto() + "");
+        Cliente c = clientes.get(jComboBoxCpfCli.getSelectedIndex());
+        fO.setCliente(c);
+        Quarto q = quartos.get(jComboBoxNrQuarto.getSelectedIndex());
+        fO.setQuarto(q);
 
         setEnabledButtonsPesq();
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
@@ -403,10 +420,6 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
         }
         setRemoverFo();
     }//GEN-LAST:event_jButtonRemoverActionPerformed
-
-    private void jFormattedTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldCpfActionPerformed
 
     private void jButtonNovaPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaPesquisaActionPerformed
         setNewPesquisaFo();
@@ -449,8 +462,8 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonNovaPesquisa;
     private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonRemover;
+    private javax.swing.JComboBox<String> jComboBoxCpfCli;
     private javax.swing.JComboBox<String> jComboBoxNrQuarto;
-    private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
     private javax.swing.JFormattedTextField jFormattedTextFieldData;
     private javax.swing.JFormattedTextField jFormattedTextFieldDataSaida;
     private javax.swing.JFormattedTextField jFormattedTextFieldHoraEntrada;
@@ -465,4 +478,31 @@ public class JInternalFramePesqOcupacao extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldCdOcupacao;
     // End of variables declaration//GEN-END:variables
+
+    private void carregarClientes() {
+        Fachada f = new Fachada();
+        try {
+            clientes = f.listarCliente(new Cliente());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(main, erro.getMessage());
+        }
+        for (Cliente c : clientes) {
+            modeloC.addElement(c.getCpf_cliente() + ": " + c.getNm_cliente());
+        }
+        jComboBoxCpfCli.setModel(modeloC);
+    }
+
+    public void carregarQuartos() {
+        Fachada f = new Fachada();
+        try {
+            quartos = f.listarQuartos(new Quarto());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(main, erro.getMessage());
+        }
+        for (Quarto q : quartos) {
+            modeloQ.addElement(q.getNr_quarto() + ": " + q.getDs_quarto() + ": " + q.getTipo() + ": R$ " + q.getPreco());
+        }
+        jComboBoxNrQuarto.setModel(modeloQ);
+
+    }
 }

@@ -316,6 +316,7 @@ public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
             cli.setCpf_cliente(jFormattedTextFieldCpf.getText());
 
             Fachada f = new Fachada();
+            //JOptionPane.showConfirmDialog(null, f, "Deseja mesmo remover? ", WIDTH);
             f.removerCliente(cli);
 
             JOptionPane.showMessageDialog(this, "Cliente removido com sucesso.");
