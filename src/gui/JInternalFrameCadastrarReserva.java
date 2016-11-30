@@ -208,11 +208,6 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
         jTextFieldCdReserva.requestFocus();
     }
 
-    public void setandoPrimaryKey() {
-        jTextFieldCdReserva.setText("");
-        jTextFieldCdReserva.requestFocus();
-    }
-
     public void setPosicao() {
         Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
@@ -253,16 +248,16 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
             r.setQuarto(q);
             //Enviando o objeto
             Fachada f = new Fachada();
-            setandoPrimaryKey();
+            
             f.fazerReserva(r);
             JOptionPane.showMessageDialog(this, "Reserva efetuada com sucesso.");
             setandoReservar();
 
         } catch (Exception erro) {
-
+            System.out.println(erro.getClass().getSimpleName());
             if (erro.getMessage().equals("Ocupação não encontrada.")) {
-                int escolha = JOptionPane.showConfirmDialog(null, "Ocupação não encontrada. Deseja cadastrar?"); //Cria uma pergunta
-                //0 = Sim; 1 = Não; 2 = Cancelar
+                int escolha = JOptionPane.showConfirmDialog(null, "Ocupação não encontrada. Deseja cadastrar?", "Alerta Geral Não é Cardinot", JOptionPane.YES_NO_OPTION); //Cria uma pergunta
+                //0 = Sim; 1 = Não;
                 if (escolha == 0) { //Se for sim, mostra a tela de cadastro de ocupação, pois a reserva precisa de uma ocupação existente
                     main.cadastrarOcupacao();
                 }

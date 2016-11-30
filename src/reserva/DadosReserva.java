@@ -20,8 +20,11 @@ public class DadosReserva extends Dados implements InterfaceReserva {
         try {
             conectar();
 
-            String sql = "INSERT INTO Reserva (cd_reserva, data, periodo, situacao, CPF_cliente, Nr_quarto, Cd_ocupacao)";
+            String sql = "INSERT INTO Reserva (cd_reserva, data, periodo, cd_situacao, CPF_cliente, Nr_quarto, Cd_ocupacao)";
             sql += "VALUES (?,?,?,?,?,?,?)";
+            
+            System.out.printf("cd_reserva: %s\n data: %s\nperiodo: %s\ncd_situacao: %s\nCPF_cliente: %s\nNr_quarto: %s\nCd_ocupacao: %s",
+                    r.getCd_reserva(), r.getData(), r.getPeriodo(), r.getSituacao().getCd_situacao(), r.getCliente().getCpf_cliente(), r.getQuarto().getNr_quarto(), r.getCd_ocupacao());
 
             //Executando a instrução SQL
             PreparedStatement cmd = conn.prepareStatement(sql);
@@ -44,7 +47,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
     public void atualizarReserva(Reserva r) throws Exception {
         conectar();
 
-        String sql = "UPDATE Reserva SET data = ?, periodo = ?, situacao = ?, nr_quarto = ?  where cd_reserva = ? ";
+        String sql = "UPDATE Reserva SET data = ?, periodo = ?, cd_situacao = ?, nr_quarto = ?  where cd_reserva = ? ";
         try {
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setString(1, r.getData());
@@ -80,7 +83,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
         ArrayList<Reserva> retorno = new ArrayList<>();
         conectar();
 // precisa de um join com situação
-        String sql = "SELECT R.cd_reserva, R.data, R.periodo, R.Nr_quarto, R.Cd_Ocupacao ";
+        String sql = "SELECT R.cd_reserva, R.data, R.periodo, R.Nr_quarto, R.Cd_Ocupacao, ";
         sql += "C.CPF_cliente,  C.nm_cliente, S.cd_situacao, S.ds_situacao ";
         sql += "FROM Reserva AS R INNER JOIN Cliente C ON C.CPF_cliente = R.CPF_cliente ";
         sql += "INNER JOIN Quarto AS Q ON Q.nr_quarto = R.nr_quarto ";
@@ -141,7 +144,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
         Reserva r = new Reserva();
         
         String sql;
-        sql = "SELECT data, periodo, situacao, Nr_quarto, cpf_cliente, Cd_Ocupacao ";
+        sql = "SELECT data, periodo, cd_situacao, Nr_quarto, cpf_cliente, Cd_Ocupacao ";
         sql += "FROM Reserva WHERE cd_reserva = ?";
 
         try {
@@ -157,7 +160,6 @@ public class DadosReserva extends Dados implements InterfaceReserva {
                 r.getCliente().setCpf_cliente(leitor.getString("cpf_cliente"));
                 r.getSituacao().setCd_situacao(leitor.getInt("cd_situacao"));
             }
-            r.getSituacao().setDs_situacao(leitor.getString("ds_situacao"));
         } catch (Exception erro) {
             throw new Exception("Problemas ao pesquisar a reserva: " + erro.getMessage());
         }

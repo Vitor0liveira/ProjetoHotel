@@ -20,6 +20,7 @@ public class Reserva {
     public Reserva() {
         this.cliente = new Cliente();
         this.quarto = new Quarto();
+        this.situacao = new Situacao();
         this.servico = new ArrayList<Servico>();
     }
 
