@@ -22,9 +22,6 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
             String sql = "INSERT INTO Reserva (cd_reserva, data, periodo, cd_situacao, CPF_cliente, Nr_quarto, Cd_ocupacao)";
             sql += "VALUES (?,?,?,?,?,?,?)";
-            
-            System.out.printf("cd_reserva: %s\n data: %s\nperiodo: %s\ncd_situacao: %s\nCPF_cliente: %s\nNr_quarto: %s\nCd_ocupacao: %s",
-                    r.getCd_reserva(), r.getData(), r.getPeriodo(), r.getSituacao().getCd_situacao(), r.getCliente().getCpf_cliente(), r.getQuarto().getNr_quarto(), r.getCd_ocupacao());
 
             //Executando a instrução SQL
             PreparedStatement cmd = conn.prepareStatement(sql);
