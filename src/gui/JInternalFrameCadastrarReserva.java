@@ -9,10 +9,13 @@ import cliente.Cliente;
 import fachada.Fachada;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import quarto.Quarto;
 import reserva.Reserva;
+import situacao.Situacao;
 
 /**
  *
@@ -29,14 +32,16 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
 
     ArrayList<Cliente> clientes = new ArrayList<>();
     DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-
+    
+    ArrayList<Situacao> situacoes = new ArrayList<>();
+    DefaultComboBoxModel modeloS = new DefaultComboBoxModel();
+    
     public JInternalFrameCadastrarReserva(JFrameTelaMain main) {
         this.main = main;
         initComponents();
         carregarClientes();
         carregarQuartos();
-
-        //carregarQuartos();
+        carregarSituacao();
     }
 
     /**
@@ -239,34 +244,53 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
             Reserva r = new Reserva();
             //Alimentando o objeto
             r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
-            r.setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
+            r.getOcupacao().setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
             r.setData(jFormattedTextFieldData.getText());
             r.setPeriodo(jComboBoxPeriodo.getSelectedIndex());
             r.getSituacao().setCd_situacao(jComboBoxSituacao.getSelectedIndex() - 1);
             r.setCliente(clientes.get(jComboBoxCpfCli.getSelectedIndex()));
             Quarto q = quartos.get(jComboBoxNrQuarto.getSelectedIndex());
             r.setQuarto(q);
+            r.setSituacao(situacoes.get(jComboBoxSituacao.getSelectedIndex()));
             //Enviando o objeto
             Fachada f = new Fachada();
-            
+
             f.fazerReserva(r);
             JOptionPane.showMessageDialog(this, "Reserva efetuada com sucesso.");
             setandoReservar();
 
         } catch (Exception erro) {
-            System.out.println(erro.getClass().getSimpleName());
             if (erro.getMessage().equals("Ocupação não encontrada.")) {
-                int escolha = JOptionPane.showConfirmDialog(null, "Ocupação não encontrada. Deseja cadastrar?", "Alerta Geral Não é Cardinot", JOptionPane.YES_NO_OPTION); //Cria uma pergunta
+                int escolha = JOptionPane.showConfirmDialog(null, "Ocupação não encontrada. Deseja cadastrar?", "Atenção!", JOptionPane.YES_NO_OPTION); //Cria uma pergunta
                 //0 = Sim; 1 = Não;
-                if (escolha == 0) { //Se for sim, mostra a tela de cadastro de ocupação, pois a reserva precisa de uma ocupação existente
+                if (escolha == JOptionPane.YES_OPTION) { //Se for sim, mostra a tela de cadastro de ocupação, pois a reserva precisa de uma ocupação existente
                     main.cadastrarOcupacao();
+                } else {
+                    try {
+                        Reserva r = new Reserva();
+
+                        r.setCd_reserva(Integer.parseInt(jTextFieldCdReserva.getText()));
+                        r.getOcupacao().setCd_ocupacao(Integer.parseInt(jTextFieldCdOcupacao.getText()));
+                        r.setData(jFormattedTextFieldData.getText());
+                        r.setPeriodo(jComboBoxPeriodo.getSelectedIndex());
+                        r.getSituacao().setCd_situacao(jComboBoxSituacao.getSelectedIndex() - 1);
+                        r.setCliente(clientes.get(jComboBoxCpfCli.getSelectedIndex()));
+                        Quarto q = quartos.get(jComboBoxNrQuarto.getSelectedIndex());
+                        r.setQuarto(q);
+                        
+                        Fachada f = new Fachada();
+                        f.fazerReserva(r);
+                        JOptionPane.showMessageDialog(this, "Reserva efetuada com sucesso.");
+                        setandoReservar();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, "Erro ao cadastrar reserva." + ex.getMessage());
+                    }
                 }
             } else {
-                JOptionPane.showMessageDialog(this, erro.getMessage());
+               JOptionPane.showMessageDialog(this, erro.getMessage());
             }
-        }
     }//GEN-LAST:event_jButtonReservarActionPerformed
-
+    }
     private void jComboBoxPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPeriodoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxPeriodoActionPerformed
@@ -315,6 +339,20 @@ public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
             modeloQ.addElement(q.getNr_quarto() + ": " + q.getDs_quarto() + ": " + q.getTipo() + ": R$ " + q.getPreco());
         }
         jComboBoxNrQuarto.setModel(modeloQ);
+
+    }
+    
+    public void carregarSituacao() {
+        Fachada f = new Fachada();
+        try {
+            situacoes = f.listarSituacao(new Situacao());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(main, erro.getMessage());
+        }
+        for (Situacao s : situacoes) {
+            modeloS.addElement(s.getCd_situacao() + " - " + s.getDs_situacao());
+        }
+        jComboBoxSituacao.setModel(modeloS);
 
     }
 }

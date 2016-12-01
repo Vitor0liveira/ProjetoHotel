@@ -367,7 +367,7 @@ public class JInternalFramePesqReserva extends javax.swing.JInternalFrame {
             jFormattedTextFieldData.setText(r.getData());
             jComboBoxSituacao.setSelectedIndex(r.getSituacao().getCd_situacao() + 1);
             jComboBoxNrQuarto.setSelectedItem(r.getQuarto().getNr_quarto() + "");
-            jTextFieldOcupacao.setText(Integer.toString(r.getCd_ocupacao()));
+            jTextFieldOcupacao.setText(Integer.toString(r.getOcupacao().getCd_ocupacao()));
             jFormattedTextFieldCpf.setText(r.getCliente().getCpf_cliente());
 
             setEnabledPesqReserva();

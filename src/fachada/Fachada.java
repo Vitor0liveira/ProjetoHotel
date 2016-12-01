@@ -13,8 +13,11 @@ import quarto.Quarto;
 import reserva.InterfaceReserva;
 import reserva.NegocioReserva;
 import reserva.Reserva;
+import situacao.InterfaceSituacao;
+import situacao.NegocioSituacao;
+import situacao.Situacao;
 
-public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo, InterfaceQuartos {
+public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo, InterfaceQuartos, InterfaceSituacao {
 
     @Override
     public void cadastrarCliente(Cliente c) throws Exception {
@@ -128,6 +131,12 @@ public class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo,
     public ArrayList<Quarto> listarQuartos(Quarto filtro) throws Exception {
         NegocioQuartos nQ = new NegocioQuartos();
         return nQ.listarQuartos(filtro);
+    }
+
+    @Override
+    public ArrayList<Situacao> listarSituacao(Situacao filtro) throws Exception {
+        NegocioSituacao nS = new NegocioSituacao();
+        return nS.listarSituacao(filtro);
     }
 
 }

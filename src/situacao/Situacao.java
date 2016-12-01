@@ -4,6 +4,7 @@ public class Situacao {
     private int cd_situacao;
     private String ds_situacao;
 
+    
     public int getCd_situacao() {
         return cd_situacao;
     }

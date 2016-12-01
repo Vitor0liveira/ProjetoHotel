@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import quarto.Quarto;
 import servicos.Servico;
 import situacao.Situacao;
+import fichaOcupacao.FichaOcupacao;
 
 public class Reserva {
 
@@ -15,13 +16,14 @@ public class Reserva {
     private Cliente cliente;
     private Quarto quarto;
     private ArrayList<Servico> servico;
-    private int cd_ocupacao;
+    private FichaOcupacao fichaOcupacao ;
 
     public Reserva() {
         this.cliente = new Cliente();
         this.quarto = new Quarto();
         this.situacao = new Situacao();
         this.servico = new ArrayList<Servico>();
+        this.fichaOcupacao = new FichaOcupacao();
     }
 
     @Override
@@ -34,7 +36,7 @@ public class Reserva {
         retorno += "Situação: " + this.situacao + "\n";
         retorno += "Cliente CPF: " + this.cliente + "\n";
         retorno += "Número do quarto: " + this.quarto + "\n";
-        retorno += "Código ocupação: " + this.cd_ocupacao;
+        retorno += "Código ocupação: " + this.fichaOcupacao + "\n";
 
         return retorno;
     }
@@ -95,12 +97,12 @@ public class Reserva {
         this.servico = servico;
     }
 
-    public int getCd_ocupacao() {
-        return this.cd_ocupacao;
+    public FichaOcupacao getOcupacao() {
+        return this.fichaOcupacao;
     }
 
-    public void setCd_ocupacao(int cd_ocpcao) {
-        cd_ocupacao = cd_ocpcao;
+    public void setOcupacao(FichaOcupacao fichaO) {
+        this.fichaOcupacao = fichaO;
     }
 
 }

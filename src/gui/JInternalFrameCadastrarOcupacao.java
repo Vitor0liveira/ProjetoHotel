@@ -314,7 +314,6 @@ public class JInternalFrameCadastrarOcupacao extends javax.swing.JInternalFrame 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(main, erro.getMessage());
         }
-        System.out.println(quartos.size());
         for (Quarto q : quartos) {
             modeloQ.addElement(q.getNr_quarto() + ": " + q.getDs_quarto() + ": " + q.getTipo() + ": R$ " + q.getPreco());
         }

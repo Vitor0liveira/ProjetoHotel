@@ -22,7 +22,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
 
             String sql = "INSERT INTO Reserva (cd_reserva, data, periodo, cd_situacao, CPF_cliente, Nr_quarto, Cd_ocupacao)";
             sql += "VALUES (?,?,?,?,?,?,?)";
-
+            
             //Executando a instrução SQL
             PreparedStatement cmd = conn.prepareStatement(sql);
             cmd.setInt(1, r.getCd_reserva());
@@ -31,7 +31,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
             cmd.setInt(4, r.getSituacao().getCd_situacao());
             cmd.setString(5, r.getCliente().getCpf_cliente());
             cmd.setInt(6, r.getQuarto().getNr_quarto());
-            cmd.setInt(7, r.getCd_ocupacao());
+            cmd.setInt(7, r.getOcupacao().getCd_ocupacao());
             cmd.execute();
         } catch (SQLException erro) {
             throw new Exception("Erro ao executar inserção: " + erro.getMessage());
@@ -119,7 +119,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
                 r.getSituacao().setCd_situacao(leitor.getInt("cd_situacao"));
                 r.getSituacao().setDs_situacao(leitor.getString("ds_situacao"));
                 r.getQuarto().setNr_quarto(leitor.getInt("nr_quarto"));
-                r.setCd_ocupacao(leitor.getInt("cd_ocupacao"));
+                r.getOcupacao().setCd_ocupacao(leitor.getInt("cd_ocupacao"));
                 r.getCliente().setCpf_cliente(leitor.getString("CPF_cliente"));
                 r.getCliente().setNm_cliente(leitor.getString("nm_cliente"));
 
@@ -153,7 +153,7 @@ public class DadosReserva extends Dados implements InterfaceReserva {
                 r.setData(leitor.getString("data"));
                 r.setPeriodo(leitor.getInt("periodo"));
                 r.getQuarto().setNr_quarto(leitor.getInt("Nr_quarto"));
-                r.setCd_ocupacao(leitor.getInt("Cd_Ocupacao"));
+                r.getOcupacao().setCd_ocupacao(leitor.getInt("Cd_Ocupacao"));
                 r.getCliente().setCpf_cliente(leitor.getString("cpf_cliente"));
                 r.getSituacao().setCd_situacao(leitor.getInt("cd_situacao"));
             }
