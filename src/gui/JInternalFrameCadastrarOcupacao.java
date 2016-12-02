@@ -16,7 +16,7 @@ import quarto.Quarto;
 
 /**
  *
- * @author vitor_000
+ * @author Vitor Oliveira, Victor Lauria, Rodrigo Carvalho
  */
 public class JInternalFrameCadastrarOcupacao extends javax.swing.JInternalFrame {
 

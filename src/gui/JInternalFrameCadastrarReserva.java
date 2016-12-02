@@ -19,7 +19,7 @@ import situacao.Situacao;
 
 /**
  *
- * @author vitor_000
+ * @author Vitor Oliveira, Victor Lauria, Rodrigo Carvalho
  */
 public class JInternalFrameCadastrarReserva extends javax.swing.JInternalFrame {
 

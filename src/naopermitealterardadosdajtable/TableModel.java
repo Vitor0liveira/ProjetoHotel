@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Vitor Oliveira
+ * @author Vitor Oliveira, Victor Lauria, Rodrigo Carvalho
  */
 public class TableModel extends DefaultTableModel {
 

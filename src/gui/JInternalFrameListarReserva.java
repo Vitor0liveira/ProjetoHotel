@@ -16,7 +16,7 @@ import reserva.Reserva;
 
 /**
  *
- * @author vitor_000
+ * @author Vitor Oliveira, Victor Lauria, Rodrigo Carvalho
  */
 public class JInternalFrameListarReserva extends javax.swing.JInternalFrame {
 

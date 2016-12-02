@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author vitor_000
+ * @author Vitor Oliveira, Victor Lauria, Rodrigo Carvalho
  */
 public class JInternalFramePesqCliente extends javax.swing.JInternalFrame {
 
