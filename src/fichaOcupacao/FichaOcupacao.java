@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import quarto.Quarto;
 import servicos.Servico;
 
-public class FichaOcupacao {
+public final class FichaOcupacao {
 
     private int cd_ocupacao;
     private String data_entrada;

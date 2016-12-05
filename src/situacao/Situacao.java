@@ -1,6 +1,6 @@
 package situacao;
 
-public class Situacao {
+public final class Situacao {
     private int cd_situacao;
     private String ds_situacao;
 

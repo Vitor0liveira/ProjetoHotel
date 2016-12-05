@@ -7,7 +7,7 @@ import servicos.Servico;
 import situacao.Situacao;
 import fichaOcupacao.FichaOcupacao;
 
-public class Reserva {
+public final class Reserva {
 
     private int cd_reserva;
     private String data;

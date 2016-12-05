@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Dados {
+public abstract class Dados {
 
     private Statement stmt;
     public Connection conn;

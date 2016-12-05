@@ -2,7 +2,7 @@ package cliente;
 
 import java.util.ArrayList;
 
-public class Cliente {
+public final class Cliente  {
 
     private String cpf_cliente;
     private String nm_cliente;

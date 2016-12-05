@@ -1,6 +1,6 @@
 package quarto;
 
-public class Quarto {
+public final class Quarto {
 
     private int nr_quarto;
     private String ds_quarto;
