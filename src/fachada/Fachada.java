@@ -17,7 +17,8 @@ import situacao.InterfaceSituacao;
 import situacao.NegocioSituacao;
 import situacao.Situacao;
 
-public final class Fachada implements InterfaceCliente, InterfaceReserva, InterfaceFo, InterfaceQuartos, InterfaceSituacao {
+public final class Fachada implements InterfaceCliente, InterfaceReserva, 
+        InterfaceFo, InterfaceQuartos, InterfaceSituacao {
 
     @Override
     public void cadastrarCliente(Cliente c) throws Exception {

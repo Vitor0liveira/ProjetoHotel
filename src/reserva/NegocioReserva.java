@@ -7,20 +7,20 @@ import java.util.ArrayList;
 public class NegocioReserva implements InterfaceReserva {
 
     //Criado o método "validarCamposBasicos" para usalo nos outros métodos como o validador.
-    public void validarCamposBasicos(Reserva r) throws Exception {
-        if (r.getCliente().getCpf_cliente().trim().length() < 14) {
+    public void validarCamposBasicos(Reserva reserva) throws Exception {
+        if (reserva.getCliente().getCpf_cliente().trim().length() < 14) {
             throw new Exception("Por Favor, informe um CPF válido.");
         }
 
-        if (r.getPeriodo() <= 0) {
+        if (reserva.getPeriodo() <= 0) {
             throw new Exception("Por Favor, informe um período válido.");
         }
 
-        if (r.getData().equals("  /  /   ")) {
+        if (reserva.getData().equals("  /  /   ")) {
             throw new Exception("Por Favor, informe a data.");
         }
 
-        if (r.getCd_reserva() <= 0) {
+        if (reserva.getCd_reserva() <= 0) {
             throw new Exception("Por Favor, informe um código de reserva válido.");
         }
 
@@ -30,13 +30,13 @@ public class NegocioReserva implements InterfaceReserva {
  /*if (r.getQuarto().getNr_quarto() == r.getQuarto().getNr_quarto()) {
             throw new Exception("Informe um quarto válido.");
         }*/
-        if (r.getQuarto().getNr_quarto() <= 0) {
+        if (reserva.getQuarto().getNr_quarto() <= 0) {
             throw new Exception("Informe um quarto válido.");
         }
         
         Fachada f = new Fachada();
         FichaOcupacao fO = new FichaOcupacao(); //Cria fO
-        fO.setCd_ocupacao(r.getOcupacao().getCd_ocupacao()); //Coloca o código para o código
+        fO.setCd_ocupacao(reserva.getOcupacao().getCd_ocupacao()); //Coloca o código para o código
         fO = f.pesquisarFo(fO); //Retorna o fO pesquisado
         if (fO.getCliente().getCpf_cliente() == null) { //Se não existir o cliente, executa o escopo abaixo
             throw new Exception("Ocupação não encontrada.");

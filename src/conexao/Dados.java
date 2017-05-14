@@ -19,14 +19,14 @@ public abstract class Dados {
     }
 
     private java.sql.Statement conectarSqlServer() throws ClassNotFoundException, SQLException {
-        String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        String url = "jdbc:sqlserver://localhost;DatabaseName=SISTEMA_HOTEL";
-        String usuario = "projeto";
-        String senha = "123";
-        Class.forName(driver);
-        //obtem uma conexao com o sgbd
-        conn = DriverManager.getConnection(url, usuario, senha);
-        stmt = conn.createStatement();
-        return stmt;
+            String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+            String url = "jdbc:sqlserver://localhost;DatabaseName=SISTEMA_HOTEL";
+            String usuario = "projeto";
+            String senha = "123";
+            Class.forName(driver);
+            //obtem uma conexao com o sgbd
+            conn = DriverManager.getConnection(url, usuario, senha);
+            stmt = conn.createStatement();
+            return stmt;
     }
 }

@@ -54,7 +54,7 @@ public class NegocioCliente implements InterfaceCliente {
 
         if (c.getCpf_cliente().equals("   .   .   -  ")) {
             throw new Exception("Cliente não encontrado.");
-        }        
+        }
     }
 
     @Override
