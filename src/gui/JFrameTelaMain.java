@@ -5,6 +5,15 @@
  */
 package gui;
 
+import gui.reserva.JInternalFrameCadastrarReserva;
+import gui.ocupacao.JInternalFramePesqOcupacao;
+import gui.cliente.JInternalFrameListarCliente;
+import gui.reserva.JInternalFramePesqReserva;
+import gui.reserva.JInternalFrameListarReserva;
+import gui.cliente.JInternalFramePesqCliente;
+import gui.cliente.JInternalFrameCadastrarCliente;
+import gui.ocupacao.JInternalFrameCadastrarOcupacao;
+import gui.ocupacao.JInternalFrameListarOcupacao;
 import javax.swing.JOptionPane;
 
 /**
@@ -90,6 +99,8 @@ public class JFrameTelaMain extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Hotel - Principal");
+        setMaximumSize(new java.awt.Dimension(300, 300));
+        setMinimumSize(new java.awt.Dimension(300, 300));
 
         jDesktopPaneAreaTrabalho.setBackground(new java.awt.Color(102, 102, 102));
         jDesktopPaneAreaTrabalho.setToolTipText("");
